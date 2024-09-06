@@ -1,0 +1,25 @@
+.navbarNavId {
+  justify-content: right;
+}
+
+.logo {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.navbarNav {
+  align-items: center;
+}
+
+.navItem:last-of-type {
+  margin-left: 1rem;
+  letter-spacing: 0;
+}
+
+.navbar {
+  font-size: 1.2rem;
+  padding: 1rem 3.2rem 1rem 1.6rem;
+  text-transform: uppercase;
+  background-color: var(--secondary-color-default);
+}
