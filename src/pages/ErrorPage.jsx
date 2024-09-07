@@ -9,7 +9,7 @@ const ErrorPage = () => {
     <div className="error">
       <img
         className="error-image"
-        src={require('../img/404-error.jpg')}
+        src="../../public/404-error.jpg"
         alt="Error 404"
       />
       <h2 className="error-title">Something went wrong!</h2>
