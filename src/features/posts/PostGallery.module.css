@@ -1,0 +1,19 @@
+.galleryContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  margin: 0.6rem;
+}
+
+@media (max-width: 1120px) {
+  .galleryContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 672px) {
+  .galleryContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}

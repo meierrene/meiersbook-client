@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
-import Post from '../components/Post';
+import Post from '../features/posts/Post';
 import { usePosts } from '../contexts/PostContext';
 import { useEffect } from 'react';
 
