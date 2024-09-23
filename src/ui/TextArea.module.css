@@ -1,0 +1,5 @@
+.themeDark,
+.themeDark:focus {
+  background: #333;
+  color: #bbb;
+}

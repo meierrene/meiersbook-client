@@ -1,0 +1,18 @@
+.formGroup {
+  margin: 1.6rem 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.formGroup:first-of-type {
+  border: 0.1rem solid var(--main-color);
+  gap: 2.4rem;
+  align-items: center;
+}
+
+@media (max-width: 672px) {
+  .formGroup:first-of-type {
+    flex-direction: column;
+  }
+}

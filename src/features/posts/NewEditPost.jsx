@@ -4,6 +4,10 @@ import { usePosts } from '../../contexts/PostContext';
 import { ASSET_URL } from '../../contexts/PostContext';
 import Button from '../../ui/Button';
 import Spinner from '../../ui/Spinner';
+import TextArea from '../../ui/TextArea';
+import Input from '../../ui/Input';
+import Form from '../../ui/Form';
+import FormGroup from '../../ui/FormGroup';
 
 const NewEditPost = () => {
   const { currentPost, createPost, editPost, isLoading } = usePosts();
@@ -44,14 +48,14 @@ const NewEditPost = () => {
       <h1 className="primary-heading">
         {currentPost.id ? 'Update' : 'New'} Post
       </h1>
-      <form
+      <Form
         className="front-panel form-post-data"
         id={currentPost.id ? 'edit' : 'new'}
-        data-id={currentPost.id ? currentPost.id : ''}
+        dataId={currentPost.id ? currentPost.id : ''}
         encType="multipart/form-data"
         onSubmit={handleSubmit}
       >
-        <div className="form-group">
+        <FormGroup>
           <div className="image-preview">
             {previewImage && (
               <img
@@ -64,7 +68,7 @@ const NewEditPost = () => {
               />
             )}
           </div>
-          <input
+          <Input
             id="image"
             className="btn"
             type="file"
@@ -72,21 +76,19 @@ const NewEditPost = () => {
             name="image"
             onChange={handleChangeImage}
           />
-        </div>
-        <div className="form-group">
+        </FormGroup>
+        <FormGroup>
           <label className="title-heading">Description</label>
-          <textarea
+          <TextArea
             className="title-heading form-control"
-            type="text"
             name="title"
-            rows="6"
             autoFocus={true}
             value={title}
             onChange={e => setTitle(e.target.value)}
           >
             {currentPost.id ? currentPost.title : ''}
-          </textarea>
-        </div>
+          </TextArea>
+        </FormGroup>
         <div className="buttons-nav">
           <Link to="/">
             <Button level="secondary">Go back</Button>
@@ -95,7 +97,7 @@ const NewEditPost = () => {
             {currentPost.id ? 'Update' : 'Publish'}
           </Button>
         </div>
-      </form>
+      </Form>
     </>
   );
 };

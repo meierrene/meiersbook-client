@@ -29,22 +29,8 @@ const Header = () => {
           id="navbarNav"
         >
           <ul className={`${styles.navbarNav} navbar-nav`}>
-            <li className="nav-item">
-              <NavLink className="nav-link link-wrapper" id="contact" to="/">
-                <Button level="secondary" navLink>
-                  About me
-                </Button>
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link link-wrapper" id="about" to="/">
-                <Button level="secondary" navLink>
-                  Contact me
-                </Button>
-              </NavLink>
-            </li>
             <li className="nav-item ">
-              <NavLink className="btn nav-link link-wrapper" to="/">
+              <NavLink className="btn nav-link link-wrapper" to="/login">
                 <Button level="primary" navLink>
                   Login
                 </Button>

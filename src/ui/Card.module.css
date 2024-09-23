@@ -60,10 +60,7 @@
   }
 }
 
-@media (max-width: 42em) {
-  .card {
-    margin: 1.2rem 0.2rem;
-  }
+@media (max-width: 672px) {
   .cardImage {
     max-width: 100%;
   }

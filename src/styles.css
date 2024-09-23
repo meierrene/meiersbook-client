@@ -40,37 +40,11 @@ body {
   display: flex;
   word-wrap: break-word;
   flex-direction: column;
+  min-height: 100vh;
   padding-bottom: 8rem;
   text-align: center;
   overflow-x: hidden;
   background-color: #fff;
-}
-
-input[type='file'] {
-  font-size: 1.6rem;
-  color: #000;
-}
-
-input::file-selector-button {
-  box-sizing: border-box;
-  transition: all 0.2s;
-  border-radius: 90rem;
-  background: var(--main-parimary-color);
-  line-height: 24px;
-  color: #fff;
-  outline: 0 solid transparent;
-  padding: 8px 18px;
-  width: fit-content;
-  word-break: break-word;
-  font-weight: 700;
-  border: 0;
-  font-size: 1.4rem;
-  cursor: pointer;
-  margin: 0 2.4rem;
-}
-
-input::file-selector-button:hover {
-  background: var(--main-color-shade-1);
 }
 
 .primary-heading {
@@ -85,9 +59,9 @@ input::file-selector-button:hover {
   word-break: break-all;
 }
 
-.title-heading.form-control {
+/* .title-heading.form-control {
   margin: auto;
-}
+} */
 
 .text-comment {
   font-size: 1.4rem;
@@ -96,7 +70,6 @@ input::file-selector-button:hover {
 .front-panel {
   margin: 2.4rem 0.6rem;
   font-size: 1.2rem;
-  padding: 0.6rem 1.2rem;
 }
 
 .date-created {
@@ -120,23 +93,18 @@ input::file-selector-button:hover {
   max-height: 90rem;
 }
 
-.image-preview img {
-  max-height: 50rem;
-}
-
-.form-group {
-  margin: 1.6rem 0;
+.image-preview {
+  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  align-items: center;
 }
 
-.form-group:first-of-type {
-  padding: 1rem;
-  border: 0.1rem solid var(--main-color);
-  border-radius: 10px;
-  gap: 2.4rem;
-  align-items: center;
+.image-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 2px;
 }
 
 .post-link:link,
@@ -182,26 +150,6 @@ input::file-selector-button:hover {
 }
 
 .theme-dark .navbar a {
-  color: #bbb;
-}
-
-.theme-dark input[type='file'] {
-  color: #fff;
-}
-
-.theme-dark textarea,
-.theme-dark textarea:focus {
-  background: #333;
-  color: #bbb;
-}
-
-.theme-dark .card {
-  background-color: #333;
-  color: #bbb;
-  border-color: #bbb;
-}
-
-.theme-dark .card p {
   color: #bbb;
 }
 
