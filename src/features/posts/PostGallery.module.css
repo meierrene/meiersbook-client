@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
-  margin: 0.6rem;
+  margin: 2.4rem;
 }
 
 @media (max-width: 1120px) {
@@ -15,5 +15,6 @@
   .galleryContainer {
     display: flex;
     flex-direction: column;
+    margin: 1rem;
   }
 }

@@ -7,26 +7,29 @@ import NewEditPostPage from './pages/NewEditPostPage';
 import PostGalleryPage from './pages/PostGalleryPage';
 import PostPage from './pages/PostPage';
 import ErrorPage from './pages/ErrorPage';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 const App = () => {
   return (
-    <PostProvider>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route index element={<PostGalleryPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="posts" element={<PostGalleryPage />} />
-          <Route path="newpost" element={<NewEditPostPage />} />
-          <Route path=":id" element={<PostPage />}>
-            <Route index element={<Navigate replace to="" />} />
-            <Route path="editpost" element={<NewEditPostPage />} />
-          </Route>
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </PostProvider>
+    <ThemeProvider>
+      <PostProvider>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route index element={<PostGalleryPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="posts" element={<PostGalleryPage />} />
+            <Route path="newpost" element={<NewEditPostPage />} />
+            <Route path=":id" element={<PostPage />}>
+              <Route index element={<Navigate replace to="" />} />
+              <Route path="editpost" element={<NewEditPostPage />} />
+            </Route>
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </PostProvider>
+    </ThemeProvider>
   );
 };
 

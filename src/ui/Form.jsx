@@ -1,8 +1,8 @@
-import { usePosts } from '../contexts/PostContext';
+import { useThemes } from '../contexts/ThemeContext';
 import styles from './Form.module.css';
 
 function Form({ children, id, dataId, encType, onSubmit }) {
-  const { isDark } = usePosts();
+  const { isDark } = useThemes();
 
   return (
     <div className={`${styles.container} ${isDark ? styles.themeDark : ''}`}>

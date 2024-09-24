@@ -5,8 +5,8 @@ import FormGroup from '../../ui/FormGroup';
 import Heading from '../../ui/Heading';
 import ButtonsNav from '../../ui/ButtonsNav';
 import Button from '../../ui/Button';
-import { usePosts } from '../../contexts/PostContext';
-import { ASSET_URL } from '../../contexts/PostContext';
+import Image from '../../ui/Image';
+import { TEMPLATE_PROFILE_IMAGE } from '../../contexts/PostContext';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -18,14 +18,13 @@ function LoginForm() {
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
   // For the image
-  const { currentPost } = usePosts();
   const [previewImage, setPreviewImage] = useState(null);
-  const [imageData, setImageData] = useState({});
+  // const [imageData, setImageData] = useState({});
 
   const handleChangeImage = e => {
     if (e.target.files && e.target.files[0]) {
       setPreviewImage(URL.createObjectURL(e.target.files[0]));
-      setImageData(e.target.files[0]);
+      // setImageData(e.target.files[0]);
     }
   };
 
@@ -82,18 +81,13 @@ function LoginForm() {
               />
             </FormGroup>
             <FormGroup>
-              <div className="image-preview">
-                {previewImage && (
-                  <img
-                    src={
-                      currentPost.image === previewImage
-                        ? `${ASSET_URL}/${currentPost.image}`
-                        : previewImage
-                    }
-                    alt="preview"
-                  />
-                )}
-              </div>
+              <Heading>Profile picture</Heading>
+              <Image
+                src={previewImage || TEMPLATE_PROFILE_IMAGE}
+                alt="preview"
+                profile
+                preview
+              />
               <Input
                 id="image"
                 type="file"

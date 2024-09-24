@@ -10,6 +10,7 @@ export const BASE_URL = `${import.meta.env.VITE_API_URL}/posts/`;
 export const ASSET_URL = `${
   import.meta.env.VITE_ASSET_URL
 }/uploads/postsImages`;
+export const TEMPLATE_PROFILE_IMAGE = './imgs/default-user.jpg';
 
 const initalState = {
   status: '',
@@ -17,10 +18,6 @@ const initalState = {
   currentPost: {},
   message: '',
   isLoading: false,
-  isDark:
-    localStorage.getItem('isDark')?.toLowerCase?.() === 'true'
-      ? true
-      : false || window.matchMedia('(prefers-color-scheme: dark)').matches,
 };
 
 const reducer = (state, action) => {
@@ -66,9 +63,6 @@ const reducer = (state, action) => {
         message: action.payload,
         isLoading: false,
       };
-    case 'themes':
-      localStorage.setItem('isDark', !state.isDark);
-      return { ...state, isDark: !state.isDark };
     default:
       throw new Error('Invalid action');
   }
@@ -77,7 +71,7 @@ const reducer = (state, action) => {
 const PostContext = createContext();
 
 const PostProvider = ({ children }) => {
-  const [{ status, data, currentPost, message, isLoading, isDark }, dispatch] =
+  const [{ status, data, currentPost, message, isLoading }, dispatch] =
     useReducer(reducer, initalState);
 
   useEffect(() => {
@@ -97,12 +91,6 @@ const PostProvider = ({ children }) => {
     };
     fetchPosts();
   }, []);
-
-  useEffect(() => {
-    isDark
-      ? document.documentElement.classList.add('theme-dark')
-      : document.documentElement.classList.remove('theme-dark');
-  }, [isDark]);
 
   const getPost = useCallback(
     async id => {
@@ -160,8 +148,6 @@ const PostProvider = ({ children }) => {
     }
   };
 
-  const toggleTheme = () => dispatch({ type: 'themes' });
-
   const deselectPost = () => dispatch({ type: 'deselected' });
 
   return (
@@ -172,12 +158,10 @@ const PostProvider = ({ children }) => {
         currentPost,
         message,
         isLoading,
-        isDark,
         createPost,
         getPost,
         editPost,
         deletePost,
-        toggleTheme,
         deselectPost,
       }}
     >

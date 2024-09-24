@@ -1,7 +1,7 @@
-import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
-import { usePosts } from '../contexts/PostContext';
-import styles from './Input.module.css';
 import { useState } from 'react';
+import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
+import { useThemes } from '../contexts/ThemeContext';
+import styles from './Input.module.css';
 
 function Input({
   id,
@@ -12,7 +12,7 @@ function Input({
   size = 24,
   autoComplete,
 }) {
-  const { isDark } = usePosts();
+  const { isDark } = useThemes();
   const [reveal, setReveal] = useState(false);
   const isPassword = id === 'password' || id === 'passwordConfirm';
   const inputType = isPassword && reveal ? 'text' : type;

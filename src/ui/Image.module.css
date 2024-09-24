@@ -8,7 +8,7 @@
   max-height: 90rem;
 }
 
-.imagePreview {
+.previewImage {
   width: 100%;
   max-width: 100%;
   display: flex;
@@ -16,8 +16,34 @@
   align-items: center;
 }
 
-.imagePreview img {
+.previewImage img {
   max-width: 100%;
   height: auto;
   border-radius: 2px;
+}
+
+.profileImage {
+  margin: 2.4rem 0;
+}
+
+.profileImage img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 900rem;
+}
+
+@media (max-width: 672px) {
+  .postImage {
+    margin: 1rem;
+  }
+
+  .postImage img {
+    border-radius: 8px;
+  }
+
+  .profileImage img {
+    width: 150px;
+    height: 150px;
+  }
 }

@@ -5,6 +5,7 @@ import Button from '../../ui/Button';
 import { ASSET_URL } from '../../contexts/PostContext';
 import ButtonsNav from '../../ui/ButtonsNav';
 import Heading from '../../ui/Heading';
+import Image from '../../ui/Image';
 
 const Post = () => {
   const { currentPost, isLoading, deletePost } = usePosts();
@@ -23,12 +24,11 @@ const Post = () => {
 
   return (
     <div className="post-container" post-id={currentPost.id}>
-      <div className="post-image">
-        <img
-          src={`${ASSET_URL}/${currentPost.image}`}
-          alt={currentPost.title}
-        />
-      </div>
+      <Image
+        post
+        src={`${ASSET_URL}/${currentPost.image}`}
+        alt={currentPost.title}
+      />
       <Heading secondary>{currentPost.title}</Heading>
       <ButtonsNav>
         <Link to="/">

@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import { ASSET_URL, usePosts } from '../contexts/PostContext';
+import { ASSET_URL } from '../contexts/PostContext';
+import { useThemes } from '../contexts/ThemeContext';
 import styles from './Card.module.css';
 import Heading from './Heading';
 
 const Card = ({ post }) => {
-  const { isDark } = usePosts();
+  const { isDark } = useThemes();
 
   const date = new Date(post.createdAt).toLocaleString('en-UK', {
     hour: 'numeric',

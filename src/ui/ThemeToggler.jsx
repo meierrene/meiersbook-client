@@ -1,8 +1,8 @@
-import { usePosts } from '../contexts/PostContext';
+import { useThemes } from '../contexts/ThemeContext';
 import styles from './ThemeToggler.module.css';
 
 const ThemeToggler = () => {
-  const { toggleTheme, isDark } = usePosts();
+  const { toggleTheme, isDark } = useThemes();
 
   return (
     <label className={styles.switch}>

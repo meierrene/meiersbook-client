@@ -10,6 +10,7 @@ import Form from '../../ui/Form';
 import FormGroup from '../../ui/FormGroup';
 import ButtonsNav from '../../ui/ButtonsNav';
 import Heading from '../../ui/Heading';
+import Image from '../../ui/Image';
 
 const NewEditPost = () => {
   const { currentPost, createPost, editPost, isLoading } = usePosts();
@@ -57,18 +58,17 @@ const NewEditPost = () => {
         onSubmit={handleSubmit}
       >
         <FormGroup>
-          <div className="image-preview">
-            {previewImage && (
-              <img
-                src={
-                  currentPost.image === previewImage
-                    ? `${ASSET_URL}/${currentPost.image}`
-                    : previewImage
-                }
-                alt="preview"
-              />
-            )}
-          </div>
+          {previewImage && (
+            <Image
+              preview
+              src={
+                currentPost.image === previewImage
+                  ? `${ASSET_URL}/${currentPost.image}`
+                  : previewImage
+              }
+              alt="preview"
+            />
+          )}
           <Input
             id="image"
             type="file"

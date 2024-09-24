@@ -1,4 +1,4 @@
-import { usePosts } from '../contexts/PostContext';
+import { useThemes } from '../contexts/ThemeContext';
 import styles from './TextArea.module.css';
 
 function TextArea({
@@ -11,7 +11,7 @@ function TextArea({
   value,
   onChange,
 }) {
-  const { isDark } = usePosts();
+  const { isDark } = useThemes();
   return (
     <textarea
       className={`${className} ${isDark ? styles.themeDark : ''}`}
