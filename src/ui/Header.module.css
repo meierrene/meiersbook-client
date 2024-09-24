@@ -19,7 +19,7 @@
 
 .navbar {
   font-size: 1.2rem;
-  padding: 0.6rem;
+  padding: 0 1rem;
   text-transform: uppercase;
   background-color: var(--secondary-color-default);
 }
