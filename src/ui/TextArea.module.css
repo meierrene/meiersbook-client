@@ -1,5 +1,18 @@
+textarea {
+  margin: 2.4rem;
+  padding: 0.8rem;
+  border-radius: 4px;
+  font-size: 1.8rem;
+}
+
 .themeDark,
 .themeDark:focus {
   background: #333;
   color: #bbb;
+}
+
+@media (max-width: 672px) {
+  textarea {
+    margin: 0.6rem;
+  }
 }

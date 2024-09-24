@@ -1,5 +1,5 @@
 :root {
-  --main-parimary-color: #028391;
+  --main-primary-color: #028391;
   --main-color-shade-1: #026974;
   --secondary-color-default: #5d3587;
   --dark-theme-color: #183153;
@@ -9,7 +9,7 @@
   box-sizing: border-box;
   transition: all 0.2s;
   border-radius: 4px;
-  background: var(--main-parimary-color);
+  background: var(--main-primary-color);
   line-height: 24px;
   color: #fff;
   opacity: 1;

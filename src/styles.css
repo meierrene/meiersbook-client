@@ -25,6 +25,11 @@
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem rgba(255, 169, 77, 0.6); /*#ffa94d*/
+}
+
 html {
   width: 100%;
   height: 100%;
@@ -47,22 +52,6 @@ body {
   background-color: #fff;
 }
 
-.primary-heading {
-  padding: 1.2rem;
-  font-size: 1.8rem;
-}
-
-.title-heading {
-  /* margin: 2.4rem; */
-  padding: 0.8rem;
-  font-size: 1.6rem;
-  word-break: break-all;
-}
-
-/* .title-heading.form-control {
-  margin: auto;
-} */
-
 .text-comment {
   font-size: 1.4rem;
 }
@@ -73,14 +62,8 @@ body {
 }
 
 .date-created {
-  font-size: 1rem;
   font-style: italic;
   color: #111;
-}
-
-.buttons-nav {
-  display: flex;
-  justify-content: space-between;
 }
 
 .post-image {
@@ -132,18 +115,6 @@ body {
   font-size: 1.6rem;
 }
 
-.footer {
-  text-align: center;
-  position: absolute;
-  padding: 0.6rem;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  font-size: 1.4rem;
-  width: 100%;
-  color: var(--main-color);
-}
-
 .theme-dark body {
   background-color: #222;
   color: #bbb;
@@ -153,25 +124,17 @@ body {
   color: #bbb;
 }
 
-.theme-dark .footer {
-  color: #bbb;
-}
-
 @media (max-width: 672px) {
+  *:focus {
+    box-shadow: 0 0 0 0.3rem rgba(255, 169, 77, 0.6);
+  }
+
   body {
     max-width: 100%;
   }
 
-  .form-group:first-of-type {
-    flex-direction: column;
-  }
-
-  .primary-heading {
-    font-size: 1.2rem;
-  }
-
   .post-image {
-    margin: 1.2rem;
+    margin: 0.6rem;
   }
 
   .post-image img {

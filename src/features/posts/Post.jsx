@@ -3,6 +3,8 @@ import { usePosts } from '../../contexts/PostContext';
 import Spinner from '../../ui/Spinner';
 import Button from '../../ui/Button';
 import { ASSET_URL } from '../../contexts/PostContext';
+import ButtonsNav from '../../ui/ButtonsNav';
+import Heading from '../../ui/Heading';
 
 const Post = () => {
   const { currentPost, isLoading, deletePost } = usePosts();
@@ -21,28 +23,24 @@ const Post = () => {
 
   return (
     <div className="post-container" post-id={currentPost.id}>
-      <h1 className="title-heading">{currentPost.title}</h1>
       <div className="post-image">
         <img
           src={`${ASSET_URL}/${currentPost.image}`}
           alt={currentPost.title}
         />
       </div>
-      <div className="buttons-nav front-panel">
-        <Link className="btn" to="/">
+      <Heading secondary>{currentPost.title}</Heading>
+      <ButtonsNav>
+        <Link to="/">
           <Button level="secondary">Go back</Button>
         </Link>
-        <Link className="btn" to="editpost">
+        <Link to="editpost">
           <Button level="secondary">Modify</Button>
         </Link>
-        <Button
-          className="btn delete-btn"
-          level="delete"
-          onClick={handleDelete}
-        >
+        <Button level="delete" onClick={handleDelete}>
           Delete post
         </Button>
-      </div>
+      </ButtonsNav>
     </div>
   );
 };

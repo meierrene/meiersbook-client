@@ -1,0 +1,29 @@
+.primaryHeading {
+  padding: 1.2rem;
+  font-size: 3.6rem;
+  font-weight: bold;
+}
+
+.secondaryHeading {
+  padding: 0.8rem;
+  font-size: 2.4rem;
+  font-weight: bold;
+  word-break: break-all;
+}
+
+.paragraph {
+  font-size: 2rem;
+  margin: 0;
+}
+
+@media (max-width: 672px) {
+  .primaryHeading {
+    font-size: 2.4rem;
+  }
+  .secondaryHeading {
+    font-size: 1.8rem;
+  }
+  .paragraph {
+    font-size: 1.6rem;
+  }
+}

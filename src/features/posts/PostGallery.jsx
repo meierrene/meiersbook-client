@@ -4,6 +4,7 @@ import Button from '../../ui/Button';
 import { usePosts } from '../../contexts/PostContext';
 import { useEffect } from 'react';
 import styles from './PostGallery.module.css';
+import Heading from '../../ui/Heading';
 
 const PostGallery = () => {
   const { data, deselectPost } = usePosts();
@@ -22,11 +23,11 @@ const PostGallery = () => {
         <Link className="btn compose-btn" to="/newpost">
           <Button level="secondary">New post</Button>
         </Link>
-        <h1 className="primary-heading">
+        <Heading secondary>
           {number > 0
             ? `You have ${number} post${number === 1 ? '' : 's'}:`
             : 'You have no posts! How about to create one?'}
-        </h1>
+        </Heading>
       </div>
       <div className={styles.galleryContainer}>
         {data

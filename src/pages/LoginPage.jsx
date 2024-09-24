@@ -1,7 +1,7 @@
-import LoginForm from '../features/authentication/LoginForm';
+import LoginSignupForm from '../features/authentication/LoginSignupForm';
 
 function LoginPage() {
-  return <LoginForm />;
+  return <LoginSignupForm />;
 }
 
 export default LoginPage;

@@ -5,14 +5,8 @@
   flex-direction: column;
 }
 
-.formGroup:first-of-type {
-  border: 0.1rem solid var(--main-color);
-  gap: 2.4rem;
-  align-items: center;
-}
-
 @media (max-width: 672px) {
-  .formGroup:first-of-type {
-    flex-direction: column;
+  .formGroup {
+    margin: 0.6rem 0;
   }
 }

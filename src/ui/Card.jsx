@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ASSET_URL, usePosts } from '../contexts/PostContext';
 import styles from './Card.module.css';
+import Heading from './Heading';
 
 const Card = ({ post }) => {
   const { isDark } = usePosts();
@@ -25,7 +26,7 @@ const Card = ({ post }) => {
             <p>Error to load photo in this post</p>
           )}
         </div>
-        <h1 className="title-heading">{post.title}</h1>
+        <Heading>{post.title}</Heading>
         <p className="date-created">Created at: {date}</p>
       </div>
     </Link>

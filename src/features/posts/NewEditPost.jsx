@@ -8,6 +8,8 @@ import TextArea from '../../ui/TextArea';
 import Input from '../../ui/Input';
 import Form from '../../ui/Form';
 import FormGroup from '../../ui/FormGroup';
+import ButtonsNav from '../../ui/ButtonsNav';
+import Heading from '../../ui/Heading';
 
 const NewEditPost = () => {
   const { currentPost, createPost, editPost, isLoading } = usePosts();
@@ -45,9 +47,8 @@ const NewEditPost = () => {
 
   return (
     <>
-      <h1 className="primary-heading">
-        {currentPost.id ? 'Update' : 'New'} Post
-      </h1>
+      <Heading primary>{currentPost.id ? 'Update' : 'New'} Post</Heading>
+
       <Form
         className="front-panel form-post-data"
         id={currentPost.id ? 'edit' : 'new'}
@@ -70,7 +71,6 @@ const NewEditPost = () => {
           </div>
           <Input
             id="image"
-            className="btn"
             type="file"
             accept="image/*"
             name="image"
@@ -78,9 +78,8 @@ const NewEditPost = () => {
           />
         </FormGroup>
         <FormGroup>
-          <label className="title-heading">Description</label>
+          <Heading>Description</Heading>
           <TextArea
-            className="title-heading form-control"
             name="title"
             autoFocus={true}
             value={title}
@@ -89,14 +88,14 @@ const NewEditPost = () => {
             {currentPost.id ? currentPost.title : ''}
           </TextArea>
         </FormGroup>
-        <div className="buttons-nav">
+        <ButtonsNav>
           <Link to="/">
             <Button level="secondary">Go back</Button>
           </Link>
           <Button level="primary" disabled={!imageData.name && !currentPost.id}>
             {currentPost.id ? 'Update' : 'Publish'}
           </Button>
-        </div>
+        </ButtonsNav>
       </Form>
     </>
   );

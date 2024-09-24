@@ -5,30 +5,30 @@ import { useState } from 'react';
 
 function Input({
   id,
-  className,
   type = 'text',
   accept,
   name,
   onChange,
   size = 24,
+  autoComplete,
 }) {
   const { isDark } = usePosts();
   const [reveal, setReveal] = useState(false);
-  const checkPassword = id === ('password' || 'confirmPassword');
-
-  if (checkPassword) reveal ? (type = 'text') : (type = 'password');
+  const isPassword = id === 'password' || id === 'passwordConfirm';
+  const inputType = isPassword && reveal ? 'text' : type;
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isDark ? styles.themeDark : ''}`}>
       <input
-        className={`${className} ${isDark ? styles.themeDark : ''}`}
+        className={isDark ? styles.themeDark : ''}
         id={id}
-        type={type}
+        type={inputType}
         accept={accept}
         name={name}
         onChange={onChange}
+        autoComplete={autoComplete || 'off'}
       />
-      {checkPassword && (
+      {isPassword && (
         <div className={styles.icon} onClick={() => setReveal(r => !r)}>
           {reveal ? <BsEyeSlashFill size={size} /> : <BsEyeFill size={size} />}
         </div>

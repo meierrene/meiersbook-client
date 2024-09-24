@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  background: #eee;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 70rem;
+  padding: 1.2rem;
+  padding-top: 0.4rem;
+  border-radius: 4px;
+  margin: 2.4rem;
+}
+
+.themeDark .form {
+  background: #444;
+  color: #bbb;
+}
+
+@media (max-width: 672px) {
+  .form {
+    margin: 0.6rem;
+  }
+}

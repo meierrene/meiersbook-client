@@ -1,23 +1,62 @@
+/* Completely remove autofill background and apply your own */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 1000px #ddd inset !important;
+  -webkit-text-fill-color: #000 !important;
+  border-radius: 4px !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+/* Dark Mode autofill style */
+.themeDark input:-webkit-autofill,
+.themeDark input:-webkit-autofill:hover,
+.themeDark input:-webkit-autofill:focus,
+.themeDark input:-webkit-autofill:active {
+  box-shadow: 0 0 0 1000px #333 inset !important;
+  -webkit-text-fill-color: #bbb !important;
+  border-radius: 4px !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+.container {
+  position: relative;
+  max-width: 67.2rem;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 input {
-  max-width: 42rem;
+  max-width: 67.2rem;
   width: 100%;
   border: 0;
   font-size: 1.8rem;
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 0.6rem;
   padding-right: 3rem;
+  background-color: #ddd;
+  transition: box-shadow 0.3s ease;
 }
 
 input[type='file'] {
   font-size: 1.6rem;
   color: #000;
+  background: #eee;
+  display: inline-block;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 input::file-selector-button {
   box-sizing: border-box;
   transition: all 0.2s;
-  border-radius: 90rem;
-  background: var(--main-parimary-color);
+  border-radius: 4px;
+  background: var(--main-primary-color);
   line-height: 24px;
   color: #fff;
   outline: 0 solid transparent;
@@ -35,26 +74,6 @@ input::file-selector-button:hover {
   background: var(--main-color-shade-1);
 }
 
-.themeDark,
-.themeDark:focus {
-  background: #333;
-  color: #bbb;
-}
-
-.themeDark[type='file'] {
-  background: #222;
-  color: #bbb;
-}
-
-.container {
-  position: relative;
-  max-width: 42rem;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
-
 .icon {
   position: absolute;
   right: 1rem;
@@ -62,5 +81,20 @@ input::file-selector-button:hover {
   transform: translateY(-50%);
   cursor: pointer;
   font-size: 1.8rem;
+  color: #000;
+}
+
+.themeDark input,
+.themeDark input:focus {
+  background: #333;
+  color: #bbb;
+}
+
+.themeDark[type='file'] {
+  background: #444;
+  color: #bbb;
+}
+
+.themeDark .icon {
   color: #bbb;
 }
