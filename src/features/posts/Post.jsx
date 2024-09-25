@@ -1,18 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { usePosts } from '../../contexts/PostContext';
 import Spinner from '../../ui/Spinner';
 import Button from '../../ui/Button';
-import { ASSET_URL } from '../../contexts/PostContext';
+import { ASSET_URL } from '../../utils/helpers';
 import ButtonsNav from '../../ui/ButtonsNav';
 import Heading from '../../ui/Heading';
 import Image from '../../ui/Image';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Post = () => {
   const { currentPost, isLoading } = usePosts();
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  if (!currentPost) {
+    navigate('/');
+    return null; // Prevent rendering the rest of the component
+  }
 
   if (isLoading) return <Spinner />;
-  // if (currentPost === undefined && !isLoading) return navigate('*');
-  if (!currentPost.id) return;
 
   document.title = `Meiersbook | ${currentPost.title}`;
 
@@ -28,9 +34,11 @@ const Post = () => {
         <Link to="/">
           <Button level="secondary">Go back</Button>
         </Link>
-        <Link to="editpost">
-          <Button level="secondary">Modify</Button>
-        </Link>
+        {isLoggedIn && (
+          <Link to="editpost">
+            <Button level="secondary">Modify</Button>
+          </Link>
+        )}
       </ButtonsNav>
     </div>
   );

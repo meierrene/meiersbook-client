@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { usePosts } from '../../contexts/PostContext';
-import { ASSET_URL } from '../../contexts/PostContext';
+import { ASSET_URL } from '../../utils/helpers';
 import Button from '../../ui/Button';
 import Spinner from '../../ui/Spinner';
 import TextArea from '../../ui/TextArea';

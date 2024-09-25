@@ -5,12 +5,8 @@ import {
   useEffect,
   useReducer,
 } from 'react';
-
-export const BASE_URL = `${import.meta.env.VITE_API_URL}/posts/`;
-export const ASSET_URL = `${
-  import.meta.env.VITE_ASSET_URL
-}/uploads/postsImages`;
-export const TEMPLATE_PROFILE_IMAGE = './imgs/default-user.jpg';
+import { BASE_URL } from '../utils/helpers';
+import { useAuth } from './AuthContext';
 
 const initalState = {
   status: '',
@@ -73,6 +69,7 @@ const PostContext = createContext();
 const PostProvider = ({ children }) => {
   const [{ status, data, currentPost, message, isLoading }, dispatch] =
     useReducer(reducer, initalState);
+  const { token } = useAuth();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -116,6 +113,7 @@ const PostProvider = ({ children }) => {
       const res = await fetch(BASE_URL, {
         method: 'POST',
         body: newPost,
+        headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
       dispatch({ type: 'post/created', payload: data });
@@ -129,6 +127,7 @@ const PostProvider = ({ children }) => {
       const res = await fetch(BASE_URL + id, {
         method: 'PATCH',
         body: post,
+        headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
       dispatch({ type: 'post/edited', payload: data });
@@ -138,7 +137,10 @@ const PostProvider = ({ children }) => {
   const deletePost = async id => {
     dispatch({ type: 'loading' });
     try {
-      await fetch(BASE_URL + id, { method: 'DELETE' });
+      await fetch(BASE_URL + id, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      });
       dispatch({ type: 'post/deleted', payload: id });
     } catch {
       dispatch({

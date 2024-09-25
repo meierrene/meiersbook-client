@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ASSET_URL } from '../contexts/PostContext';
+import { ASSET_URL } from '../utils/helpers';
+
 import { useThemes } from '../contexts/ThemeContext';
 import styles from './Card.module.css';
 import Heading from './Heading';

@@ -1,7 +1,6 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
-const EXPIRATION_TIME = 1000 * 60 * 60; //1h
-const storage = JSON.parse(localStorage.getItem('authData'));
+const storage = JSON.parse(localStorage.getItem('auth-data'));
 
 const AuthContext = createContext();
 
@@ -9,36 +8,15 @@ function AuthProvider({ children }) {
   const [token, setToken] = useState(storage ? storage.token : null);
   const [userId, setUserId] = useState(storage ? storage.userId : null);
 
-  useEffect(() => {
-    if (storage?.expiration < new Date().toISOString()) logout();
-    if (token) setTimeout(logout, EXPIRATION_TIME);
-    else clearTimeout();
-  }, [token]);
-
-  const login = (id, token, expirationDate) => {
-    setToken(token);
-    setUserId(id);
-    const tokenExpirationDate =
-      expirationDate || new Date(new Date().getTime() + EXPIRATION_TIME);
-    localStorage.setItem(
-      'userData',
-      JSON.stringify({
-        userId: id,
-        token,
-        expiration: tokenExpirationDate.toISOString(),
-      })
-    );
-  };
-
-  const logout = () => {
-    setToken(null);
-    setUserId(null);
-    localStorage.removeItem('authData');
-  };
-
   return (
     <AuthContext.Provider
-      value={{ token, isLoggedIn: !!token, login, logout, userId }}
+      value={{
+        token,
+        setToken,
+        isLoggedIn: !!storage?.token,
+        userId,
+        setUserId,
+      }}
     >
       {children}
     </AuthContext.Provider>

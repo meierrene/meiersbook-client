@@ -2,8 +2,13 @@ import styles from './Header.module.css';
 import { Link, NavLink } from 'react-router-dom';
 import ThemeToggler from './ThemeToggler';
 import Button from './Button';
+import { useAuth } from '../contexts/AuthContext';
+import { useLogout } from '../features/authentication/useLogout';
 
 const Header = () => {
+  const { isLoggedIn } = useAuth();
+  const { logout, isLoading } = useLogout();
+
   return (
     <header className={styles.header}>
       <nav
@@ -30,11 +35,17 @@ const Header = () => {
         >
           <ul className={`${styles.navbarNav} navbar-nav`}>
             <li className="nav-item ">
-              <NavLink className="nav-link link-wrapper" to="/login">
-                <Button level="primary" navLink>
-                  Login
+              {!isLoggedIn ? (
+                <NavLink className="nav-link link-wrapper" to="/login">
+                  <Button level="primary" navLink>
+                    Login
+                  </Button>
+                </NavLink>
+              ) : (
+                <Button level="delete" onClick={logout} disabled={isLoading}>
+                  Logout
                 </Button>
-              </NavLink>
+              )}
             </li>
             <li className="nav-item">
               <ThemeToggler />

@@ -6,20 +6,21 @@ import Heading from '../../ui/Heading';
 import ButtonsNav from '../../ui/ButtonsNav';
 import Button from '../../ui/Button';
 import Image from '../../ui/Image';
-import { TEMPLATE_PROFILE_IMAGE } from '../../contexts/PostContext';
+import { TEMPLATE_PROFILE_IMAGE } from '../../utils/helpers';
+import { useLogin } from './useLogin';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [isLogin, setIsLogin] = useState(false);
   // For Signup form
   const [name, setName] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-
-  // For the image
   const [previewImage, setPreviewImage] = useState(null);
   // const [imageData, setImageData] = useState({});
+
+  const [isLoginForm, setIsLoginForm] = useState(true);
+  const { login, isLoading } = useLogin();
 
   const handleChangeImage = e => {
     if (e.target.files && e.target.files[0]) {
@@ -30,13 +31,24 @@ function LoginForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (!email || !password) return;
+    if (isLoginForm)
+      login(
+        { email, password },
+        {
+          onSuccess: () => {
+            setEmail('');
+            setPassword('');
+          },
+        }
+      );
   };
 
   return (
     <>
       <Form className="front-panel form-post-data" onSubmit={handleSubmit}>
-        <Heading primary> {!isLogin ? 'Login' : 'Signup'}</Heading>
-        {isLogin && (
+        <Heading primary> {!isLoginForm ? 'Login' : 'Signup'}</Heading>
+        {!isLoginForm && (
           <FormGroup>
             <Heading>Name</Heading>
             <Input
@@ -44,7 +56,7 @@ function LoginForm() {
               type="name"
               value={name}
               onChange={e => setName(e.target.value)}
-              disabled={false}
+              disabled={isLoading}
             />
           </FormGroup>
         )}
@@ -55,7 +67,7 @@ function LoginForm() {
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            disabled={false}
+            disabled={isLoading}
           />
         </FormGroup>
         <FormGroup>
@@ -65,10 +77,10 @@ function LoginForm() {
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
-            disabled={false}
+            disabled={isLoading}
           />
         </FormGroup>
-        {isLogin && (
+        {!isLoginForm && (
           <>
             <FormGroup>
               <Heading>Password Confirm</Heading>
@@ -77,7 +89,7 @@ function LoginForm() {
                 type="password"
                 value={passwordConfirm}
                 onChange={e => setPasswordConfirm(e.target.value)}
-                disabled={false}
+                disabled={isLoading}
               />
             </FormGroup>
             <FormGroup>
@@ -94,17 +106,20 @@ function LoginForm() {
                 accept="image/*"
                 name="image"
                 onChange={handleChangeImage}
+                disabled={isLoading}
               />
             </FormGroup>
           </>
         )}
         <ButtonsNav>
-          <Button level="secondary" onClick={() => setIsLogin(l => !l)}>
-            {isLogin ? 'Login' : 'Signup'}
-          </Button>
-          <Button level="primary">{!isLogin ? 'Login' : 'Signup'}</Button>
+          <Button level="primary">{isLoginForm ? 'Login' : 'Signup'}</Button>
         </ButtonsNav>
       </Form>
+      <Button level="secondary" onClick={() => setIsLoginForm(l => !l)}>
+        {!isLoginForm
+          ? 'Has already an account? Login'
+          : 'Do you not have an account yet? Signup'}
+      </Button>
     </>
   );
 }

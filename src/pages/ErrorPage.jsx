@@ -1,4 +1,5 @@
 import { usePosts } from '../contexts/PostContext';
+import { ERROR_IMAGE } from '../utils/helpers';
 
 const ErrorPage = () => {
   const { status, message } = usePosts();
@@ -7,7 +8,7 @@ const ErrorPage = () => {
 
   return (
     <div className="error">
-      <img className="error-image" src="/imgs/404-error.png" alt="Error 404" />
+      <img className="error-image" src={ERROR_IMAGE} alt="Error 404" />
       <h2 className="error-title">Something went wrong!</h2>
       <div className="error-message">
         {status !== 'success' && <span>Error {status} - </span>}

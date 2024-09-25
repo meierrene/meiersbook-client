@@ -14,6 +14,7 @@ import { lazy, Suspense } from 'react';
 import Spinner from './ui/Spinner';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './contexts/AuthContext';
 const PostGalleryPage = lazy(() => import('./pages/PostGalleryPage'));
 
 const App = () => {
@@ -21,45 +22,47 @@ const App = () => {
     <ThemeProvider>
       <QueryClientProvider client={new QueryClient()}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <PostProvider>
-          <BrowserRouter>
-            <Header />
-            <Suspense fallback={<Spinner />}>
-              <Routes>
-                <Route index element={<PostGalleryPage />} />
-                <Route path="posts" element={<PostGalleryPage />} />
-                <Route path="login" element={<LoginPage />} />
-                <Route element={<ProtectedRoute />}>
-                  <Route path="newpost" element={<NewEditPostPage />} />
-                </Route>
-                <Route path=":id" element={<PostPage />}>
-                  <Route index element={<Navigate replace to="" />} />
+        <AuthProvider>
+          <PostProvider>
+            <BrowserRouter>
+              <Header />
+              <Suspense fallback={<Spinner />}>
+                <Routes>
+                  <Route index element={<PostGalleryPage />} />
+                  <Route path="posts" element={<PostGalleryPage />} />
+                  <Route path="login" element={<LoginPage />} />
                   <Route element={<ProtectedRoute />}>
-                    <Route path="editpost" element={<NewEditPostPage />} />
+                    <Route path="newpost" element={<NewEditPostPage />} />
                   </Route>
-                </Route>
-                <Route path="*" element={<ErrorPage />} />
-              </Routes>
-            </Suspense>
-            <Footer />
-          </BrowserRouter>
-          <Toaster
-            position="top-center"
-            gutter={12}
-            containerStyle={{ margin: '8px' }}
-            toastOptions={{
-              success: { duration: 3000 },
-              error: { duration: 5000 },
-              style: {
-                fontSize: '16px',
-                maxWidth: '500px',
-                padding: '16px 24px',
-                backgroundColor: '#eee',
-                color: '#333',
-              },
-            }}
-          />
-        </PostProvider>
+                  <Route path=":id" element={<PostPage />}>
+                    <Route index element={<Navigate replace to="" />} />
+                    <Route element={<ProtectedRoute />}>
+                      <Route path="editpost" element={<NewEditPostPage />} />
+                    </Route>
+                  </Route>
+                  <Route path="*" element={<ErrorPage />} />
+                </Routes>
+              </Suspense>
+              <Footer />
+            </BrowserRouter>
+            <Toaster
+              position="top-center"
+              gutter={12}
+              containerStyle={{ margin: '8px' }}
+              toastOptions={{
+                success: { duration: 3000 },
+                error: { duration: 5000 },
+                style: {
+                  fontSize: '16px',
+                  maxWidth: '500px',
+                  padding: '16px 24px',
+                  backgroundColor: '#eee',
+                  color: '#333',
+                },
+              }}
+            />
+          </PostProvider>
+        </AuthProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );

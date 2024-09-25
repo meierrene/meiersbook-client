@@ -5,9 +5,12 @@ import { usePosts } from '../../contexts/PostContext';
 import { useEffect } from 'react';
 import styles from './PostGallery.module.css';
 import Heading from '../../ui/Heading';
+import { useAuth } from '../../contexts/AuthContext';
 
 const PostGallery = () => {
   const { data, deselectPost } = usePosts();
+  const { isLoggedIn } = useAuth();
+
   const number = data?.length;
   document.title = 'Meiersbook | All posts';
 
@@ -19,16 +22,18 @@ const PostGallery = () => {
 
   return (
     <>
-      <div className="front-panel">
-        <Link className="btn compose-btn" to="/newpost">
-          <Button level="secondary">New post</Button>
-        </Link>
-        <Heading secondary>
-          {number > 0
-            ? `You have ${number} post${number === 1 ? '' : 's'}:`
-            : 'You have no posts! How about to create one?'}
-        </Heading>
-      </div>
+      {isLoggedIn && (
+        <div className="front-panel">
+          <Link className="btn compose-btn" to="/newpost">
+            <Button level="secondary">New post</Button>
+          </Link>
+          <Heading secondary>
+            {number > 0
+              ? `You have ${number} post${number === 1 ? '' : 's'}:`
+              : 'You have no posts! How about to create one?'}
+          </Heading>
+        </div>
+      )}
       <div className={styles.galleryContainer}>
         {data
           ?.slice()

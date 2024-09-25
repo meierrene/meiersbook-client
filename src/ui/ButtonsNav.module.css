@@ -6,7 +6,7 @@
 
 @media (max-width: 672px) {
   .buttonsNav {
-    margin: 0;
+    margin: 0 1rem;
     margin-top: 2.4rem;
     justify-content: space-between;
   }
