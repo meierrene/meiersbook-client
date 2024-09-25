@@ -27,8 +27,8 @@
 }
 
 .profileImage img {
-  width: 400px;
-  height: 400px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   border-radius: 900rem;
 }

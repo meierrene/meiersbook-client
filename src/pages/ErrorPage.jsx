@@ -7,11 +7,7 @@ const ErrorPage = () => {
 
   return (
     <div className="error">
-      <img
-        className="error-image"
-        src="../../public/404-error.jpg"
-        alt="Error 404"
-      />
+      <img className="error-image" src="/imgs/404-error.png" alt="Error 404" />
       <h2 className="error-title">Something went wrong!</h2>
       <div className="error-message">
         {status !== 'success' && <span>Error {status} - </span>}

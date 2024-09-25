@@ -30,7 +30,7 @@ const Header = () => {
         >
           <ul className={`${styles.navbarNav} navbar-nav`}>
             <li className="nav-item ">
-              <NavLink className="btn nav-link link-wrapper" to="/login">
+              <NavLink className="nav-link link-wrapper" to="/login">
                 <Button level="primary" navLink>
                   Login
                 </Button>

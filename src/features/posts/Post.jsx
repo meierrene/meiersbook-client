@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { usePosts } from '../../contexts/PostContext';
 import Spinner from '../../ui/Spinner';
 import Button from '../../ui/Button';
@@ -8,13 +8,7 @@ import Heading from '../../ui/Heading';
 import Image from '../../ui/Image';
 
 const Post = () => {
-  const { currentPost, isLoading, deletePost } = usePosts();
-  const navigate = useNavigate();
-
-  const handleDelete = async () => {
-    await deletePost(currentPost.id);
-    navigate('/');
-  };
+  const { currentPost, isLoading } = usePosts();
 
   if (isLoading) return <Spinner />;
   // if (currentPost === undefined && !isLoading) return navigate('*');
@@ -37,9 +31,6 @@ const Post = () => {
         <Link to="editpost">
           <Button level="secondary">Modify</Button>
         </Link>
-        <Button level="delete" onClick={handleDelete}>
-          Delete post
-        </Button>
       </ButtonsNav>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { usePosts } from '../../contexts/PostContext';
 import { ASSET_URL } from '../../contexts/PostContext';
 import Button from '../../ui/Button';
@@ -13,7 +13,9 @@ import Heading from '../../ui/Heading';
 import Image from '../../ui/Image';
 
 const NewEditPost = () => {
-  const { currentPost, createPost, editPost, isLoading } = usePosts();
+  const { currentPost, createPost, editPost, isLoading, deletePost } =
+    usePosts();
+  const navigate = useNavigate();
   const [previewImage, setPreviewImage] = useState(
     currentPost.image ? currentPost.image : null
   );
@@ -40,6 +42,11 @@ const NewEditPost = () => {
     else await createPost(form);
 
     window.location.assign('/');
+  };
+
+  const handleDelete = async () => {
+    await deletePost(currentPost.id);
+    navigate('/');
   };
 
   document.title = `Meiersbook | ${currentPost.id ? 'Edit' : 'New'} post`;
@@ -95,6 +102,11 @@ const NewEditPost = () => {
           <Button level="primary" disabled={!imageData.name && !currentPost.id}>
             {currentPost.id ? 'Update' : 'Publish'}
           </Button>
+          {currentPost.id && (
+            <Button level="delete" onClick={handleDelete}>
+              Delete post
+            </Button>
+          )}
         </ButtonsNav>
       </Form>
     </>
