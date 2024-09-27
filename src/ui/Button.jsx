@@ -5,8 +5,12 @@ const Button = ({
   onClick = null,
   isDark,
   level,
+  primary,
+  secondary,
+  danger,
   disabled,
   navLink,
+  full,
 }) => {
   return (
     <button
@@ -14,7 +18,10 @@ const Button = ({
       ${styles.btn}
       ${level === 'primary' && styles.btnPrimary} ${
         level === 'secondary' && styles.btnSecondary
-      } ${level === 'delete' && styles.btnDelete} ${isDark && styles.isDark}
+      } ${level === 'delete' && styles.btnDanger} 
+      ${full && styles.full}
+      
+      ${isDark && styles.isDark}
       ${navLink && styles.navLink}
       `}
       onClick={onClick}

@@ -6,10 +6,7 @@ export const login = async loginData => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(loginData),
   });
-
   const data = await res.json();
-  console.log(data);
-
   const tokenExpirationDate = new Date(new Date().getTime() + EXPIRATION_TIME);
   localStorage.setItem(
     'auth-data',
@@ -29,4 +26,16 @@ export const logout = async token => {
   localStorage.removeItem('auth-data');
 };
 
-export const signup = async () => {};
+export const signup = async signupData => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/users/signup`, {
+    method: 'POST',
+    body: signupData,
+  });
+  if (!res.ok) {
+    const errorTextRaw = await res.text();
+    const errorText = errorTextRaw.match(/<pre>(.*?)<br>/)[1];
+    throw new Error(errorText);
+  }
+  const data = await res.json();
+  return data;
+};

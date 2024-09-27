@@ -49,11 +49,11 @@
   background: #cc9635;
 }
 
-.btnDelete {
+.btnDanger {
   background: #c0392b;
 }
 
-.btnDelete:hover {
+.btnDanger:hover {
   background: #9a2e22;
 }
 
@@ -63,6 +63,12 @@
 
 @media (max-width: 992px) {
   .navLink {
+    width: 100%;
+  }
+}
+
+@media (max-width: 672px) {
+  .full {
     width: 100%;
   }
 }

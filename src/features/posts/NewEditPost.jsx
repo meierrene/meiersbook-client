@@ -11,25 +11,18 @@ import FormGroup from '../../ui/FormGroup';
 import ButtonsNav from '../../ui/ButtonsNav';
 import Heading from '../../ui/Heading';
 import Image from '../../ui/Image';
+import { useImage } from '../../utils/useImage';
 
 const NewEditPost = () => {
   const { currentPost, createPost, editPost, isLoading, deletePost } =
     usePosts();
   const navigate = useNavigate();
-  const [previewImage, setPreviewImage] = useState(
-    currentPost.image ? currentPost.image : null
-  );
-  const [imageData, setImageData] = useState(
-    currentPost.id ? currentPost.image : {}
-  );
   const [title, setTitle] = useState(currentPost.id ? currentPost.title : '');
 
-  const handleChangeImage = e => {
-    if (e.target.files && e.target.files[0]) {
-      setPreviewImage(URL.createObjectURL(e.target.files[0]));
-      setImageData(e.target.files[0]);
-    }
-  };
+  const { previewImage, imageData, handleChangeImage } = useImage(
+    currentPost.image,
+    currentPost.id
+  );
 
   const handleSubmit = async e => {
     console.log(imageData);

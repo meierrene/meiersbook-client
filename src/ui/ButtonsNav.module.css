@@ -10,4 +10,8 @@
     margin-top: 2.4rem;
     justify-content: space-between;
   }
+
+  .buttonsNav > :only-child {
+    margin: 0 auto;
+  }
 }

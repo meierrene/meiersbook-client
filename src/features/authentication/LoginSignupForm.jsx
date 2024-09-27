@@ -6,8 +6,10 @@ import Heading from '../../ui/Heading';
 import ButtonsNav from '../../ui/ButtonsNav';
 import Button from '../../ui/Button';
 import Image from '../../ui/Image';
-import { TEMPLATE_PROFILE_IMAGE } from '../../utils/helpers';
+import { imageChecker, TEMPLATE_PROFILE_IMAGE } from '../../utils/helpers';
 import { useLogin } from './useLogin';
+import { useImage } from '../../utils/useImage';
+import { useSignup } from './useSignup';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -16,18 +18,13 @@ function LoginForm() {
   // For Signup form
   const [name, setName] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [previewImage, setPreviewImage] = useState(null);
-  // const [imageData, setImageData] = useState({});
-
   const [isLoginForm, setIsLoginForm] = useState(true);
-  const { login, isLoading } = useLogin();
+  const { login, isLoading: loadingLogin } = useLogin();
+  const { signup, isLoading: loadingSignin } = useSignup();
+  const { previewImage, imageData, handleChangeImage } =
+    useImage('default-user.jpg');
 
-  const handleChangeImage = e => {
-    if (e.target.files && e.target.files[0]) {
-      setPreviewImage(URL.createObjectURL(e.target.files[0]));
-      // setImageData(e.target.files[0]);
-    }
-  };
+  const isLoading = loadingLogin || loadingSignin;
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -42,12 +39,38 @@ function LoginForm() {
           },
         }
       );
-  };
+    else {
+      if (
+        !name ||
+        !passwordConfirm ||
+        !(
+          imageData instanceof File &&
+          imageData.size > 0 &&
+          imageData.name.trim() !== ''
+        )
+      )
+        return;
+      const form = new FormData();
+      form.append('name', name);
+      form.append('email', email);
+      form.append('password', password);
+      form.append('passwordConfirm', passwordConfirm);
+      form.append('image', imageData);
 
+      signup(form, {
+        onSuccess: () => {
+          setName('');
+          setEmail('');
+          setPassword('');
+          setPasswordConfirm('');
+        },
+      });
+    }
+  };
   return (
     <>
       <Form className="front-panel form-post-data" onSubmit={handleSubmit}>
-        <Heading primary> {!isLoginForm ? 'Login' : 'Signup'}</Heading>
+        <Heading primary> {isLoginForm ? 'Login' : 'Signup'}</Heading>
         {!isLoginForm && (
           <FormGroup>
             <Heading>Name</Heading>
@@ -106,7 +129,7 @@ function LoginForm() {
                 accept="image/*"
                 name="image"
                 onChange={handleChangeImage}
-                disabled={isLoading}
+                required={true}
               />
             </FormGroup>
           </>
@@ -115,11 +138,13 @@ function LoginForm() {
           <Button level="primary">{isLoginForm ? 'Login' : 'Signup'}</Button>
         </ButtonsNav>
       </Form>
-      <Button level="secondary" onClick={() => setIsLoginForm(l => !l)}>
-        {!isLoginForm
-          ? 'Has already an account? Login'
-          : 'Do you not have an account yet? Signup'}
-      </Button>
+      <ButtonsNav>
+        <Button level="secondary" full onClick={() => setIsLoginForm(l => !l)}>
+          {!isLoginForm
+            ? 'Has already an account? Login'
+            : 'Do you not have an account yet? Signup'}
+        </Button>
+      </ButtonsNav>
     </>
   );
 }
