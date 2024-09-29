@@ -2,7 +2,7 @@ import { useThemes } from '../contexts/ThemeContext';
 import styles from './ThemeToggler.module.css';
 
 const ThemeToggler = () => {
-  const { toggleTheme, isDark } = useThemes();
+  const { toggleTheme, isDark, onClick } = useThemes();
 
   return (
     <label className={styles.switch}>
@@ -25,6 +25,7 @@ const ThemeToggler = () => {
         value={isDark}
         checked={isDark}
         onChange={toggleTheme}
+        onClick={onClick}
       />
       <span className={styles.slider}></span>
     </label>

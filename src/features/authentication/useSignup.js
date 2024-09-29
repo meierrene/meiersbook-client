@@ -14,7 +14,8 @@ export const useSignup = () => {
     onError: err => {
       let errorMessage = err.message;
       if (errorMessage.includes('E11000'))
-        errorMessage = 'This E-mail already exists.';
+        errorMessage =
+          'This E-mail already exists. Please try another email address or login with this email address.';
       else if (errorMessage.includes('shorter'))
         errorMessage = 'The password must have a minimun of 8 characters.';
       else if (errorMessage.includes('passwordConfirm'))
