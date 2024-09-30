@@ -16,6 +16,11 @@
   margin: 0.6rem 0;
 }
 
+.dateStamp {
+  font-style: italic;
+  font-size: 1.6rem;
+}
+
 @media (max-width: 672px) {
   .primaryHeading {
     font-size: 2.4rem;
@@ -25,5 +30,8 @@
   }
   .paragraph {
     font-size: 1.6rem;
+  }
+  .dateStamp {
+    font-size: 1.2rem;
   }
 }

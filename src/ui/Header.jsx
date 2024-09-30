@@ -1,98 +1,81 @@
-import styles from './Header.module.css';
 import { Link, NavLink } from 'react-router-dom';
-import ThemeToggler from './ThemeToggler';
-import Button from './Button';
 import { useAuth } from '../contexts/AuthContext';
-import { useLogout } from '../features/authentication/useLogout';
-import { useRef } from 'react';
-import { ASSET_URL_USERS, TEMPLATE_PROFILE_IMAGE } from '../utils/helpers';
-import Image from './Image';
+import { useEffect, useState } from 'react';
 import { useUser } from '../features/users/useUser';
+import styles from './Header.module.css';
+import Button from './Button';
+import Image from './Image';
+import {
+  ASSET_URL_USERS,
+  TEMPLATE_PROFILE_IMAGE,
+  stringLimiter,
+} from '../utils/helpers';
+import SideDrawer from './SideDrawer';
+import Backdrop from './Backdrop';
+import HeaderMenu from './HeaderMenu';
+import { useThemes } from '../contexts/ThemeContext';
 
-const Header = () => {
+const Header = ({ children }) => {
+  const { isDark } = useThemes();
   const { isLoggedIn } = useAuth();
-  const { logout, isLoading } = useLogout();
-  const navbarRef = useRef(null);
   const { user } = useUser();
+  const [isOpened, setIsOpened] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 992);
 
-  const handleCollapse = () => {
-    const navbar = navbarRef.current;
-    if (navbar) {
-      const bsCollapse = new window.bootstrap.Collapse(navbar, {
-        toggle: false,
-      });
-      bsCollapse.hide();
-    }
-  };
+  useEffect(() => {
+    const handleResize = () => setIsLargeScreen(window.innerWidth > 992);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const toggleSideDrawer = () => !isLargeScreen && setIsOpened(open => !open);
+  const closeSideDrawer = () => setIsOpened(false);
 
   return (
-    <header className={styles.header}>
-      <nav
-        className={`${styles.navbar} navbar navbar-expand-lg container-fluid`}
-        data-bs-theme="dark"
-      >
-        <Link className={`navbar-brand ${styles.logo}`} to="/">
-          📖 MeiersBook
-        </Link>
+    <>
+      <header className={`${styles.header} ${isDark ? styles.themeDark : ''}`}>
+        <nav className={styles.navbar}>
+          <Link className={styles.logo} to="/">
+            <span>📖 MeiersBook</span>
+          </Link>
+          <div className={styles.navbarItems}>
+            {isLoggedIn && (
+              <div className={styles.profileImage}>
+                <Image
+                  onClick={toggleSideDrawer}
+                  src={
+                    user?.data.image
+                      ? `${ASSET_URL_USERS}/${user?.data.image}`
+                      : TEMPLATE_PROFILE_IMAGE
+                  }
+                  alt="profile image"
+                  profile
+                  size={{ wl: '40', hl: '40', ws: '36.25', hs: '36.25' }}
+                />
+                <span>
+                  {!!user?.data.name && stringLimiter(user.data.name, 45)}
+                </span>
+              </div>
+            )}
 
-        {isLoggedIn && (
-          <div className={styles.profileImage}>
-            <Image
-              src={
-                user?.data.image
-                  ? `${ASSET_URL_USERS}/${user?.data.image}`
-                  : TEMPLATE_PROFILE_IMAGE
-              }
-              alt="profile image"
-              profile
-              size={{ wl: '40', hl: '40', ws: '36.25', hs: '36.25' }}
-            />
-            <span>{user?.data.name.split(' ').slice(0, 2).join(' ')}</span>
-          </div>
-        )}
-
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div
-          className={`collapse navbar-collapse ${styles.navbarNavId}`}
-          id="navbarNav"
-          ref={navbarRef}
-        >
-          <ul className={`${styles.navbarNav} navbar-nav`}>
-            <li className="nav-item ">
-              {!isLoggedIn ? (
-                <NavLink
-                  className="nav-link link-wrapper"
-                  to="/login"
-                  onClick={handleCollapse}
-                >
-                  <Button level="primary" navLink>
-                    Login
-                  </Button>
-                </NavLink>
-              ) : (
-                <Button level="delete" onClick={logout} disabled={isLoading}>
-                  Logout
+            {!isLoggedIn ? (
+              <NavLink className="nav-link link-wrapper" to="/login">
+                <Button level="primary" navLink>
+                  Login
                 </Button>
-              )}
-            </li>
-            <li className="nav-item">
-              <ThemeToggler onClick={handleCollapse} />
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+              </NavLink>
+            ) : (
+              isLargeScreen && <HeaderMenu />
+            )}
+          </div>
+        </nav>
+      </header>
+      {isOpened && <Backdrop onClick={closeSideDrawer} />}
+      <SideDrawer isOpen={isOpened} onClick={closeSideDrawer}>
+        <HeaderMenu />
+      </SideDrawer>
+      <div className={styles.mainPage}>{children}</div>
+    </>
   );
 };
 

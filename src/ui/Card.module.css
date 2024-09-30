@@ -23,8 +23,28 @@
   border-color: #bbb;
 }
 
-.themeDark p {
+.themeDark p,
+.themeDark span {
   color: #bbb;
+}
+
+.postLink:link,
+.postLink:visited,
+.postLink:hover,
+.postLink:active {
+  color: #bbb;
+  text-decoration: none;
+  position: relative;
+}
+
+.profileImage {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  left: 0.6rem;
+  top: 0.6rem;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 116em) {

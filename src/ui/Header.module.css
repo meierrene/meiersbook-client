@@ -1,46 +1,49 @@
 .header {
-  position: relative;
-}
-
-.navbarNavId {
-  justify-content: right;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .logo {
   font-family: Roboto;
   font-size: 24px;
   font-weight: 700;
-}
-
-.navbarNav {
-  align-items: center;
-}
-
-.navItem:last-of-type {
-  margin-left: 1rem;
-  letter-spacing: 0;
+  color: #fff;
+  text-decoration: none;
 }
 
 .navbar {
+  display: flex;
   font-size: 1.2rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   text-transform: uppercase;
+  align-items: center;
+  justify-content: space-between;
   background-color: var(--secondary-color-default);
 }
 
-/*5.6rem of header bar. 0.8rem + 4rem of height + 0.8rem from bottom*/
-
+.navbarItems {
+  display: flex;
+  gap: 1.2rem;
+}
 .profileImage {
-  position: absolute;
   align-items: center;
   display: flex;
-  right: 18rem;
   gap: 1.2rem;
-  margin: 0;
 }
 
 .profileImage span {
   font-size: 1.8rem;
+  color: #fff;
+}
+
+.mainPage {
+  padding-top: 60px;
+}
+
+.themeDark span {
+  color: #bbb;
 }
 
 @media (max-width: 992px) {

@@ -1,25 +1,31 @@
 import { Link } from 'react-router-dom';
-import { ASSET_URL_POSTS } from '../utils/helpers';
+import {
+  ASSET_URL_POSTS,
+  stringLimiter,
+  TEMPLATE_PROFILE_IMAGE,
+} from '../utils/helpers';
 
 import { useThemes } from '../contexts/ThemeContext';
 import styles from './Card.module.css';
-import Heading from './Heading';
+import Image from './Image';
 
 const Card = ({ post }) => {
   const { isDark } = useThemes();
 
-  const date = new Date(post.createdAt).toLocaleString('en-UK', {
-    hour: 'numeric',
-    minute: 'numeric',
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-  });
-
   if (!post.id) return;
-
+  const str = 'User Profile To be Implemented in the Card';
   return (
-    <Link className="post-link" to={post.id}>
+    <Link className={styles.postLink} to={post.id}>
+      <div className={styles.profileImage}>
+        <Image
+          src={TEMPLATE_PROFILE_IMAGE}
+          alt="profile image"
+          profile
+          size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
+        />
+        <span>{stringLimiter(str, 30)}</span>
+      </div>
+
       <div className={`${styles.card} ${isDark ? styles.themeDark : ''}`}>
         <div className={styles.cardImage}>
           {post.image ? (
@@ -28,8 +34,6 @@ const Card = ({ post }) => {
             <p>Error to load photo in this post</p>
           )}
         </div>
-        <Heading>{post.title}</Heading>
-        <p className="date-created">Created at: {date}</p>
       </div>
     </Link>
   );

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-// import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 function ProtectedRoute() {
   const navigate = useNavigate();
-  const isLoggedIn = true;
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     if (!isLoggedIn) navigate('/login');

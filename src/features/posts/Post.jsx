@@ -22,6 +22,14 @@ const Post = () => {
 
   document.title = `Meiersbook | ${currentPost.title}`;
 
+  const date = new Date(currentPost.createdAt).toLocaleString('en-UK', {
+    hour: 'numeric',
+    minute: 'numeric',
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  });
+
   return (
     <div className="post-container" post-id={currentPost.id}>
       <Image
@@ -30,6 +38,8 @@ const Post = () => {
         alt={currentPost.title}
       />
       <Heading secondary>{currentPost.title}</Heading>
+      <Heading dateStamp>Created at: {date}</Heading>
+
       <ButtonsNav>
         <Link to="/">
           <Button level="secondary">Go back</Button>

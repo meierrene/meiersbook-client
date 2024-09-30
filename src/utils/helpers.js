@@ -12,3 +12,6 @@ export const EXPIRATION_TIME = 1000 * 60 * 60; //1h
 
 export const imageChecker = image =>
   image instanceof File && image.size > 0 && image.name.trim() !== '';
+
+export const stringLimiter = (string, limit) =>
+  string.length > limit ? string.slice(0, limit - 2) + '...' : string;

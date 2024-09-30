@@ -1,8 +1,10 @@
 import styles from './Image.module.css';
 
-function Image({ src, alt, post, preview, profile, size }) {
+function Image({ src, alt, post, preview, profile, size, onClick, style }) {
   return (
     <div
+      onClick={onClick}
+      style={style}
       className={`
       ${post && styles.postImage} 
       ${preview && styles.previewImage} 

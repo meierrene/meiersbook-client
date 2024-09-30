@@ -51,6 +51,9 @@ body {
   overflow-x: hidden;
   background-color: #fff;
 }
+main {
+  padding-top: 60px; /* Adjust this accordingly */
+}
 
 .text-comment {
   font-size: 1.4rem;
@@ -59,19 +62,6 @@ body {
 .front-panel {
   margin: 2.4rem 0.6rem;
   font-size: 1.2rem;
-}
-
-.date-created {
-  font-style: italic;
-  color: #111;
-}
-
-.post-link:link,
-.post-link:visited,
-.post-link:hover,
-.post-link:active {
-  color: #000;
-  text-decoration: none;
 }
 
 .error {

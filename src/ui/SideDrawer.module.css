@@ -1,0 +1,16 @@
+.sideDrawer {
+  position: fixed;
+  top: calc(0px - 90px);
+  right: 0;
+  padding: 1rem;
+  padding-top: 2.4rem;
+  z-index: 99;
+  width: auto;
+  border-radius: 0 0 4px 4px;
+  background-color: var(--secondary-color-default);
+  transition: top 0.5s ease-out; /* Smooth transition */
+}
+
+.sideDrawer.open {
+  top: 50px; /* Slide into view */
+}

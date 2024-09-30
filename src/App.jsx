@@ -25,24 +25,23 @@ const App = () => {
         <AuthProvider>
           <PostProvider>
             <BrowserRouter>
-              <Header />
-              <Suspense fallback={<Spinner />}>
-                <Routes>
-                  <Route index element={<PostGalleryPage />} />
-                  <Route path="posts" element={<PostGalleryPage />} />
-                  <Route path="login" element={<LoginPage />} />
-                  <Route element={<ProtectedRoute />}>
-                    <Route path="newpost" element={<NewEditPostPage />} />
-                  </Route>
-                  <Route path=":id" element={<PostPage />}>
-                    <Route index element={<Navigate replace to="" />} />
+              <Header>
+                <Suspense fallback={<Spinner />}>
+                  <Routes>
+                    <Route index element={<PostGalleryPage />} />
+                    <Route path="posts" element={<PostGalleryPage />} />
+                    <Route path="login" element={<LoginPage />} />
                     <Route element={<ProtectedRoute />}>
-                      <Route path="editpost" element={<NewEditPostPage />} />
+                      <Route path="newpost" element={<NewEditPostPage />} />
+                      <Route path=":id" element={<PostPage />}>
+                        <Route index element={<Navigate replace to="" />} />
+                        <Route path="editpost" element={<NewEditPostPage />} />
+                      </Route>
                     </Route>
-                  </Route>
-                  <Route path="*" element={<ErrorPage />} />
-                </Routes>
-              </Suspense>
+                    <Route path="*" element={<ErrorPage />} />
+                  </Routes>
+                </Suspense>
+              </Header>
               <Footer />
             </BrowserRouter>
             <Toaster
