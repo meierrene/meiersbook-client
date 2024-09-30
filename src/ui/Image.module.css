@@ -22,15 +22,16 @@
   border-radius: 2px;
 }
 
-.profileImage {
-  margin: 2.4rem 0;
-}
-
 .profileImage img {
   width: 250px;
   height: 250px;
   object-fit: cover;
   border-radius: 900rem;
+}
+
+.customSize img {
+  width: var(--img-width-lg);
+  height: var(--img-height-lg);
 }
 
 @media (max-width: 672px) {
@@ -45,5 +46,10 @@
   .profileImage img {
     width: 150px;
     height: 150px;
+  }
+
+  .customSize img {
+    width: var(--img-width);
+    height: var(--img-height);
   }
 }

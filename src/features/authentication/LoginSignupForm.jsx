@@ -40,16 +40,7 @@ function LoginForm() {
         }
       );
     else {
-      if (
-        !name ||
-        !passwordConfirm ||
-        !(
-          imageData instanceof File &&
-          imageData.size > 0 &&
-          imageData.name.trim() !== ''
-        )
-      )
-        return;
+      if (!name || !passwordConfirm || !imageChecker(imageData)) return;
       const form = new FormData();
       form.append('name', name);
       form.append('email', email);
@@ -77,6 +68,7 @@ function LoginForm() {
             <Input
               id="name"
               type="name"
+              placeholder="name"
               value={name}
               onChange={e => setName(e.target.value)}
               disabled={isLoading}
@@ -88,6 +80,7 @@ function LoginForm() {
           <Input
             id="email"
             type="email"
+            placeholder="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
             disabled={isLoading}

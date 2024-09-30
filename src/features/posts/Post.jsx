@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { usePosts } from '../../contexts/PostContext';
 import Spinner from '../../ui/Spinner';
 import Button from '../../ui/Button';
-import { ASSET_URL } from '../../utils/helpers';
+import { ASSET_URL_POSTS } from '../../utils/helpers';
 import ButtonsNav from '../../ui/ButtonsNav';
 import Heading from '../../ui/Heading';
 import Image from '../../ui/Image';
@@ -26,7 +26,7 @@ const Post = () => {
     <div className="post-container" post-id={currentPost.id}>
       <Image
         post
-        src={`${ASSET_URL}/${currentPost.image}`}
+        src={`${ASSET_URL_POSTS}/${currentPost.image}`}
         alt={currentPost.title}
       />
       <Heading secondary>{currentPost.title}</Heading>

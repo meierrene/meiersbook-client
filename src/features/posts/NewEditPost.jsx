@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { usePosts } from '../../contexts/PostContext';
-import { ASSET_URL } from '../../utils/helpers';
+import { ASSET_URL_POSTS } from '../../utils/helpers';
 import Button from '../../ui/Button';
 import Spinner from '../../ui/Spinner';
 import TextArea from '../../ui/TextArea';
@@ -63,7 +63,7 @@ const NewEditPost = () => {
               preview
               src={
                 currentPost.image === previewImage
-                  ? `${ASSET_URL}/${currentPost.image}`
+                  ? `${ASSET_URL_POSTS}/${currentPost.image}`
                   : previewImage
               }
               alt="preview"

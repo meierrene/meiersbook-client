@@ -5,7 +5,7 @@ import {
   useEffect,
   useReducer,
 } from 'react';
-import { BASE_URL } from '../utils/helpers';
+import { BASE_URL_POSTS } from '../utils/helpers';
 import { useAuth } from './AuthContext';
 
 const initalState = {
@@ -75,7 +75,7 @@ const PostProvider = ({ children }) => {
     const fetchPosts = async () => {
       dispatch({ type: 'loading' });
       try {
-        const res = await fetch(BASE_URL);
+        const res = await fetch(BASE_URL_POSTS);
         if (!res.ok) return dispatch({ type: 'error', payload: res });
         const data = await res.json();
         dispatch({ type: 'posts/loaded', payload: data });
@@ -94,7 +94,7 @@ const PostProvider = ({ children }) => {
       if (id === currentPost.id) return;
       dispatch({ type: 'loading' });
       try {
-        const res = await fetch(BASE_URL + id);
+        const res = await fetch(BASE_URL_POSTS + id);
         const data = await res.json();
         dispatch({ type: 'post/loaded', payload: data });
       } catch {
@@ -110,7 +110,7 @@ const PostProvider = ({ children }) => {
   const createPost = async newPost => {
     dispatch({ type: 'loading' });
     try {
-      const res = await fetch(BASE_URL, {
+      const res = await fetch(BASE_URL_POSTS, {
         method: 'POST',
         body: newPost,
         headers: { Authorization: `Bearer ${token}` },
@@ -124,7 +124,7 @@ const PostProvider = ({ children }) => {
     console.log(post);
     dispatch({ type: 'loading' });
     try {
-      const res = await fetch(BASE_URL + id, {
+      const res = await fetch(BASE_URL_POSTS + id, {
         method: 'PATCH',
         body: post,
         headers: { Authorization: `Bearer ${token}` },
@@ -137,7 +137,7 @@ const PostProvider = ({ children }) => {
   const deletePost = async id => {
     dispatch({ type: 'loading' });
     try {
-      await fetch(BASE_URL + id, {
+      await fetch(BASE_URL_POSTS + id, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

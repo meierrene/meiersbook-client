@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ASSET_URL } from '../utils/helpers';
+import { ASSET_URL_POSTS } from '../utils/helpers';
 
 import { useThemes } from '../contexts/ThemeContext';
 import styles from './Card.module.css';
@@ -23,7 +23,7 @@ const Card = ({ post }) => {
       <div className={`${styles.card} ${isDark ? styles.themeDark : ''}`}>
         <div className={styles.cardImage}>
           {post.image ? (
-            <img src={`${ASSET_URL}/${post.image}`} alt={post.title} />
+            <img src={`${ASSET_URL_POSTS}/${post.image}`} alt={post.title} />
           ) : (
             <p>Error to load photo in this post</p>
           )}

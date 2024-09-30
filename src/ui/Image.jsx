@@ -1,14 +1,24 @@
 import styles from './Image.module.css';
 
-function Image({ src, alt, post, preview, profile }) {
+function Image({ src, alt, post, preview, profile, size }) {
   return (
     <div
       className={`
       ${post && styles.postImage} 
       ${preview && styles.previewImage} 
-      ${profile && styles.profileImage}`}
+      ${profile && styles.profileImage}
+      ${size && styles.customSize}`}
     >
-      <img src={src} alt={alt} />
+      <img
+        src={src}
+        alt={alt}
+        style={{
+          '--img-width': `${size?.ws}px`,
+          '--img-height': `${size?.hs}px`,
+          '--img-width-lg': `${size?.wl}px`,
+          '--img-height-lg': `${size?.hl}px`,
+        }}
+      />
     </div>
   );
 }

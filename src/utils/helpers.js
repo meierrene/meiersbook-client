@@ -1,7 +1,11 @@
-export const BASE_URL = `${import.meta.env.VITE_API_URL}/posts/`;
-export const ASSET_URL = `${
+export const BASE_URL_POSTS = `${import.meta.env.VITE_API_URL}/posts/`;
+export const BASE_URL_USERS = `${import.meta.env.VITE_API_URL}/users/`;
+export const ASSET_URL_POSTS = `${
   import.meta.env.VITE_ASSET_URL
 }/uploads/postsImages`;
+export const ASSET_URL_USERS = `${
+  import.meta.env.VITE_ASSET_URL
+}/uploads/userImages`;
 export const TEMPLATE_PROFILE_IMAGE = './default-user.jpg';
 export const ERROR_IMAGE = '/404-error.png';
 export const EXPIRATION_TIME = 1000 * 60 * 60; //1h

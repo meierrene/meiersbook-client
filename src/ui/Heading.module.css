@@ -13,7 +13,7 @@
 
 .paragraph {
   font-size: 2rem;
-  margin: 0;
+  margin: 0.6rem 0;
 }
 
 @media (max-width: 672px) {

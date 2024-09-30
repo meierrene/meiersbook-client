@@ -5,13 +5,15 @@ import Button from './Button';
 import { useAuth } from '../contexts/AuthContext';
 import { useLogout } from '../features/authentication/useLogout';
 import { useRef } from 'react';
-import { TEMPLATE_PROFILE_IMAGE } from '../utils/helpers';
+import { ASSET_URL_USERS, TEMPLATE_PROFILE_IMAGE } from '../utils/helpers';
 import Image from './Image';
+import { useUser } from '../features/users/useUser';
 
 const Header = () => {
   const { isLoggedIn } = useAuth();
   const { logout, isLoading } = useLogout();
   const navbarRef = useRef(null);
+  const { user } = useUser();
 
   const handleCollapse = () => {
     const navbar = navbarRef.current;
@@ -35,7 +37,17 @@ const Header = () => {
 
         {isLoggedIn && (
           <div className={styles.profileImage}>
-            <Image src={TEMPLATE_PROFILE_IMAGE} alt="profile image" profile />
+            <Image
+              src={
+                user?.data.image
+                  ? `${ASSET_URL_USERS}/${user?.data.image}`
+                  : TEMPLATE_PROFILE_IMAGE
+              }
+              alt="profile image"
+              profile
+              size={{ wl: '40', hl: '40', ws: '36.25', hs: '36.25' }}
+            />
+            <span>{user?.data.name.split(' ').slice(0, 2).join(' ')}</span>
           </div>
         )}
 

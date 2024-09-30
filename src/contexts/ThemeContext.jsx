@@ -1,10 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-export const BASE_URL = `${import.meta.env.VITE_API_URL}/posts/`;
-export const ASSET_URL = `${
-  import.meta.env.VITE_ASSET_URL
-}/uploads/postsImages`;
-
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {

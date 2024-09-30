@@ -28,12 +28,19 @@
   background-color: var(--secondary-color-default);
 }
 
-.profileImage div img {
+/*5.6rem of header bar. 0.8rem + 4rem of height + 0.8rem from bottom*/
+
+.profileImage {
   position: absolute;
-  top: 1rem;
-  right: 20rem;
-  width: 4rem;
-  height: 4rem;
+  align-items: center;
+  display: flex;
+  right: 18rem;
+  gap: 1.2rem;
+  margin: 0;
+}
+
+.profileImage span {
+  font-size: 1.8rem;
 }
 
 @media (max-width: 992px) {
@@ -47,8 +54,12 @@
     width: 100%;
   }
 
-  .profileImage div img {
+  .profileImage {
     right: 6rem;
-    top: 0.5rem;
+    top: 0.8rem;
+  }
+
+  .profileImage span {
+    display: none;
   }
 }
