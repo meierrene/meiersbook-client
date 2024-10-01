@@ -3,6 +3,7 @@ import {
   ASSET_URL_POSTS,
   stringLimiter,
   TEMPLATE_PROFILE_IMAGE,
+  ASSET_URL_USERS,
 } from '../utils/helpers';
 
 import { useThemes } from '../contexts/ThemeContext';
@@ -11,14 +12,17 @@ import Image from './Image';
 
 const Card = ({ post }) => {
   const { isDark } = useThemes();
-
   if (!post.id) return;
-  const str = 'User Profile To be Implemented in the Card';
+  const str = post.creator.name;
   return (
-    <Link className={styles.postLink} to={post.id}>
+    <Link className={styles.postLink} to={`posts/${post.id}`}>
       <div className={styles.profileImage}>
         <Image
-          src={TEMPLATE_PROFILE_IMAGE}
+          src={
+            post?.creator?.image
+              ? `${ASSET_URL_USERS}/${post.creator.image}`
+              : TEMPLATE_PROFILE_IMAGE
+          }
           alt="profile image"
           profile
           size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}

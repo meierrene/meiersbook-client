@@ -1,31 +1,35 @@
 import { Link } from 'react-router-dom';
 import Card from '../../ui/Card';
 import Button from '../../ui/Button';
-import { usePosts } from '../../contexts/PostContext';
 import { useEffect } from 'react';
 import styles from './PostGallery.module.css';
 import Heading from '../../ui/Heading';
 import { useAuth } from '../../contexts/AuthContext';
+import { usePosts } from './usePosts';
+import Spinner from '../../ui/Spinner';
 
 const PostGallery = () => {
-  const { data, deselectPost } = usePosts();
+  const { isLoading, postsWithUsers: posts } = usePosts();
   const { isLoggedIn } = useAuth();
 
-  const number = data?.length;
-  document.title = 'Meiersbook | All posts';
+  // const { data, deselectPost } = usePosts();
 
+  const number = posts?.length;
+  document.title = 'Meiersbook | All posts';
   // To prevent load undefined posts when clicking in
-  useEffect(() => {
-    deselectPost();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  // deselectPost();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>
       {isLoggedIn && (
         <div className="front-panel">
           <Link className="btn compose-btn" to="/newpost">
-            <Button level="secondary">New post</Button>
+            <Button secondary>New post</Button>
           </Link>
           <Heading secondary>
             {number > 0
@@ -35,7 +39,7 @@ const PostGallery = () => {
         </div>
       )}
       <div className={styles.galleryContainer}>
-        {data
+        {posts
           ?.slice()
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map(post => (

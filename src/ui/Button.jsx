@@ -4,10 +4,10 @@ const Button = ({
   children,
   onClick = null,
   isDark,
-  level,
   primary,
   secondary,
   danger,
+  rounded,
   disabled,
   navLink,
   full,
@@ -16,13 +16,15 @@ const Button = ({
     <button
       className={`
       ${styles.btn}
-      ${level === 'primary' && styles.btnPrimary} ${
-        level === 'secondary' && styles.btnSecondary
-      } ${level === 'delete' && styles.btnDanger} 
+      ${primary && styles.btnPrimary} ${secondary && styles.btnSecondary} ${
+        danger && styles.btnDanger
+      } 
       ${full && styles.full}
       
       ${isDark && styles.isDark}
       ${navLink && styles.navLink}
+      ${rounded && styles.rounded}
+
       `}
       onClick={onClick}
       disabled={disabled}

@@ -39,7 +39,7 @@
 }
 
 .mainPage {
-  padding-top: 60px;
+  padding-top: 10rem;
 }
 
 .themeDark span {
@@ -64,5 +64,11 @@
 
   .profileImage span {
     display: none;
+  }
+}
+
+@media (max-width: 672px) {
+  .mainPage {
+    padding-top: 8rem;
   }
 }

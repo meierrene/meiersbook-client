@@ -128,11 +128,11 @@ function LoginForm() {
           </>
         )}
         <ButtonsNav>
-          <Button level="primary">{isLoginForm ? 'Login' : 'Signup'}</Button>
+          <Button primary>{isLoginForm ? 'Login' : 'Signup'}</Button>
         </ButtonsNav>
       </Form>
       <ButtonsNav>
-        <Button level="secondary" full onClick={() => setIsLoginForm(l => !l)}>
+        <Button secondary full onClick={() => setIsLoginForm(l => !l)}>
           {!isLoginForm
             ? 'Has already an account? Login'
             : 'Do you not have an account yet? Signup'}

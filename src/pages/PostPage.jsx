@@ -1,21 +1,17 @@
-import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Post from '../features/posts/Post';
-import { usePosts } from '../contexts/PostContext';
-import { useEffect } from 'react';
+import { usePost } from '../features/posts/usePost';
 
 const PostPage = () => {
-  const { id } = useParams();
-  const { currentPost, getPost } = usePosts();
   const { pathname } = useLocation();
+  const { postWithUser, id } = usePost();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getPost(id);
-  }, [getPost, id]);
 
   return (
     <>
-      {currentPost ? !pathname.includes('editpost') && <Post /> : navigate('/')}
+      {postWithUser._id === id
+        ? !pathname.includes('editpost') && <Post />
+        : navigate('/')}
       <Outlet />
     </>
   );

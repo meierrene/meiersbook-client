@@ -3,7 +3,7 @@
 }
 
 .postImage img {
-  border-radius: 0.8rem;
+  border-radius: 4px;
   max-width: 100%;
   max-height: 90rem;
 }

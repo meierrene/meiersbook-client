@@ -12,48 +12,58 @@ import ButtonsNav from '../../ui/ButtonsNav';
 import Heading from '../../ui/Heading';
 import Image from '../../ui/Image';
 import { useImage } from '../../utils/useImage';
+import { usePost } from './usePost';
 
 const NewEditPost = () => {
-  const { currentPost, createPost, editPost, isLoading, deletePost } =
-    usePosts();
-  const navigate = useNavigate();
-  const [title, setTitle] = useState(currentPost.id ? currentPost.title : '');
+  const {
+    createPost,
+    editPost,
+    isLoading: LoadingCreating,
+    deletePost,
+  } = usePosts();
+  const { isLoading: LoadingFetching, postWithUser } = usePost();
 
-  const { previewImage, imageData, handleChangeImage } = useImage(
-    currentPost.image,
-    currentPost.id
+  const navigate = useNavigate();
+  const [title, setTitle] = useState(
+    postWithUser?.id ? postWithUser.title : ''
   );
 
+  const { previewImage, imageData, handleChangeImage } = useImage(
+    postWithUser.image,
+    postWithUser.id
+  );
+
+  const isLoading = LoadingCreating || LoadingFetching;
+
   const handleSubmit = async e => {
-    console.log(imageData);
     e.preventDefault();
     if (!imageData) return;
     const form = new FormData();
     form.append('image', imageData);
     form.append('title', title);
-    if (currentPost.id) await editPost(currentPost.id, form);
+    if (postWithUser.id) await editPost(postWithUser.id, form);
     else await createPost(form);
 
     window.location.assign('/');
   };
 
   const handleDelete = async () => {
-    await deletePost(currentPost.id);
+    await deletePost(postWithUser.id);
     navigate('/');
   };
 
-  document.title = `Meiersbook | ${currentPost.id ? 'Edit' : 'New'} post`;
+  document.title = `Meiersbook | ${postWithUser?.id ? 'Edit' : 'New'} post`;
 
   if (isLoading) return <Spinner />;
 
   return (
     <>
-      <Heading primary>{currentPost.id ? 'Update' : 'New'} Post</Heading>
+      <Heading primary>{postWithUser?.id ? 'Update' : 'New'} Post</Heading>
 
       <Form
         className="front-panel form-post-data"
-        id={currentPost.id ? 'edit' : 'new'}
-        dataId={currentPost.id ? currentPost.id : ''}
+        id={postWithUser?.id ? 'edit' : 'new'}
+        dataId={postWithUser?.id ? postWithUser.id : ''}
         encType="multipart/form-data"
         onSubmit={handleSubmit}
       >
@@ -62,8 +72,8 @@ const NewEditPost = () => {
             <Image
               preview
               src={
-                currentPost.image === previewImage
-                  ? `${ASSET_URL_POSTS}/${currentPost.image}`
+                postWithUser.image === previewImage
+                  ? `${ASSET_URL_POSTS}/${postWithUser.image}`
                   : previewImage
               }
               alt="preview"
@@ -85,18 +95,18 @@ const NewEditPost = () => {
             value={title}
             onChange={e => setTitle(e.target.value)}
           >
-            {currentPost.id ? currentPost.title : ''}
+            {postWithUser?.id ? postWithUser.title : ''}
           </TextArea>
         </FormGroup>
         <ButtonsNav>
           <Link to="/">
-            <Button level="secondary">Go back</Button>
+            <Button secondary>Go back</Button>
           </Link>
-          <Button level="primary" disabled={!imageData.name && !currentPost.id}>
-            {currentPost.id ? 'Update' : 'Publish'}
+          <Button primary disabled={!imageData.name && !postWithUser.id}>
+            {postWithUser?.id ? 'Update' : 'Publish'}
           </Button>
-          {currentPost.id && (
-            <Button level="delete" onClick={handleDelete}>
+          {postWithUser?.id && (
+            <Button danger onClick={handleDelete}>
               Delete post
             </Button>
           )}

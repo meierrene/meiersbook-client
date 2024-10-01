@@ -57,6 +57,10 @@
   background: #9a2e22;
 }
 
+.rounded {
+  border-radius: 99rem;
+}
+
 .dark {
   background-color: var(--dark-theme-color);
 }

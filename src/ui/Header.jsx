@@ -60,7 +60,7 @@ const Header = ({ children }) => {
 
             {!isLoggedIn ? (
               <NavLink className="nav-link link-wrapper" to="/login">
-                <Button level="primary" navLink>
+                <Button primary navLink>
                   Login
                 </Button>
               </NavLink>

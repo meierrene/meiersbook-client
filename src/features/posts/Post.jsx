@@ -1,28 +1,30 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { usePosts } from '../../contexts/PostContext';
+import styles from './Post.module.css';
 import Spinner from '../../ui/Spinner';
 import Button from '../../ui/Button';
-import { ASSET_URL_POSTS } from '../../utils/helpers';
+import {
+  ASSET_URL_USERS,
+  ASSET_URL_POSTS,
+  TEMPLATE_PROFILE_IMAGE,
+} from '../../utils/helpers';
 import ButtonsNav from '../../ui/ButtonsNav';
 import Heading from '../../ui/Heading';
 import Image from '../../ui/Image';
 import { useAuth } from '../../contexts/AuthContext';
+import { usePost } from './usePost';
 
 const Post = () => {
-  const { currentPost, isLoading } = usePosts();
+  const { isLoading, postWithUser, error } = usePost();
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
-  if (!currentPost) {
-    navigate('/');
-    return null; // Prevent rendering the rest of the component
-  }
+  if (error?.message.includes('ID')) navigate('/*');
 
   if (isLoading) return <Spinner />;
 
-  document.title = `Meiersbook | ${currentPost.title}`;
+  document.title = `Meiersbook | ${postWithUser.title}`;
 
-  const date = new Date(currentPost.createdAt).toLocaleString('en-UK', {
+  const date = new Date(postWithUser.createdAt).toLocaleString('en-UK', {
     hour: 'numeric',
     minute: 'numeric',
     day: 'numeric',
@@ -31,22 +33,36 @@ const Post = () => {
   });
 
   return (
-    <div className="post-container" post-id={currentPost.id}>
+    <div className="post-container" post-id={postWithUser.id}>
+      <div className={styles.profileImage}>
+        <Image
+          src={
+            postWithUser?.creator?.image
+              ? `${ASSET_URL_USERS}/${postWithUser.creator.image}`
+              : TEMPLATE_PROFILE_IMAGE
+          }
+          alt="profile image"
+          profile
+          size={{ wl: '80', hl: '80', ws: '40', hs: '40' }}
+        />
+        <Heading>{postWithUser.creator.name}</Heading>
+      </div>
+
       <Image
         post
-        src={`${ASSET_URL_POSTS}/${currentPost.image}`}
-        alt={currentPost.title}
+        src={`${ASSET_URL_POSTS}/${postWithUser.image}`}
+        alt={postWithUser.title}
       />
-      <Heading secondary>{currentPost.title}</Heading>
+      <Heading secondary>{postWithUser.title}</Heading>
       <Heading dateStamp>Created at: {date}</Heading>
 
       <ButtonsNav>
         <Link to="/">
-          <Button level="secondary">Go back</Button>
+          <Button secondary>Go back</Button>
         </Link>
         {isLoggedIn && (
           <Link to="editpost">
-            <Button level="secondary">Modify</Button>
+            <Button secondary>Modify</Button>
           </Link>
         )}
       </ButtonsNav>
