@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import Card from '../../ui/Card';
 import Button from '../../ui/Button';
-import { useEffect } from 'react';
 import styles from './PostGallery.module.css';
 import Heading from '../../ui/Heading';
 import { useAuth } from '../../contexts/AuthContext';
@@ -11,16 +10,8 @@ import Spinner from '../../ui/Spinner';
 const PostGallery = () => {
   const { isLoading, postsWithUsers: posts } = usePosts();
   const { isLoggedIn } = useAuth();
-
-  // const { data, deselectPost } = usePosts();
-
   const number = posts?.length;
   document.title = 'Meiersbook | All posts';
-  // To prevent load undefined posts when clicking in
-  // useEffect(() => {
-  // deselectPost();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   if (isLoading) return <Spinner />;
 

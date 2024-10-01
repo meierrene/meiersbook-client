@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { usePosts } from '../../contexts/PostContext';
 import { ASSET_URL_POSTS } from '../../utils/helpers';
 import Button from '../../ui/Button';
 import Spinner from '../../ui/Spinner';
@@ -13,16 +12,15 @@ import Heading from '../../ui/Heading';
 import Image from '../../ui/Image';
 import { useImage } from '../../utils/useImage';
 import { usePost } from './usePost';
+import { useCreatePost } from './useCreatePost';
+import { useEditPost } from './useEditPost';
+import { useDeletePost } from './useDeletePost';
 
 const NewEditPost = () => {
-  const {
-    createPost,
-    editPost,
-    isLoading: LoadingCreating,
-    deletePost,
-  } = usePosts();
-  const { isLoading: LoadingFetching, postWithUser } = usePost();
-
+  const { createPost, isCreating } = useCreatePost();
+  const { editPost, isEditing } = useEditPost();
+  const { isLoading, postWithUser } = usePost();
+  const { deletePost, isDeleting } = useDeletePost();
   const navigate = useNavigate();
   const [title, setTitle] = useState(
     postWithUser?.id ? postWithUser.title : ''
@@ -33,7 +31,7 @@ const NewEditPost = () => {
     postWithUser.id
   );
 
-  const isLoading = LoadingCreating || LoadingFetching;
+  const loading = isCreating || isEditing || isLoading || isDeleting;
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -41,20 +39,18 @@ const NewEditPost = () => {
     const form = new FormData();
     form.append('image', imageData);
     form.append('title', title);
-    if (postWithUser.id) await editPost(postWithUser.id, form);
-    else await createPost(form);
-
-    window.location.assign('/');
+    if (postWithUser.id) editPost(form);
+    else createPost(form);
   };
 
   const handleDelete = async () => {
-    await deletePost(postWithUser.id);
+    deletePost();
     navigate('/');
   };
 
   document.title = `Meiersbook | ${postWithUser?.id ? 'Edit' : 'New'} post`;
 
-  if (isLoading) return <Spinner />;
+  if (loading) return <Spinner />;
 
   return (
     <>

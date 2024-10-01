@@ -40,11 +40,11 @@ export const getPost = async id => {
   }
 };
 
-export const createPost = async (newPost, token) => {
+export const createPost = async (newData, token) => {
   try {
     const res = await fetch(BASE_URL_POSTS, {
       method: 'POST',
-      body: newPost,
+      body: newData,
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -55,11 +55,11 @@ export const createPost = async (newPost, token) => {
   }
 };
 
-export const editPost = async (id, post, token) => {
+export const editPost = async (id, postData, token) => {
   try {
     const res = await fetch(`${BASE_URL_POSTS}${id}`, {
       method: 'PATCH',
-      body: post,
+      body: postData,
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import {
   ASSET_URL_POSTS,
   stringLimiter,
-  TEMPLATE_PROFILE_IMAGE,
   ASSET_URL_USERS,
 } from '../utils/helpers';
 
@@ -21,7 +20,7 @@ const Card = ({ post }) => {
           src={
             post?.creator?.image
               ? `${ASSET_URL_USERS}/${post.creator.image}`
-              : TEMPLATE_PROFILE_IMAGE
+              : ''
           }
           alt="profile image"
           profile

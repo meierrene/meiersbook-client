@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
-import { usePosts } from '../contexts/PostContext';
 import { ERROR_IMAGE } from '../utils/helpers';
 import Button from '../ui/Button';
 
-const ErrorPage = () => {
-  const { status, message } = usePosts();
-
+const ErrorPage = err => {
   document.title = 'Not found!';
 
   return (
@@ -14,8 +11,8 @@ const ErrorPage = () => {
         <img className="error-image" src={ERROR_IMAGE} alt="Error 404" />
         <h2 className="error-title">Something went wrong!</h2>
         <div className="error-message">
-          {status !== 'success' && <span>Error {status} - </span>}
-          <span>{message}</span>
+          {err.status !== 'success' && <span>Error {err.status || 404}</span>}
+          <span>{err.message}</span>
         </div>
       </div>
       <Link to="/">
