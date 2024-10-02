@@ -7,6 +7,8 @@
 
 .logo {
   font-family: Roboto;
+  display: flex;
+  align-items: center;
   font-size: 24px;
   font-weight: 700;
   color: #fff;
@@ -39,7 +41,7 @@
 }
 
 .mainPage {
-  padding-top: 10rem;
+  padding-top: 153px; /*63px header + 60px menupanel*/
 }
 
 .themeDark span {
@@ -69,6 +71,6 @@
 
 @media (max-width: 672px) {
   .mainPage {
-    padding-top: 8rem;
+    padding-top: 150px; /*59.25px header + 60px menupanel*/
   }
 }

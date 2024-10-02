@@ -9,9 +9,6 @@ function HeaderMenu() {
 
   return (
     <div className={styles.HeaderMenu}>
-      <Link to="/settings">
-        <Button secondary>Settings</Button>
-      </Link>
       <Button danger onClick={logout} disabled={isLoading}>
         Logout
       </Button>

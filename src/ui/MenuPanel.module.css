@@ -1,0 +1,23 @@
+.menuPanel {
+  position: fixed;
+  z-index: 90;
+  top: 63px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.8rem;
+  padding: 1rem;
+  background: #fafafa;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.themeDark {
+  background: #191919;
+}
+
+@media (max-width: 672px) {
+  .menuPanel {
+    top: 59.25px;
+  }
+}

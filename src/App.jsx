@@ -15,6 +15,7 @@ import ErrorPage from './pages/ErrorPage';
 import PostPage from './pages/PostPage';
 import SettingsPage from './pages/SettingsPage';
 import Spinner from './ui/Spinner';
+import MyGalleryPage from './pages/MyGalleryPage';
 const PostGalleryPage = lazy(() => import('./pages/PostGalleryPage'));
 
 const queryClient = new QueryClient({
@@ -39,6 +40,7 @@ const App = () => {
                   <Route path="posts" element={<PostGalleryPage />} />
                   <Route path="login" element={<LoginPage />} />
                   <Route element={<ProtectedRoute />}>
+                    <Route path="myposts" element={<MyGalleryPage />} />
                     <Route path="newpost" element={<NewEditPostPage />} />
                     <Route path="settings" element={<SettingsPage />} />
                     <Route path="posts/:id" element={<PostPage />}>

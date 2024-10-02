@@ -58,7 +58,12 @@
 }
 
 .rounded {
-  border-radius: 99rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
 }
 
 .dark {

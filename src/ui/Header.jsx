@@ -14,6 +14,7 @@ import SideDrawer from './SideDrawer';
 import Backdrop from './Backdrop';
 import HeaderMenu from './HeaderMenu';
 import { useThemes } from '../contexts/ThemeContext';
+import MenuPanel from './MenuPanel';
 
 const Header = ({ children }) => {
   const { isDark } = useThemes();
@@ -74,6 +75,7 @@ const Header = ({ children }) => {
       <SideDrawer isOpen={isOpened} onClick={closeSideDrawer}>
         <HeaderMenu />
       </SideDrawer>
+      {isLoggedIn && <MenuPanel />}
       <div className={styles.mainPage}>{children}</div>
     </>
   );
