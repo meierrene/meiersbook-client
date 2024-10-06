@@ -15,6 +15,7 @@ import { usePost } from './usePost';
 import { useCreatePost } from './useCreatePost';
 import { useEditPost } from './useEditPost';
 import { useDeletePost } from './useDeletePost';
+import ConfirmModal from '../../ui/ConfirmModal';
 
 const CreateEditPost = () => {
   const { createPost, isCreating } = useCreatePost();
@@ -25,6 +26,7 @@ const CreateEditPost = () => {
   const [title, setTitle] = useState(
     postWithUser?.id ? postWithUser.title : ''
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { previewImage, imageData, handleChangeImage } = useImage(
     postWithUser.image,
@@ -45,6 +47,7 @@ const CreateEditPost = () => {
 
   const handleDelete = async () => {
     deletePost();
+    setIsModalOpen(false);
     navigate('/');
   };
 
@@ -101,12 +104,19 @@ const CreateEditPost = () => {
             {postWithUser?.id ? 'Update' : 'Publish'}
           </Button>
           {postWithUser?.id && (
-            <Button danger onClick={handleDelete}>
+            <Button type="button" danger onClick={() => setIsModalOpen(true)}>
               Delete post
             </Button>
           )}
         </ButtonsNav>
       </Form>
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleDelete}
+        title="Delete post"
+        message="Are you sure you want to delete this post?"
+      />
     </>
   );
 };

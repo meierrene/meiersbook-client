@@ -19,7 +19,6 @@ export const useUpdatePassword = () => {
       logout();
     },
     onError: err => {
-      console.log(err.message);
       let errorMessage = err.message;
       if (errorMessage.includes('same'))
         errorMessage = 'This new password must not be the same as the current.';

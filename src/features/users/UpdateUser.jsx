@@ -35,55 +35,50 @@ function UpdateUser({ user }) {
   if (isUpdating) return <Spinner />;
 
   return (
-    <>
-      <Heading secondary>Update your account</Heading>
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Heading label>Name</Heading>
-          <Input
-            id="name"
-            type="name"
-            placeholder="name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Heading label>Email</Heading>
-          <Input
-            id="email"
-            type="email"
-            placeholder="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Heading label>Profile picture</Heading>
-          <Image
-            src={
-              changedImage ? previewImage : `${ASSET_URL_USERS}/${user.image}`
-            }
-            alt="profile picture"
-            profile
-            preview
-          />
-          <Input
-            id="image"
-            type="file"
-            accept="image/*"
-            name="image"
-            onChange={handleChangeImage}
-            required={true}
-          />
-        </FormGroup>
-        <ButtonsNav>
-          <Button primary disabled={!isModified}>
-            Update
-          </Button>
-        </ButtonsNav>
-      </Form>
-    </>
+    <Form onSubmit={handleSubmit}>
+      <FormGroup>
+        <Heading label>Name</Heading>
+        <Input
+          id="name"
+          type="name"
+          placeholder="name"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Heading label>Email</Heading>
+        <Input
+          id="email"
+          type="email"
+          placeholder="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Heading label>Profile picture</Heading>
+        <Image
+          src={changedImage ? previewImage : `${ASSET_URL_USERS}/${user.image}`}
+          alt="profile picture"
+          profile
+          preview
+        />
+        <Input
+          id="image"
+          type="file"
+          accept="image/*"
+          name="image"
+          onChange={handleChangeImage}
+          required={true}
+        />
+      </FormGroup>
+      <ButtonsNav>
+        <Button primary disabled={!isModified}>
+          Update
+        </Button>
+      </ButtonsNav>
+    </Form>
   );
 }
 

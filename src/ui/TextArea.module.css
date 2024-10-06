@@ -17,3 +17,9 @@ textarea {
     margin: 1rem;
   }
 }
+
+@media (max-width: 380px) {
+  textarea {
+    margin: 0;
+  }
+}

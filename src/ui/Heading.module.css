@@ -26,6 +26,11 @@
   margin: 0.6rem 0;
 }
 
+.accordion {
+  padding: 0.8rem;
+  font-size: 2.4rem;
+}
+
 @media (max-width: 672px) {
   .primaryHeading {
     font-size: 2.4rem;
@@ -41,5 +46,8 @@
   }
   .label {
     font-size: 1.6rem;
+  }
+  .accordion {
+    font-size: 1.8rem;
   }
 }

@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import Button from '../ui/Button';
-import Heading from '../ui/Heading';
+import UpdateUserPassword from '../features/authentication/UpdateUserPassword';
+import DeleteUser from '../features/users/DeleteUser';
 import UpdateUser from '../features/users/UpdateUser';
 import { useUser } from '../features/users/useUser';
+import Accordion from '../ui/Accordion';
+import Heading from '../ui/Heading';
 import Spinner from '../ui/Spinner';
 import ThemeToggler from '../ui/ThemeToggler';
-import UpdateUserPassword from '../features/authentication/UpdateUserPassword';
 
 function SettingsPage() {
   const { isLoading, user } = useUser();
@@ -13,7 +13,7 @@ function SettingsPage() {
   if (isLoading) return <Spinner />;
 
   return (
-    <div>
+    <>
       <Heading primary>Settings</Heading>
       <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
         <Heading label>Theme: </Heading>
@@ -21,11 +21,24 @@ function SettingsPage() {
       </div>
       {!!user._id && (
         <>
-          <UpdateUser user={user} />
-          <UpdateUserPassword user={user} />
+          <Accordion title="Update your account">
+            <UpdateUser user={user} />
+          </Accordion>
+
+          <Accordion title="Update your password">
+            <UpdateUserPassword user={user} />
+          </Accordion>
+
+          <DeleteUser />
         </>
       )}
-    </div>
+      {user.role === 'admin' && (
+        <>
+          <Heading primary>Admin Settings</Heading>
+          <Accordion title="Users management"></Accordion>
+        </>
+      )}
+    </>
   );
 }
 

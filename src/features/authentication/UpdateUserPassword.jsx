@@ -24,46 +24,43 @@ function UpdateUserPassword() {
   if (isUpdating) return <Spinner />;
 
   return (
-    <>
-      <Heading secondary>Update your password</Heading>
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Heading label>Current password</Heading>
-          <Input
-            id="oldpassword"
-            type="password"
-            value={passwordCurrent}
-            placeholder="Current Password"
-            onChange={e => setPasswordCurrent(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Heading label>New password</Heading>
-          <Input
-            id="newpassword"
-            type="password"
-            value={password}
-            placeholder="New password"
-            onChange={e => setPassword(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Heading label>Confirm new password </Heading>
-          <Input
-            id="newpasswordconfirm"
-            type="password"
-            value={passwordConfirm}
-            placeholder="Confirm new password"
-            onChange={e => setPasswordConfirm(e.target.value)}
-          />
-        </FormGroup>
-        <ButtonsNav>
-          <Button primary disabled={!notInBlank}>
-            Submit new password
-          </Button>
-        </ButtonsNav>
-      </Form>
-    </>
+    <Form onSubmit={handleSubmit}>
+      <FormGroup>
+        <Heading label>Current password</Heading>
+        <Input
+          id="oldpassword"
+          type="password"
+          value={passwordCurrent}
+          placeholder="Current Password"
+          onChange={e => setPasswordCurrent(e.target.value)}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Heading label>New password</Heading>
+        <Input
+          id="newpassword"
+          type="password"
+          value={password}
+          placeholder="New password"
+          onChange={e => setPassword(e.target.value)}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Heading label>Confirm new password </Heading>
+        <Input
+          id="newpasswordconfirm"
+          type="password"
+          value={passwordConfirm}
+          placeholder="Confirm new password"
+          onChange={e => setPasswordConfirm(e.target.value)}
+        />
+      </FormGroup>
+      <ButtonsNav>
+        <Button primary disabled={!notInBlank}>
+          Submit new password
+        </Button>
+      </ButtonsNav>
+    </Form>
   );
 }
 

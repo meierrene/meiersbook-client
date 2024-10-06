@@ -1,58 +1,39 @@
-.modal {
-  z-index: 100;
+.modalOverlay {
   position: fixed;
-  top: 22vh;
-  left: 10%;
-  width: 80%;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 8px;
-}
-
-.modalHeader {
-  width: 100%;
-  padding: 1rem 0.5rem;
-  background: #2a006e;
-  color: white;
-}
-
-.modalHeader h2 {
-  margin: 0.5rem;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
 .modalContent {
-  padding: 1rem 0.5rem;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  position: relative;
 }
 
-.modalFooter {
-  padding: 1rem 0.5rem;
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
 }
 
-@media (min-width: 768px) {
-  .modal {
-    left: calc(50% - 20rem);
-    width: 40rem;
+.themeDark .modalContent {
+  background: #444;
+}
+
+@media (max-width: 672px) {
+  .modalContent {
+    padding: 1rem;
+    margin: 1rem;
   }
-}
-
-.modalEnter {
-  transform: translateY(-10rem);
-  opacity: 0;
-}
-
-.modalEnterActive {
-  transform: translateY(0);
-  opacity: 1;
-  transition: all 200ms;
-}
-
-.modalExit {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.modalExitActive {
-  transform: translateY(-10rem);
-  opacity: 0;
-  transition: all 200ms;
 }

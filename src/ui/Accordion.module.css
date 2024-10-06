@@ -1,0 +1,28 @@
+/* Accordion.module.css */
+
+.accordion {
+  width: 100%;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+.accordionHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.accordionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+  padding: 0 1rem;
+}
+
+.accordionContent.active {
+  max-height: 500px;
+  padding: 1rem 1rem;
+}

@@ -11,6 +11,7 @@ const Button = ({
   disabled,
   navLink,
   full,
+  type,
 }) => {
   return (
     <button
@@ -28,6 +29,7 @@ const Button = ({
       `}
       onClick={onClick}
       disabled={disabled}
+      type={type}
     >
       {children}
     </button>
