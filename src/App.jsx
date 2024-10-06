@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import LoginPage from './pages/LoginPage';
-import NewEditPostPage from './pages/NewEditPostPage';
+import CreateEditPostPage from './pages/CreateEditPostPage';
 import Footer from './ui/Footer';
 import Header from './ui/Header';
 // import PostGalleryPage from './pages/PostGalleryPage';
@@ -41,10 +41,10 @@ const App = () => {
                   <Route path="login" element={<LoginPage />} />
                   <Route element={<ProtectedRoute />}>
                     <Route path="myposts" element={<MyGalleryPage />} />
-                    <Route path="newpost" element={<NewEditPostPage />} />
+                    <Route path="newpost" element={<CreateEditPostPage />} />
                     <Route path="settings" element={<SettingsPage />} />
                     <Route path="posts/:id" element={<PostPage />}>
-                      <Route path="editpost" element={<NewEditPostPage />} />
+                      <Route path="editpost" element={<CreateEditPostPage />} />
                     </Route>
                   </Route>
                   <Route path="*" element={<ErrorPage />} />

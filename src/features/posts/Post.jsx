@@ -15,7 +15,7 @@ import { usePost } from './usePost';
 
 const Post = () => {
   const { isLoading, postWithUser, error } = usePost();
-  const { isLoggedIn } = useAuth();
+  const { userId, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   if (error?.message.includes('ID')) navigate('/*');
@@ -60,7 +60,7 @@ const Post = () => {
         <Link to="/">
           <Button secondary>Go back</Button>
         </Link>
-        {isLoggedIn && (
+        {isLoggedIn && userId === postWithUser.creator._id && (
           <Link to="editpost">
             <Button secondary>Modify</Button>
           </Link>

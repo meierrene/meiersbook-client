@@ -21,6 +21,11 @@
   font-size: 1.6rem;
 }
 
+.label {
+  font-size: 1.8rem;
+  margin: 0.6rem 0;
+}
+
 @media (max-width: 672px) {
   .primaryHeading {
     font-size: 2.4rem;
@@ -33,5 +38,8 @@
   }
   .dateStamp {
     font-size: 1.2rem;
+  }
+  .label {
+    font-size: 1.6rem;
   }
 }

@@ -45,17 +45,15 @@ const Header = ({ children }) => {
                 <Image
                   onClick={toggleSideDrawer}
                   src={
-                    user?.data.image
-                      ? `${ASSET_URL_USERS}/${user?.data.image}`
+                    user?.image
+                      ? `${ASSET_URL_USERS}/${user.image}`
                       : TEMPLATE_PROFILE_IMAGE
                   }
                   alt="profile image"
                   profile
                   size={{ wl: '40', hl: '40', ws: '36.25', hs: '36.25' }}
                 />
-                <span>
-                  {!!user?.data.name && stringLimiter(user.data.name, 45)}
-                </span>
+                <span>{!!user?.name && stringLimiter(user.name, 45)}</span>
               </div>
             )}
 

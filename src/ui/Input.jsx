@@ -9,12 +9,14 @@ function Input({
   accept,
   name,
   onChange,
+  placeholder,
   size = 24,
   autoComplete,
+  value,
 }) {
   const { isDark } = useThemes();
   const [reveal, setReveal] = useState(false);
-  const isPassword = id === 'password' || id === 'passwordConfirm';
+  const isPassword = id.toLowerCase().includes('password');
   const inputType = isPassword && reveal ? 'text' : type;
 
   return (
@@ -24,7 +26,9 @@ function Input({
         id={id}
         type={inputType}
         accept={accept}
+        value={value}
         name={name}
+        placeholder={placeholder}
         onChange={onChange}
         autoComplete={autoComplete || 'off'}
       />

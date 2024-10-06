@@ -81,3 +81,9 @@
     width: 100%;
   }
 }
+
+@media (max-width: 412px) {
+  .btn {
+    font-size: 1.2rem;
+  }
+}

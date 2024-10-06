@@ -50,6 +50,7 @@ input[type='file'] {
   text-align: center;
   width: fit-content;
   margin: 0 auto;
+  padding: 1.6rem 0;
 }
 
 input::file-selector-button {
@@ -97,4 +98,14 @@ input::file-selector-button:hover {
 
 .themeDark .icon {
   color: #bbb;
+}
+
+@media (max-width: 412px) {
+  input[type='file'] {
+    font-size: 1.4rem;
+  }
+
+  input::file-selector-button {
+    font-size: 1.2rem;
+  }
 }

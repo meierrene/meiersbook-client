@@ -10,8 +10,10 @@ import { imageChecker, TEMPLATE_PROFILE_IMAGE } from '../../utils/helpers';
 import { useLogin } from './useLogin';
 import { useImage } from '../../utils/useImage';
 import { useSignup } from './useSignup';
+import Spinner from '../../ui/Spinner';
 
 function LoginForm() {
+  // For Login form
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -58,17 +60,20 @@ function LoginForm() {
       });
     }
   };
+
+  if (isLoading) return <Spinner />;
+
   return (
     <>
       <Form className="front-panel form-post-data" onSubmit={handleSubmit}>
         <Heading primary> {isLoginForm ? 'Login' : 'Signup'}</Heading>
         {!isLoginForm && (
           <FormGroup>
-            <Heading>Name</Heading>
+            <Heading label>Name</Heading>
             <Input
               id="name"
               type="name"
-              placeholder="name"
+              placeholder="Name"
               value={name}
               onChange={e => setName(e.target.value)}
               disabled={isLoading}
@@ -76,22 +81,23 @@ function LoginForm() {
           </FormGroup>
         )}
         <FormGroup>
-          <Heading>Email</Heading>
+          <Heading label>Email</Heading>
           <Input
             id="email"
             type="email"
-            placeholder="email"
+            placeholder="Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
             disabled={isLoading}
           />
         </FormGroup>
         <FormGroup>
-          <Heading>Password</Heading>
+          <Heading label>Password</Heading>
           <Input
             id="password"
             type="password"
             value={password}
+            placeholder="Password"
             onChange={e => setPassword(e.target.value)}
             disabled={isLoading}
           />
@@ -99,17 +105,18 @@ function LoginForm() {
         {!isLoginForm && (
           <>
             <FormGroup>
-              <Heading>Password Confirm</Heading>
+              <Heading label>Password Confirm</Heading>
               <Input
                 id="passwordConfirm"
                 type="password"
+                placeholder="Password Confirm"
                 value={passwordConfirm}
                 onChange={e => setPasswordConfirm(e.target.value)}
                 disabled={isLoading}
               />
             </FormGroup>
             <FormGroup>
-              <Heading>Profile picture</Heading>
+              <Heading label>Profile picture</Heading>
               <Image
                 src={previewImage || TEMPLATE_PROFILE_IMAGE}
                 alt="preview"

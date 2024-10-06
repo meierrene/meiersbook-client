@@ -16,7 +16,7 @@ import { useCreatePost } from './useCreatePost';
 import { useEditPost } from './useEditPost';
 import { useDeletePost } from './useDeletePost';
 
-const NewEditPost = () => {
+const CreateEditPost = () => {
   const { createPost, isCreating } = useCreatePost();
   const { editPost, isEditing } = useEditPost();
   const { isLoading, postWithUser } = usePost();
@@ -55,7 +55,6 @@ const NewEditPost = () => {
   return (
     <>
       <Heading primary>{postWithUser?.id ? 'Update' : 'New'} Post</Heading>
-
       <Form
         className="front-panel form-post-data"
         id={postWithUser?.id ? 'edit' : 'new'}
@@ -84,7 +83,7 @@ const NewEditPost = () => {
           />
         </FormGroup>
         <FormGroup>
-          <Heading>Description</Heading>
+          <Heading label>Description</Heading>
           <TextArea
             name="title"
             autoFocus={true}
@@ -112,4 +111,4 @@ const NewEditPost = () => {
   );
 };
 
-export default NewEditPost;
+export default CreateEditPost;

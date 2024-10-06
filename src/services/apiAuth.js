@@ -28,23 +28,46 @@ export const logout = async token => {
 };
 
 export const signup = async signupData => {
-  const res = await fetch(`${BASE_URL_USERS}signup`, {
-    method: 'POST',
-    body: signupData,
-  });
-  if (!res.ok) {
-    const errorTextRaw = await res.text();
-    const errorText = errorTextRaw.match(/<pre>(.*?)<br>/)[1];
-    throw new Error(errorText);
+  try {
+    const res = await fetch(`${BASE_URL_USERS}signup`, {
+      method: 'POST',
+      body: signupData,
+    });
+    if (!res.ok) {
+      const errorTextRaw = await res.text();
+      const errorText = errorTextRaw.match(/<pre>(.*?)<br>/)[1];
+      throw new Error(errorText);
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error when signing up', error.message);
+    throw error;
   }
-  const data = await res.json();
-  return data;
 };
 
-export const getCurrentUser = async token => {
-  const res = await fetch(`${BASE_URL_USERS}me`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  const data = await res.json();
-  return data;
+export const updatePassword = async (userData, token) => {
+  try {
+    if (userData.passwordCurrent === userData.password)
+      throw new Error('The same password.');
+
+    const res = await fetch(`${BASE_URL_USERS}updateMyPassword`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    if (!res.ok) {
+      const errorTextRaw = await res.text();
+      const errorText = errorTextRaw.match(/<pre>(.*?)<br>/)[1];
+      throw new Error(errorText);
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error updating user's password", error.message);
+    throw error;
+  }
 };

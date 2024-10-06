@@ -7,7 +7,7 @@ import styles from './PostGallery.module.css';
 function MyGallery() {
   const { isLoading, user } = useUser();
   document.title = 'Meiersbook | My posts';
-  const posts = user?.data.posts || [];
+  const posts = user?.posts || [];
   const number = posts?.length;
 
   if (isLoading) return <Spinner />;
