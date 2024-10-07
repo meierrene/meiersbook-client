@@ -8,14 +8,20 @@ import {
 import { useThemes } from '../contexts/ThemeContext';
 import styles from './Card.module.css';
 import Image from './Image';
+import Heading from './Heading';
 
 const Card = ({ post }) => {
   const href = useHref();
   const myposts = href === '/myposts';
   const { isDark } = useThemes();
+
   if (!post.id) return;
   return (
-    <Link className={styles.postLink} to={`../posts/${post.id}`}>
+    <Link
+      className={styles.postLink}
+      to={`../posts/${post.id}`}
+      style={{ width: '100%' }}
+    >
       {!myposts && (
         <div className={styles.profileImage}>
           <Image
@@ -33,13 +39,8 @@ const Card = ({ post }) => {
       )}
 
       <div className={`${styles.card} ${isDark ? styles.themeDark : ''}`}>
-        <div className={styles.cardImage}>
-          {post.image ? (
-            <img src={`${ASSET_URL_POSTS}/${post.image}`} alt={post.title} />
-          ) : (
-            <p>Error to load photo in this post</p>
-          )}
-        </div>
+        <Image card src={`${ASSET_URL_POSTS}/${post.image}`} alt={post.title} />
+        <Heading>{stringLimiter(post.title, 36)}</Heading>
       </div>
     </Link>
   );

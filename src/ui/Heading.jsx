@@ -8,8 +8,8 @@ function Heading({
   label,
   accordion,
 }) {
-  if (primary) return <h1 className={styles.primaryHeading}>{children}</h1>;
-  if (secondary) return <h2 className={styles.secondaryHeading}>{children}</h2>;
+  if (primary) return <h1 className={styles.primary}>{children}</h1>;
+  if (secondary) return <h2 className={styles.secondary}>{children}</h2>;
   if (dateStamp) return <p className={styles.dateStamp}>{children}</p>;
   if (label) return <label className={styles.label}>{children}</label>;
   if (accordion) return <span className={styles.accordion}>{children}</span>;

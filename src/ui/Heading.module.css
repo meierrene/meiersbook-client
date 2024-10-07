@@ -1,10 +1,10 @@
-.primaryHeading {
+.primary {
   padding: 1.2rem;
   font-size: 3.6rem;
   font-weight: bold;
 }
 
-.secondaryHeading {
+.secondary {
   padding: 0.8rem;
   font-size: 2.4rem;
   font-weight: bold;
@@ -14,6 +14,7 @@
 .paragraph {
   font-size: 2rem;
   margin: 0.6rem 0;
+  word-break: break-all;
 }
 
 .dateStamp {
@@ -32,10 +33,10 @@
 }
 
 @media (max-width: 672px) {
-  .primaryHeading {
+  .primary {
     font-size: 2.4rem;
   }
-  .secondaryHeading {
+  .secondary {
     font-size: 1.8rem;
   }
   .paragraph {

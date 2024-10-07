@@ -1,10 +1,8 @@
 .card {
-  margin-bottom: 1.2rem;
+  width: 100%;
   cursor: pointer;
-  /* background-color: #eee; */
-  /* border: 0.1rem solid #000; */
   border-radius: 2px;
-  transition: all 0.4s;
+  transition: all 0.4s ease-in-out;
   overflow: hidden;
 }
 
@@ -12,13 +10,7 @@
   box-shadow: 0 0 0 0.4rem var(--main-color-tint-1);
 }
 
-.cardImage img {
-  max-width: 58rem;
-  max-height: 58rem;
-}
-
 .themeDark {
-  /* background-color: #333; */
   color: #bbb;
   border-color: #bbb;
 }
@@ -35,6 +27,7 @@
   color: #bbb;
   text-decoration: none;
   position: relative;
+  padding: 0;
 }
 
 .profileImage {
@@ -45,47 +38,4 @@
   left: 0.6rem;
   top: 0.6rem;
   font-size: 1.2rem;
-}
-
-@media (max-width: 116em) {
-  .cardImage img {
-    max-width: 50rem;
-    max-height: 50rem;
-  }
-}
-
-@media (max-width: 102em) {
-  .cardImage img {
-    max-width: 40rem;
-    max-height: 40rem;
-  }
-}
-
-@media (max-width: 82em) {
-  .cardImage img {
-    max-width: 30rem;
-    max-height: 30rem;
-  }
-}
-
-@media (max-width: 70em) {
-  .cardImage img {
-    max-width: 40rem;
-  }
-}
-
-@media (max-width: 55em) {
-  .cardImage {
-    max-width: 30rem;
-  }
-}
-
-@media (max-width: 672px) {
-  .cardImage {
-    max-width: 100%;
-  }
-
-  .cardImage img {
-    max-width: 100%;
-  }
 }

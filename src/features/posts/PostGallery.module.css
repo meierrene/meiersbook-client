@@ -3,11 +3,13 @@
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   margin: 2.4rem;
+  gap: 1.2rem;
 }
 
 @media (max-width: 1120px) {
   .galleryContainer {
     grid-template-columns: repeat(2, 1fr);
+    margin: 1.2rem;
   }
 }
 

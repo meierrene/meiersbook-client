@@ -1,11 +1,22 @@
 import styles from './Image.module.css';
 
-function Image({ src, alt, post, preview, profile, size, onClick, style }) {
+function Image({
+  src,
+  alt,
+  post,
+  card,
+  preview,
+  profile,
+  size,
+  onClick,
+  style,
+}) {
   return (
     <div
       onClick={onClick}
       style={style}
       className={`
+      ${card && styles.cardImage}
       ${post && styles.postImage} 
       ${preview && styles.previewImage} 
       ${profile && styles.profileImage}

@@ -28,12 +28,14 @@ function SettingsPage() {
           <Accordion title="Update your password">
             <UpdateUserPassword user={user} />
           </Accordion>
-
-          <DeleteUser />
+          <Accordion title="Remove your account">
+            <DeleteUser />
+          </Accordion>
         </>
       )}
       {user.role === 'admin' && (
         <>
+          <hr />
           <Heading primary>Admin Settings</Heading>
           <Accordion title="Users management"></Accordion>
         </>

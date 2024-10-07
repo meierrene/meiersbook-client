@@ -1,12 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { deleteUser as deleteUserApi } from '../../services/apiUser';
 import { logout } from '../../services/apiAuth';
+import { deleteUser as deleteUserApi } from '../../services/apiUser';
 
 export const useDeleteUser = () => {
-  const navigate = useNavigate();
   const { token } = useAuth();
 
   const { mutate: deleteUser, isPending: isDeleting } = useMutation({
