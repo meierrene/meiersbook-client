@@ -32,6 +32,10 @@
   font-size: 2.4rem;
 }
 
+.span {
+  font-size: 1.2rem;
+}
+
 @media (max-width: 672px) {
   .primary {
     font-size: 2.4rem;

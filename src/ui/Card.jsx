@@ -9,11 +9,34 @@ import { useThemes } from '../contexts/ThemeContext';
 import styles from './Card.module.css';
 import Image from './Image';
 import Heading from './Heading';
+import Icon from './Icon';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { useToggleLikePost } from '../features/posts/useToggleLikePost';
 
 const Card = ({ post }) => {
+  const { userId } = useAuth();
   const href = useHref();
-  const myposts = href === '/myposts';
   const { isDark } = useThemes();
+
+  const isLiked = !!post.likes.find(id => id === userId);
+
+  const [like, setLike] = useState(isLiked);
+  const { toggleLikePost } = useToggleLikePost(isLiked);
+  const myposts = href === '/myposts';
+
+  useEffect(() => {
+    setLike(isLiked);
+  }, [isLiked]);
+
+  const handleToggleLike = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    // To prevent the user to not self like
+    if (post.creator.image.includes(userId)) return;
+    toggleLikePost(post.id);
+  };
 
   if (!post.id) return;
   return (
@@ -34,10 +57,19 @@ const Card = ({ post }) => {
             profile
             size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
           />
-          <span>{stringLimiter(post.creator.name, 30)}</span>
+          <Heading span>{stringLimiter(post.creator.name, 30)}</Heading>
         </div>
       )}
-
+      <div className={styles.like} onClick={handleToggleLike}>
+        <Icon>
+          {like ? (
+            <FaHeart style={{ color: 'var(--main-color-default)' }} />
+          ) : (
+            <FaRegHeart style={{ color: 'var(--main-color-default)' }} />
+          )}
+        </Icon>
+        <Heading span>{post.likes.length}</Heading>
+      </div>
       <div className={`${styles.card} ${isDark ? styles.themeDark : ''}`}>
         <Image card src={`${ASSET_URL_POSTS}/${post.image}`} alt={post.title} />
         <Heading>{stringLimiter(post.title, 36)}</Heading>

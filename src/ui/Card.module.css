@@ -4,19 +4,10 @@
   border-radius: 2px;
   transition: all 0.4s ease-in-out;
   overflow: hidden;
+  color: #000;
 }
 
-.card:hover {
-  box-shadow: 0 0 0 0.4rem var(--main-color-tint-1);
-}
-
-.themeDark {
-  color: #bbb;
-  border-color: #bbb;
-}
-
-.themeDark p,
-.themeDark span {
+.themeDark.card {
   color: #bbb;
 }
 
@@ -24,13 +15,13 @@
 .postLink:visited,
 .postLink:hover,
 .postLink:active {
-  color: #bbb;
   text-decoration: none;
   position: relative;
   padding: 0;
 }
 
 .profileImage {
+  color: #bbb;
   position: absolute;
   display: flex;
   align-items: center;
@@ -38,4 +29,14 @@
   left: 0.6rem;
   top: 0.6rem;
   font-size: 1.2rem;
+}
+
+.like {
+  color: #bbb;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 1rem;
+  gap: 0.6rem;
+  z-index: 96;
 }

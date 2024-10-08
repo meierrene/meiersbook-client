@@ -81,3 +81,31 @@ export const deletePost = async (id, token) => {
     throw error;
   }
 };
+
+export const likePost = async (id, token) => {
+  try {
+    const res = await fetch(`${BASE_URL_POSTS}${id}/like`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error to like the post:', error.message);
+    throw error;
+  }
+};
+
+export const unlikePost = async (id, token) => {
+  try {
+    const res = await fetch(`${BASE_URL_POSTS}${id}/unlike`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error to unlike the post:', error.message);
+    throw error;
+  }
+};
