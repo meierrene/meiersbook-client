@@ -3,6 +3,7 @@ import Spinner from '../../ui/Spinner';
 import ConfirmModal from '../../ui/ConfirmModal';
 import { useDeleteUser } from './useDeleteUser';
 import { useState } from 'react';
+import ButtonsNav from '../../ui/ButtonsNav';
 
 function DeleteUser() {
   const { deleteUser, isDeleting } = useDeleteUser();
@@ -17,9 +18,11 @@ function DeleteUser() {
 
   return (
     <>
-      <Button danger onClick={() => setIsModalOpen(true)}>
-        Delete Account
-      </Button>
+      <ButtonsNav>
+        <Button danger onClick={() => setIsModalOpen(true)}>
+          Delete Account
+        </Button>
+      </ButtonsNav>
       <ConfirmModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

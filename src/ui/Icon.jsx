@@ -1,7 +1,11 @@
 import styles from './Icon.module.css';
 
-function Icon({ children }) {
-  return <div className={styles.icon}>{children}</div>;
+function Icon({ children, onClick }) {
+  return (
+    <div className={styles.icon} onClick={onClick}>
+      {children}
+    </div>
+  );
 }
 
 export default Icon;

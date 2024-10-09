@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
 import { useAuth } from '../../contexts/AuthContext';
 import { logout } from '../../services/apiAuth';
 import { deleteUser as deleteUserApi } from '../../services/apiUser';
+import toast from 'react-hot-toast';
 
 export const useDeleteUser = () => {
   const { token } = useAuth();

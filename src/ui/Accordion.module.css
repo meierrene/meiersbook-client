@@ -1,5 +1,3 @@
-/* Accordion.module.css */
-
 .accordion {
   width: 100%;
   max-width: 70rem;
@@ -25,4 +23,10 @@
 .accordionContent.active {
   max-height: none;
   padding: 1rem 1rem;
+}
+
+@media (max-width: 672px) {
+  .accordionContent.active {
+    padding: 1rem 0rem;
+  }
 }

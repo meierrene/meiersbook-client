@@ -5,8 +5,7 @@ import FormGroup from '../../ui/FormGroup';
 import Heading from '../../ui/Heading';
 import Input from '../../ui/Input';
 import { useUserById } from '../users/useUserById';
-import { ASSET_URL_USERS, TEMPLATE_PROFILE_IMAGE } from '../../utils/helpers';
-
+import { ASSET_URL_USERS } from '../../utils/helpers';
 import { useImage } from '../../utils/useImage';
 import Image from '../../ui/Image';
 import ButtonsNav from '../../ui/ButtonsNav';
@@ -19,12 +18,13 @@ function UpdateUserAdmin() {
   const [email, setEmail] = useState('');
   const { updateUser, isUpdating } = useUpdateUserAdmin();
   const { isLoading, user } = useUserById(id);
+  const userdata = user?.data || '';
+
   const { previewImage, imageData, handleChangeImage, changedImage } = useImage(
-    user?.data.image,
-    user?.data._id
+    userdata.image,
+    userdata._id
   );
 
-  const userdata = user?.data || '';
   const loading = isUpdating || isLoading;
 
   useEffect(() => {
@@ -39,12 +39,15 @@ function UpdateUserAdmin() {
 
   const handleUpdateUser = e => {
     e.preventDefault();
-    if (!name || !email || !imageData) return;
+    if (!name || !email) return;
     const form = new FormData();
     form.append('name', name);
     form.append('email', email);
-    form.append('image', imageData);
+    if (imageData instanceof File) form.append('image', imageData);
     updateUser({ id, form });
+    setId('');
+    setName('');
+    setEmail('');
   };
 
   if (loading) return <Spinner />;
@@ -55,7 +58,7 @@ function UpdateUserAdmin() {
         <FormGroup>
           <Heading label>User ID</Heading>
           <Input
-            id="id"
+            id="idUpdate"
             type="text"
             placeholder="User ID"
             value={id}
@@ -64,56 +67,56 @@ function UpdateUserAdmin() {
         </FormGroup>
       </Form>
 
-      <Form onSubmit={handleUpdateUser}>
-        <FormGroup>
-          <Heading label>Name</Heading>
-          <Input
-            id="username"
-            type="name"
-            placeholder="Name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Heading label>Email</Heading>
-          <Input
-            id="useremail"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Heading label>Profile picture</Heading>
-          <Image
-            src={
-              userdata
-                ? changedImage
+      {userdata && (
+        <Form onSubmit={handleUpdateUser}>
+          <FormGroup>
+            <Heading label>Name</Heading>
+            <Input
+              id="username"
+              type="name"
+              placeholder="Name"
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Heading label>Email</Heading>
+            <Input
+              id="useremail"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Heading label>Profile picture</Heading>
+            <Image
+              src={
+                changedImage
                   ? previewImage
                   : `${ASSET_URL_USERS}/${userdata.image}`
-                : TEMPLATE_PROFILE_IMAGE
-            }
-            alt="preview"
-            profile
-            preview
-          />
-          <Input
-            id="userimage"
-            type="file"
-            accept="image/*"
-            name="image"
-            onChange={handleChangeImage}
-            required={true}
-          />
-        </FormGroup>
-        <ButtonsNav>
-          <Button primary disabled={!isModified}>
-            Update
-          </Button>
-        </ButtonsNav>
-      </Form>
+              }
+              alt="preview"
+              profile
+              preview
+            />
+            <Input
+              id="userimage"
+              type="file"
+              accept="image/*"
+              name="image"
+              onChange={handleChangeImage}
+              required={true}
+            />
+          </FormGroup>
+          <ButtonsNav>
+            <Button primary disabled={!isModified}>
+              Update
+            </Button>
+          </ButtonsNav>
+        </Form>
+      )}
     </>
   );
 }

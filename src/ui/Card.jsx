@@ -63,7 +63,7 @@ const Card = ({ post }) => {
               <Icon>
                 <FaRegComment style={{ color: 'var(--main-color-default)' }} />
               </Icon>
-              <Heading span>{post.comments?.length || 0}</Heading>
+              <Heading span>{post.comments?.length || 0}</Heading> {/*TODO*/}
             </div>
             <div className={styles.icon} onClick={handleToggleLike}>
               <Icon>

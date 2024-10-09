@@ -8,6 +8,8 @@ import Heading from '../ui/Heading';
 import Spinner from '../ui/Spinner';
 import ThemeToggler from '../ui/ThemeToggler';
 import UpdateUserAdmin from '../features/admin/UpdateUserAdmin';
+import DeleteUserAdmin from '../features/admin/DeleteUserAdmin';
+import DeleteEverythingAdmin from '../features/admin/DeleteEverythingAdmin';
 
 function SettingsPage() {
   const { isLoading, user } = useUser();
@@ -45,8 +47,12 @@ function SettingsPage() {
           <Accordion title="Edit User">
             <UpdateUserAdmin />
           </Accordion>
-          <Accordion title="Delete User"></Accordion>
-          <Accordion title="⚠ Delete every post ⚠"></Accordion>
+          <Accordion title="Delete User">
+            <DeleteUserAdmin />
+          </Accordion>
+          <Accordion title="⚠ Delete every post ⚠">
+            <DeleteEverythingAdmin />
+          </Accordion>
         </>
       )}
     </>

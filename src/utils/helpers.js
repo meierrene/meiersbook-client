@@ -8,6 +8,7 @@ export const ASSET_URL_USERS = `${
 }/uploads/userImages`;
 export const TEMPLATE_PROFILE_IMAGE = './default-user.jpg';
 export const ERROR_IMAGE = '/404-error.png';
+export const NO_IMAGE = '/no-image.png';
 export const EXPIRATION_TIME = 1000 * 60 * 60; //1h
 
 export const imageChecker = image =>
