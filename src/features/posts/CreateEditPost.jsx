@@ -59,7 +59,7 @@ const CreateEditPost = () => {
     <>
       <Heading primary>{postWithUser?.id ? 'Update' : 'New'} Post</Heading>
       <Form
-        className="front-panel form-post-data"
+        className
         id={postWithUser?.id ? 'edit' : 'new'}
         dataId={postWithUser?.id ? postWithUser.id : ''}
         encType="multipart/form-data"

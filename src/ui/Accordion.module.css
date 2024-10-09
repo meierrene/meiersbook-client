@@ -17,12 +17,12 @@
 
 .accordionContent {
   max-height: 0;
-  overflow: hidden;
+  overflow-y: auto;
   transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
   padding: 0 1rem;
 }
 
 .accordionContent.active {
-  max-height: 500px;
+  max-height: none;
   padding: 1rem 1rem;
 }

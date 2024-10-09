@@ -8,8 +8,11 @@ function Accordion({ children, title }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={styles.accordion} onClick={() => setIsOpen(o => !o)}>
-      <div className={styles.accordionHeading}>
+    <div className={styles.accordion}>
+      <div
+        className={styles.accordionHeading}
+        onClick={() => setIsOpen(o => !o)}
+      >
         <Heading accordion>{title}</Heading>
         <Icon>{isOpen ? <FaChevronDown /> : <FaChevronUp />}</Icon>
       </div>

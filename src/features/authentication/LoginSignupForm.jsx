@@ -65,7 +65,7 @@ function LoginForm() {
 
   return (
     <>
-      <Form className="front-panel form-post-data" onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Heading primary> {isLoginForm ? 'Login' : 'Signup'}</Heading>
         {!isLoginForm && (
           <FormGroup>

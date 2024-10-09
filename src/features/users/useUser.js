@@ -4,11 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 
 export const useUser = () => {
   const { token, isLoggedIn } = useAuth();
-  const {
-    isPending: isLoading,
-    data,
-    error,
-  } = useQuery({
+  const { isLoading, data, error } = useQuery({
     queryKey: ['user'],
     queryFn: () => getCurrentUser(token),
     enabled: isLoggedIn,

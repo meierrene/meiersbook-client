@@ -34,9 +34,25 @@ export const deleteUser = async token => {
 };
 
 export const getCurrentUser = async token => {
-  const res = await fetch(`${BASE_URL_USERS}me`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`${BASE_URL_USERS}me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error get user', error.message);
+    throw error;
+  }
+};
+
+export const getUserById = async id => {
+  try {
+    const res = await fetch(`${BASE_URL_USERS}find/${id}`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error get user provided ID', error.message);
+    throw error;
+  }
 };

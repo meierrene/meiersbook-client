@@ -33,7 +33,7 @@ const Post = () => {
   });
 
   return (
-    <div className="post-container" post-id={postWithUser.id}>
+    <div className={styles.postContainer} post-id={postWithUser.id}>
       <div className={styles.profileImage}>
         <Image
           src={

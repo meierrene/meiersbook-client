@@ -55,13 +55,7 @@ main {
   padding-top: 60px; /* Adjust this accordingly */
 }
 
-.text-comment {
-  font-size: 1.4rem;
-}
-
 .front-panel {
-  margin: 2.4rem 0.6rem;
-  font-size: 1.2rem;
 }
 
 .error {

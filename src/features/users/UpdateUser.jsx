@@ -15,12 +15,11 @@ function UpdateUser({ user }) {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const { updateProfile, isUpdating } = useUpdateUser();
-  const { previewImage, imageData, handleChangeImage } = useImage(
+  const { previewImage, imageData, handleChangeImage, changedImage } = useImage(
     user.image,
     user._id
   );
 
-  const changedImage = !!previewImage.includes('blob');
   const isModified = user.name !== name || user.email !== email || changedImage;
   const handleSubmit = e => {
     e.preventDefault();

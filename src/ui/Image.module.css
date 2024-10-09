@@ -10,10 +10,6 @@
   transition: transform 0.4s ease-in-out;
 }
 
-.postImage {
-  margin: 2.4rem;
-}
-
 .postImage img {
   border-radius: 2px;
   max-width: 100%;
@@ -47,10 +43,6 @@
 }
 
 @media (max-width: 672px) {
-  .postImage {
-    margin: 1rem;
-  }
-
   .profileImage img {
     width: 150px;
     height: 150px;

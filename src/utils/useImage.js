@@ -13,5 +13,7 @@ export const useImage = (existingImage, existingId) => {
     }
   };
 
-  return { previewImage, imageData, handleChangeImage };
+  const changedImage = !!previewImage?.includes('blob');
+
+  return { previewImage, imageData, handleChangeImage, changedImage };
 };

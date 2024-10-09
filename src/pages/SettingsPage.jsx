@@ -1,11 +1,13 @@
 import UpdateUserPassword from '../features/authentication/UpdateUserPassword';
 import DeleteUser from '../features/users/DeleteUser';
 import UpdateUser from '../features/users/UpdateUser';
+import AllUsersListAdmin from '../features/admin/AllUsersListAdmin';
 import { useUser } from '../features/users/useUser';
 import Accordion from '../ui/Accordion';
 import Heading from '../ui/Heading';
 import Spinner from '../ui/Spinner';
 import ThemeToggler from '../ui/ThemeToggler';
+import UpdateUserAdmin from '../features/admin/UpdateUserAdmin';
 
 function SettingsPage() {
   const { isLoading, user } = useUser();
@@ -37,7 +39,14 @@ function SettingsPage() {
         <>
           <hr />
           <Heading primary>Admin Settings</Heading>
-          <Accordion title="Users management"></Accordion>
+          <Accordion title="Get all users">
+            <AllUsersListAdmin />
+          </Accordion>
+          <Accordion title="Edit User">
+            <UpdateUserAdmin />
+          </Accordion>
+          <Accordion title="Delete User"></Accordion>
+          <Accordion title="⚠ Delete every post ⚠"></Accordion>
         </>
       )}
     </>

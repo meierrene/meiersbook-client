@@ -10,7 +10,7 @@ import styles from './Card.module.css';
 import Image from './Image';
 import Heading from './Heading';
 import Icon from './Icon';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaHeart, FaRegHeart, FaRegComment } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useToggleLikePost } from '../features/posts/useToggleLikePost';
@@ -33,46 +33,55 @@ const Card = ({ post }) => {
   const handleToggleLike = e => {
     e.preventDefault();
     e.stopPropagation();
-    // To prevent the user to not self like
-    if (post.creator.image.includes(userId)) return;
     toggleLikePost(post.id);
   };
 
   if (!post.id) return;
   return (
     <Link
-      className={styles.postLink}
+      className={`${styles.postLink}  ${isDark ? styles.themeDark : ''}`}
       to={`../posts/${post.id}`}
       style={{ width: '100%' }}
     >
       {!myposts && (
-        <div className={styles.profileImage}>
-          <Image
-            src={
-              post?.creator?.image !== undefined
-                ? `${ASSET_URL_USERS}/${post.creator.image}`
-                : ''
-            }
-            alt="profile image"
-            profile
-            size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
-          />
-          <Heading span>{stringLimiter(post.creator.name, 30)}</Heading>
+        <div className={styles.imageLikeContainer}>
+          <div className={styles.profileImage}>
+            <Image
+              src={
+                post?.creator?.image !== undefined
+                  ? `${ASSET_URL_USERS}/${post.creator.image}`
+                  : ''
+              }
+              alt="profile image"
+              profile
+              size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
+            />
+            <Heading span>{stringLimiter(post.creator.name, 20)}</Heading>
+          </div>
+          <div className={styles.iconContainer}>
+            <div className={styles.icon}>
+              <Icon>
+                <FaRegComment style={{ color: 'var(--main-color-default)' }} />
+              </Icon>
+              <Heading span>{post.comments.length}</Heading>
+            </div>
+            <div className={styles.icon} onClick={handleToggleLike}>
+              <Icon>
+                {like ? (
+                  <FaHeart style={{ color: 'var(--main-color-default)' }} />
+                ) : (
+                  <FaRegHeart style={{ color: 'var(--main-color-default)' }} />
+                )}
+              </Icon>
+              <Heading span>{post.likes.length}</Heading>
+            </div>
+          </div>
         </div>
       )}
-      <div className={styles.like} onClick={handleToggleLike}>
-        <Icon>
-          {like ? (
-            <FaHeart style={{ color: 'var(--main-color-default)' }} />
-          ) : (
-            <FaRegHeart style={{ color: 'var(--main-color-default)' }} />
-          )}
-        </Icon>
-        <Heading span>{post.likes.length}</Heading>
-      </div>
-      <div className={`${styles.card} ${isDark ? styles.themeDark : ''}`}>
+
+      <div className={styles.card}>
         <Image card src={`${ASSET_URL_POSTS}/${post.image}`} alt={post.title} />
-        <Heading>{stringLimiter(post.title, 36)}</Heading>
+        <Heading>{stringLimiter(post.title, 35)}</Heading>
       </div>
     </Link>
   );
