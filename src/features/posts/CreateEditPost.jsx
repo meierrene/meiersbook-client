@@ -20,17 +20,15 @@ import ConfirmModal from '../../ui/ConfirmModal';
 const CreateEditPost = () => {
   const { createPost, isCreating } = useCreatePost();
   const { editPost, isEditing } = useEditPost();
-  const { isLoading, postWithUser } = usePost();
+  const { isLoading, post } = usePost();
   const { deletePost, isDeleting } = useDeletePost();
   const navigate = useNavigate();
-  const [title, setTitle] = useState(
-    postWithUser?.id ? postWithUser.title : ''
-  );
+  const [title, setTitle] = useState(post?.id ? post.title : '');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { previewImage, imageData, handleChangeImage } = useImage(
-    postWithUser.image,
-    postWithUser.id
+    post?.image,
+    post?.id
   );
 
   const loading = isCreating || isEditing || isLoading || isDeleting;
@@ -41,7 +39,7 @@ const CreateEditPost = () => {
     const form = new FormData();
     form.append('image', imageData);
     form.append('title', title);
-    if (postWithUser.id) editPost(form);
+    if (post.id) editPost(form);
     else createPost(form);
   };
 
@@ -51,17 +49,17 @@ const CreateEditPost = () => {
     navigate('/');
   };
 
-  document.title = `Meiersbook | ${postWithUser?.id ? 'Edit' : 'New'} post`;
+  document.title = `Meiersbook | ${post?.id ? 'Edit' : 'New'} post`;
 
   if (loading) return <Spinner />;
 
   return (
     <>
-      <Heading primary>{postWithUser?.id ? 'Update' : 'New'} Post</Heading>
+      <Heading primary>{post?.id ? 'Update' : 'New'} Post</Heading>
       <Form
         className
-        id={postWithUser?.id ? 'edit' : 'new'}
-        dataId={postWithUser?.id ? postWithUser.id : ''}
+        id={post?.id ? 'edit' : 'new'}
+        dataId={post?.id ? post.id : ''}
         encType="multipart/form-data"
         onSubmit={handleSubmit}
       >
@@ -70,8 +68,8 @@ const CreateEditPost = () => {
             <Image
               preview
               src={
-                postWithUser.image === previewImage
-                  ? `${ASSET_URL_POSTS}/${postWithUser.image}`
+                post.image === previewImage
+                  ? `${ASSET_URL_POSTS}/${post.image}`
                   : previewImage
               }
               alt="preview"
@@ -93,17 +91,17 @@ const CreateEditPost = () => {
             value={title}
             onChange={e => setTitle(e.target.value)}
           >
-            {postWithUser?.id ? postWithUser.title : ''}
+            {post?.id ? post.title : ''}
           </TextArea>
         </FormGroup>
         <ButtonsNav>
           <Link to="/">
             <Button secondary>Go back</Button>
           </Link>
-          <Button primary disabled={!imageData.name && !postWithUser.id}>
-            {postWithUser?.id ? 'Update' : 'Publish'}
+          <Button primary disabled={!imageData.name && !post.id}>
+            {post?.id ? 'Update' : 'Publish'}
           </Button>
-          {postWithUser?.id && (
+          {post?.id && (
             <Button type="button" danger onClick={() => setIsModalOpen(true)}>
               Delete post
             </Button>

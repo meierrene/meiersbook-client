@@ -6,12 +6,53 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2.4rem;
+  gap: 1.2rem;
   margin: 1rem 0;
+}
+
+.postHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.likeBoxContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.commentBoxContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.commentBox {
+  gap: 0.6rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.commentBoxContainer.icons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.commentInput {
+  box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 0);
+  padding: 0 0.4rem;
 }
 
 @media (max-width: 672px) {
   .postContainer {
-    margin: 1rem;
+    margin: 0.6rem;
   }
 }

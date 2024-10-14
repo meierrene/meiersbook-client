@@ -75,6 +75,13 @@ input::file-selector-button:hover {
   background: var(--main-color-shade-1);
 }
 
+.inputButton {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-10%, -50%);
+}
+
 .icon {
   position: absolute;
   right: 1rem;

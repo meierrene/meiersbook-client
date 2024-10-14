@@ -1,39 +1,50 @@
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
 .modalContent {
-  background-color: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
   padding: 2rem;
-  border-radius: 8px;
-  max-width: 500px;
+  border-radius: 4px;
+  z-index: 100; /* Ensure this is above the Backdrop's z-index */
   width: 100%;
-  text-align: center;
-  position: relative;
+  max-width: 50rem;
+  color: #000;
 }
 
-.actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 36px;
+  cursor: pointer;
 }
 
-.themeDark .modalContent {
-  background: #444;
+.noMargin img {
+  border-radius: 0;
+  padding-top: 2.4rem;
+}
+
+.themeDark {
+  background: #333;
+  color: #bbb;
+}
+
+.themeDark .closeButton {
+  color: #bbb;
 }
 
 @media (max-width: 672px) {
   .modalContent {
-    padding: 1rem;
-    margin: 1rem;
+    width: calc(100% - 0.6rem);
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+
+  .noMargin {
+    padding: 0;
+    padding-top: 1.6rem;
   }
 }

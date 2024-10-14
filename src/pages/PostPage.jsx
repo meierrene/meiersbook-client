@@ -4,12 +4,12 @@ import { usePost } from '../features/posts/usePost';
 
 const PostPage = () => {
   const { pathname } = useLocation();
-  const { postWithUser, id } = usePost();
+  const { post, id } = usePost();
   const navigate = useNavigate();
 
   return (
     <>
-      {postWithUser._id === id
+      {post?.id === id
         ? !pathname.includes('editpost') && <Post />
         : navigate('/')}
       <Outlet />

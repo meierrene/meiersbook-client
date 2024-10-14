@@ -66,6 +66,15 @@
   width: 4rem;
 }
 
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.2rem;
+  word-break: keep-all;
+  padding: 0 1.2rem;
+}
+
 .dark {
   background-color: var(--dark-theme-color);
 }

@@ -43,20 +43,18 @@ export const updateUser = async (token, id, userData) => {
 
 export const deleteUser = async (token, id) => {
   try {
-    console.log(token);
-    console.log(id);
-    // const res = await fetch(`${BASE_URL_USERS}${id}`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
-    // if (!res.ok) {
-    //   const errorTextRaw = await res.text();
-    //   const errorText = errorTextRaw.match(/<pre>(.*?)<br>/)[1];
-    //   throw new Error(errorText);
-    // }
-    // return res.ok;
+    const res = await fetch(`${BASE_URL_USERS}${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!res.ok) {
+      const errorTextRaw = await res.text();
+      const errorText = errorTextRaw.match(/<pre>(.*?)<br>/)[1];
+      throw new Error(errorText);
+    }
+    return res.ok;
   } catch (error) {
     console.error('Error to delete user', error.message);
     throw error;

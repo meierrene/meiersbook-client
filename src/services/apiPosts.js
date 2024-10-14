@@ -28,14 +28,10 @@ export const getPost = async id => {
   try {
     const resPost = await fetch(`${BASE_URL_POSTS}${id}`);
     if (!resPost.ok) throw new Error('Could not get post with specified ID');
-    const dataPost = await resPost.json();
-    const userId = dataPost.data.creator;
-    const resUser = await fetch(`${BASE_URL_USERS}find/${userId}`);
-    if (!resUser.ok) throw new Error("Could not get post's creator");
-    const dataUser = await resUser.json();
-    return { dataPost, dataUser };
+    const data = await resPost.json();
+    return data;
   } catch (error) {
-    console.error('Error fetching post or user:', error.message);
+    console.error('Error fetching post:', error.message);
     throw error;
   }
 };
@@ -106,6 +102,54 @@ export const unlikePost = async (id, token) => {
     return data;
   } catch (error) {
     console.error('Error to unlike the post:', error.message);
+    throw error;
+  }
+};
+
+export const createComment = async (id, commentData, token) => {
+  try {
+    const res = await fetch(`${BASE_URL_POSTS}${id}/comment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(commentData),
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error creating comment:', error.message);
+    throw error;
+  }
+};
+
+export const editComment = async (id, commentId, commentData, token) => {
+  try {
+    const res = await fetch(`${BASE_URL_POSTS}${id}/comment/${commentId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(commentData),
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error editing comment:', error.message);
+    throw error;
+  }
+};
+
+export const deleteComment = async (id, commentId, token) => {
+  try {
+    await fetch(`${BASE_URL_POSTS}${id}/comment/${commentId}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    console.error('Error deleting comment:', error.message);
     throw error;
   }
 };

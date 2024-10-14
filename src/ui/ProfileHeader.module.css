@@ -1,0 +1,35 @@
+.cardHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  max-width: 70rem;
+  margin: 0.6rem auto;
+}
+
+.profileImage {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.toEnd {
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .cardHeaderContainer {
+    margin: 0 auto;
+  }
+}

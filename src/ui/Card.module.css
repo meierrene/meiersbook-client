@@ -16,17 +16,16 @@
   color: #000;
 }
 
-.imageLikeContainer {
+.cardHeaderContainer {
   display: flex;
   justify-content: space-between;
+  font-size: 1.2rem;
 }
 
 .profileImage {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-
-  font-size: 1.2rem;
 }
 
 .iconContainer {
@@ -36,14 +35,11 @@
 }
 
 .icon {
-  color: #bbb;
   display: flex;
   align-items: center;
-
   gap: 0.3rem;
 }
 
-.themeDark .card,
-.themeDark .profileImage {
+.themeDark div {
   color: #bbb;
 }

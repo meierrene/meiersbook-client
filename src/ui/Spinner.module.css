@@ -17,6 +17,12 @@
   margin: 100px;
 }
 
+.mini {
+  width: 2.4rem;
+  height: 2.4rem;
+  animation: rotation 1.5s infinite linear;
+}
+
 .themeDark .spinner {
   border: 5px solid #eee;
   border-bottom-color: transparent;

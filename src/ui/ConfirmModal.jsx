@@ -3,30 +3,32 @@ import styles from './Modal.module.css';
 import Button from './Button';
 import Heading from './Heading';
 import { useThemes } from '../contexts/ThemeContext';
-
+import ButtonsNav from './ButtonsNav';
+import Backdrop from './Backdrop';
 function ConfirmModal({ title, message, isOpen, onClose, onConfirm }) {
   const { isDark } = useThemes();
 
   if (!isOpen) return null;
 
   return (
-    <div
-      className={`${styles.modalOverlay} ${isDark ? styles.themeDark : ''}`}
-      onClick={onClose}
-    >
-      <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+    <>
+      <Backdrop onClick={onClose} />
+      <div
+        className={`${styles.modalContent} ${isDark && styles.themeDark}`}
+        onClick={e => e.stopPropagation()}
+      >
         <Heading secondary>{title}</Heading>
         <Heading>{message}</Heading>
-        <div className={styles.actions}>
+        <ButtonsNav>
           <Button secondary onClick={onClose}>
             Cancel
           </Button>
           <Button danger onClick={onConfirm}>
             Confirm
           </Button>
-        </div>
+        </ButtonsNav>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -5,7 +5,7 @@ export const useUserById = id => {
   const { isLoading, data: user } = useQuery({
     queryKey: ['userById'],
     queryFn: () => getUserByIdApi(id),
-    enabled: id.length === 24,
+    enabled: id?.length === 24,
     retry: false,
   });
 

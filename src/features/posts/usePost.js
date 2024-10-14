@@ -8,10 +8,9 @@ export const usePost = () => {
     queryKey: ['post', id],
     queryFn: () => getPost(id),
     enabled: !!id,
+    retry: false,
   });
   if (!data) return { isLoading, postWithUser: {}, error };
-  const { dataPost, dataUser } = data;
-  const postWithUser = { ...dataPost.data, creator: dataUser.data };
-
-  return { isLoading, postWithUser, id, error };
+  const post = data.data;
+  return { isLoading, post, id, error };
 };
