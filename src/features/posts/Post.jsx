@@ -131,22 +131,26 @@ const Post = () => {
                 {c.edited && <Heading dateStamp>Comment edited</Heading>}
               </div>
               <div className={styles.icons}>
-                <Icon
-                  onClick={() => {
-                    if (isEditingMode === c._id) {
-                      setIsEditingMode(null);
-                      setEditComment('');
-                    } else {
-                      setIsEditingMode(c._id);
-                      setEditComment(c.text);
-                    }
-                  }}
-                >
-                  <FaEdit />
-                </Icon>
-                <Icon onClick={() => setCommentToDelete(c._id)}>
-                  <FaTrashAlt />
-                </Icon>
+                {userId === c.user.id && (
+                  <Icon
+                    onClick={() => {
+                      if (isEditingMode === c._id) {
+                        setIsEditingMode(null);
+                        setEditComment('');
+                      } else {
+                        setIsEditingMode(c._id);
+                        setEditComment(c.text);
+                      }
+                    }}
+                  >
+                    <FaEdit />
+                  </Icon>
+                )}
+                {(userId === c.user.id || userId === post.creator._id) && (
+                  <Icon onClick={() => setCommentToDelete(c._id)}>
+                    <FaTrashAlt />
+                  </Icon>
+                )}
               </div>
               <ConfirmModal
                 isOpen={commentToDelete === c._id}
