@@ -18,3 +18,12 @@ export const stringLimiter = (string, limit) =>
 
 export const getCountedWord = (array, word) =>
   array.length === 1 ? `${array.length} ${word}` : `${array.length} ${word}s`;
+
+export const checkURL = async url => {
+  try {
+    const response = await fetch(url, { method: 'HEAD' });
+    return response.ok ? true : false;
+  } catch {
+    return false;
+  }
+};

@@ -22,6 +22,7 @@ export const usePosts = () => {
             name: user.data.name,
             email: user.data.email,
             image: user.data.image,
+            // thumbnail: user.data.thumbnail,
           }
         : null,
     };

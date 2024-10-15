@@ -20,6 +20,16 @@ function ProfileHeader({ post }) {
   const href = useHref();
   const myposts = href === '/myposts';
   const postGallery = href === '/';
+  // const [validUrl, setValidUrl] = useState('');
+
+  // useEffect(() => {
+  //   const url = `${ASSET_URL_POSTS}/${post.thumbnail}`;
+  //   const validateUrl = async () => {
+  //     const isValid = await checkURL(url);
+  //     setValidUrl(isValid ? url : NO_IMAGE);
+  //   };
+  //   validateUrl();
+  // }, [post.thumbnail]);
 
   useEffect(() => {
     setLike(isLiked);
