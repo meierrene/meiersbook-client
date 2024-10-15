@@ -24,13 +24,20 @@ function LoginForm() {
   const { login, isLoading: loadingLogin } = useLogin();
   const { signup, isLoading: loadingSignin } = useSignup();
   const { previewImage, imageData, handleChangeImage } =
-    useImage('default-user.jpg');
+    useImage('newImage.jpeg');
 
   const isLoading = loadingLogin || loadingSignin;
+  const loginNotFilled = !email || !password;
+  const signupNotFilled =
+    !email ||
+    !name ||
+    !password ||
+    !passwordConfirm ||
+    !imageChecker(imageData);
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!email || !password) return;
+    if (loginNotFilled) return;
     if (isLoginForm)
       login(
         { email, password },
@@ -42,7 +49,7 @@ function LoginForm() {
         }
       );
     else {
-      if (!name || !passwordConfirm || !imageChecker(imageData)) return;
+      if (signupNotFilled) return;
       const form = new FormData();
       form.append('name', name);
       form.append('email', email);
@@ -135,7 +142,12 @@ function LoginForm() {
           </>
         )}
         <ButtonsNav>
-          <Button primary>{isLoginForm ? 'Login' : 'Signup'}</Button>
+          <Button
+            primary
+            disabled={isLoginForm ? loginNotFilled : signupNotFilled}
+          >
+            {isLoginForm ? 'Login' : 'Signup'}
+          </Button>
         </ButtonsNav>
       </Form>
       <ButtonsNav>
