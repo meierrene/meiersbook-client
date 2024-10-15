@@ -98,7 +98,7 @@ const CreateEditPost = () => {
           <Link to="/">
             <Button secondary>Go back</Button>
           </Link>
-          <Button primary disabled={!imageData.name && !post.id}>
+          <Button primary disabled={!imageData.name && !post?.id}>
             {post?.id ? 'Update' : 'Publish'}
           </Button>
           {post?.id && (
