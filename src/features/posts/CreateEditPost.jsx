@@ -39,7 +39,7 @@ const CreateEditPost = () => {
     const form = new FormData();
     form.append('image', imageData);
     form.append('title', title);
-    if (post.id) editPost(form);
+    if (post?.id) editPost(form);
     else createPost(form);
   };
 
@@ -68,7 +68,7 @@ const CreateEditPost = () => {
             <Image
               preview
               src={
-                post.image === previewImage
+                post?.image === previewImage
                   ? `${ASSET_URL_POSTS}/${post.image}`
                   : previewImage
               }
