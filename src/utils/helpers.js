@@ -3,7 +3,9 @@ const SUPABASE_STORAGE_URL =
 
 export const BASE_URL_POSTS = `${import.meta.env.VITE_API_URL}/posts/`;
 export const BASE_URL_USERS = `${import.meta.env.VITE_API_URL}/users/`;
-export const ASSET_URL_POSTS = `${SUPABASE_STORAGE_URL}post-images`;
+export const ASSET_URL_POSTS = `${SUPABASE_STORAGE_URL}post-images${
+  import.meta.env.VITE_ENV !== 'production' ? '-dev' : ''
+}`;
 export const ASSET_URL_USERS = `${SUPABASE_STORAGE_URL}user-images`;
 export const TEMPLATE_PROFILE_IMAGE = '/default-user.jpg';
 export const ERROR_IMAGE = '/404-error.png';
