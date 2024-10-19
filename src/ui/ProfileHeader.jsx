@@ -1,5 +1,10 @@
 import { FaHeart, FaRegComment, FaRegHeart } from 'react-icons/fa';
-import { stringLimiter, ASSET_URL_USERS } from '../utils/helpers';
+import {
+  stringLimiter,
+  ASSET_URL_USERS,
+  checkURL,
+  TEMPLATE_PROFILE_IMAGE,
+} from '../utils/helpers';
 import Heading from './Heading';
 import Image from './Image';
 import styles from './ProfileHeader.module.css';
@@ -20,20 +25,17 @@ function ProfileHeader({ post }) {
   const href = useHref();
   const myposts = href === '/myposts';
   const postGallery = href === '/';
-  // const [validUrl, setValidUrl] = useState('');
-
-  // useEffect(() => {
-  //   const url = `${ASSET_URL_POSTS}/${post.thumbnail}`;
-  //   const validateUrl = async () => {
-  //     const isValid = await checkURL(url);
-  //     setValidUrl(isValid ? url : NO_IMAGE);
-  //   };
-  //   validateUrl();
-  // }, [post.thumbnail]);
+  const [validUrl, setValidUrl] = useState('');
 
   useEffect(() => {
+    const url = `${ASSET_URL_USERS}/${post.creator.image}`;
+    const validateUrl = async () => {
+      const isValid = await checkURL(url);
+      setValidUrl(isValid ? url : TEMPLATE_PROFILE_IMAGE);
+    };
+    validateUrl();
     setLike(isLiked);
-  }, [isLiked]);
+  }, [post.creator.image, isLiked]);
 
   const handleToggleLike = e => {
     e.preventDefault();
@@ -48,6 +50,7 @@ function ProfileHeader({ post }) {
   };
 
   const handleCloseModal = e => {
+    e.preventDefault();
     e.stopPropagation();
     setIsModalOpen(false);
   };
@@ -60,11 +63,7 @@ function ProfileHeader({ post }) {
         {!myposts && (
           <div className={styles.profileImage}>
             <Image
-              src={
-                post?.creator?.image !== undefined
-                  ? `${ASSET_URL_USERS}/${post.creator.image}`
-                  : ''
-              }
+              src={validUrl}
               alt="profile image"
               profile
               size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
@@ -108,11 +107,7 @@ function ProfileHeader({ post }) {
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} nomargin>
         <Image
-          src={
-            post?.creator?.image !== undefined
-              ? `${ASSET_URL_USERS}/${post.creator.image}`
-              : ''
-          }
+          src={validUrl}
           alt="profile image"
           post
           onClick={handleOpenModal}

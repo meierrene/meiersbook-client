@@ -48,7 +48,7 @@
 
 .commentInput {
   box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 0);
-  padding: 0 0.4rem;
+  /* padding: 0 0.4rem; */
 }
 
 @media (max-width: 672px) {
