@@ -26,16 +26,23 @@ const Header = ({ children }) => {
   const [validUrl, setValidUrl] = useState('');
 
   useEffect(() => {
-    const url = `${ASSET_URL_USERS}/${user.image}`;
+    const handleResize = () => setIsLargeScreen(window.innerWidth > 992);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!user?.image) {
+      setValidUrl(TEMPLATE_PROFILE_IMAGE); // Set default image if undefined
+      return;
+    }
+    const url = `${ASSET_URL_USERS}/${user?.image}`;
     const validateUrl = async () => {
       const isValid = await checkURL(url);
       setValidUrl(isValid ? url : TEMPLATE_PROFILE_IMAGE);
     };
     validateUrl();
-    const handleResize = () => setIsLargeScreen(window.innerWidth > 992);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [user.image]);
+  }, [user?.image]);
 
   const toggleSideDrawer = () => !isLargeScreen && setIsOpened(open => !open);
   const closeSideDrawer = () => setIsOpened(false);

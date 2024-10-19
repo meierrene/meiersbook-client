@@ -8,6 +8,7 @@ export const useUser = () => {
     queryKey: ['user'],
     queryFn: () => getCurrentUser(token),
     enabled: isLoggedIn,
+    retry: false,
   });
   if (!data) return { isLoading, user: {}, error };
   const { data: user } = data;
