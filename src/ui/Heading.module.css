@@ -37,6 +37,11 @@
   word-break: break-all;
 }
 
+.small {
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
 @media (max-width: 672px) {
   .primary {
     font-size: 2.4rem;
@@ -55,5 +60,8 @@
   }
   .accordion {
     font-size: 1.8rem;
+  }
+  .small {
+    font-size: 1.2rem;
   }
 }

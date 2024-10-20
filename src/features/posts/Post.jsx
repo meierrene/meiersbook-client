@@ -128,7 +128,7 @@ const Post = () => {
                 ) : (
                   <Heading span>{c.text}</Heading>
                 )}
-                {c.edited && <Heading dateStamp>Comment edited</Heading>}
+                {c.edited && <Heading small>Comment edited</Heading>}
               </div>
               <div className={styles.icons}>
                 {userId === c.user.id && (
