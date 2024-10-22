@@ -9,7 +9,7 @@ function Footer() {
   return (
     <footer className={`${styles.footer} ${isDark && styles.themeDark}`}>
       <Heading small>
-        Copyright &copy;{new Date().getFullYear()} Made by René Meier &#128900;{' '}
+        Copyright &copy;{new Date().getFullYear()} Made by René Meier &#x1F7C4;{' '}
         <Link
           to="https://portfolio.renemeier.info/"
           target="_blank"

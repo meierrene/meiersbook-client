@@ -1,4 +1,4 @@
-import { BASE_URL_USERS } from '../utils/helpers';
+import { BASE_URL_POSTS, BASE_URL_USERS } from '../utils/helpers';
 
 export const getAllUsers = async token => {
   try {
@@ -62,20 +62,19 @@ export const deleteUser = async (token, id) => {
 };
 
 export const deleteEverything = async token => {
-  console.log('EVERYTHING DELETED!!!');
   try {
-    // const res = await fetch(`${BASE_URL_USERS}delete-everything`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
-    // if (!res.ok) {
-    //   const errorTextRaw = await res.text();
-    //   const errorText = errorTextRaw.match(/<pre>(.*?)<br>/)[1];
-    //   throw new Error(errorText);
-    // }
-    // return res.ok;
+    const res = await fetch(`${BASE_URL_POSTS}delete-everything`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!res.ok) {
+      const errorTextRaw = await res.text();
+      const errorText = errorTextRaw.match(/<pre>(.*?)<br>/)[1];
+      throw new Error(errorText);
+    }
+    return res.ok;
   } catch (error) {
     console.error('Error to delete everything', error.message);
     throw error;
