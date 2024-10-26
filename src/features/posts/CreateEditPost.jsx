@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ASSET_URL_POSTS } from '../../utils/helpers';
+import { ASSET_URL_POSTS, imageChecker } from '../../utils/helpers';
 import Button from '../../ui/Button';
 import Spinner from '../../ui/Spinner';
 import TextArea from '../../ui/TextArea';
@@ -17,7 +17,7 @@ import { useEditPost } from './useEditPost';
 import { useDeletePost } from './useDeletePost';
 import ConfirmModal from '../../ui/ConfirmModal';
 
-const CreateEditPost = () => {
+function CreateEditPost() {
   const { createPost, isCreating } = useCreatePost();
   const { editPost, isEditing } = useEditPost();
   const { isLoading, post } = usePost();
@@ -26,7 +26,7 @@ const CreateEditPost = () => {
   const [title, setTitle] = useState(post?.id ? post.title : '');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { previewImage, imageData, handleChangeImage } = useImage(
+  const { previewImage, imageData, handleChangeImage, changedImage } = useImage(
     post?.image,
     post?.id
   );
@@ -52,6 +52,13 @@ const CreateEditPost = () => {
   document.title = `Meiersbook | ${post?.id ? 'Edit' : 'New'} post`;
 
   if (loading) return <Spinner />;
+
+  const imageValidation = () =>
+    post?.id
+      ? !changedImage
+        ? true
+        : imageChecker(imageData)
+      : imageChecker(imageData);
 
   return (
     <>
@@ -98,7 +105,7 @@ const CreateEditPost = () => {
           <Link to="/">
             <Button secondary>Go back</Button>
           </Link>
-          <Button primary disabled={!imageData.name && !post?.id}>
+          <Button primary disabled={!imageValidation()}>
             {post?.id ? 'Update' : 'Publish'}
           </Button>
           {post?.id && (
@@ -117,6 +124,6 @@ const CreateEditPost = () => {
       />
     </>
   );
-};
+}
 
 export default CreateEditPost;

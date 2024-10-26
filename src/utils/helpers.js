@@ -15,7 +15,10 @@ export const NO_IMAGE = '/no-image.png';
 export const EXPIRATION_TIME = 1000 * 60 * 60; //1h
 
 export const imageChecker = image =>
-  image instanceof File && image.size > 0 && image.name.trim() !== '';
+  image instanceof File &&
+  image.size > 0 &&
+  image.name.trim() !== '' &&
+  image.type.startsWith('image/');
 
 export const stringLimiter = (string, limit) =>
   string.length > limit ? string.slice(0, limit - 2) + '...' : string;
@@ -30,4 +33,10 @@ export const checkURL = async url => {
   } catch {
     return false;
   }
+};
+
+export const getRetifiedError = async res => {
+  const rawError = await res.text();
+  const errorText = rawError.match(/<pre>(.*?)<br>/)[1];
+  throw new Error(errorText);
 };

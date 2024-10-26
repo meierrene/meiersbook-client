@@ -1,4 +1,8 @@
-import { BASE_URL_POSTS, BASE_URL_USERS } from '../utils/helpers';
+import {
+  BASE_URL_POSTS,
+  BASE_URL_USERS,
+  getRetifiedError,
+} from '../utils/helpers';
 
 export const getPosts = async () => {
   try {
@@ -43,6 +47,7 @@ export const createPost = async (newData, token) => {
       body: newData,
       headers: { Authorization: `Bearer ${token}` },
     });
+    if (!res.ok) getRetifiedError(res);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -58,6 +63,7 @@ export const editPost = async (id, postData, token) => {
       body: postData,
       headers: { Authorization: `Bearer ${token}` },
     });
+    if (!res.ok) getRetifiedError(res);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -84,6 +90,7 @@ export const likePost = async (id, token) => {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
     });
+    if (!res.ok) getRetifiedError(res);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -98,6 +105,7 @@ export const unlikePost = async (id, token) => {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
     });
+    if (!res.ok) getRetifiedError(res);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -116,6 +124,7 @@ export const createComment = async (id, commentData, token) => {
       },
       body: JSON.stringify(commentData),
     });
+    if (!res.ok) getRetifiedError(res);
     const data = await res.json();
     return data;
   } catch (error) {
