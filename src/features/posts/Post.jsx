@@ -107,11 +107,18 @@ const Post = () => {
                 profile
                 size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
                 src={
-                  `${ASSET_URL_USERS}/${c.user.image}` || TEMPLATE_PROFILE_IMAGE
+                  c.user?.image
+                    ? `${ASSET_URL_USERS}/${c.user.image}`
+                    : TEMPLATE_PROFILE_IMAGE
                 }
               />
               <div className={styles.commentBox}>
-                <Heading span>{stringLimiter(c.user.name, 30)}</Heading>
+                <Heading span>
+                  {stringLimiter(
+                    c.user?.name ? c.user.name : 'Deleted user',
+                    30
+                  )}
+                </Heading>
                 {isEditingMode === c._id ? (
                   <Input
                     id="editcomment"
@@ -131,7 +138,7 @@ const Post = () => {
                 {c.edited && <Heading small>Comment edited</Heading>}
               </div>
               <div className={styles.icons}>
-                {userId === c.user.id && (
+                {userId === c.user?.id && (
                   <Icon
                     onClick={() => {
                       if (isEditingMode === c._id) {
@@ -146,7 +153,7 @@ const Post = () => {
                     <FaEdit />
                   </Icon>
                 )}
-                {(userId === c.user.id || userId === post.creator._id) && (
+                {(userId === c.user?.id || userId === post.creator._id) && (
                   <Icon onClick={() => setCommentToDelete(c._id)}>
                     <FaTrashAlt />
                   </Icon>

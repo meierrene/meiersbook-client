@@ -16,6 +16,8 @@ function SettingsPage() {
 
   if (isLoading) return <Spinner />;
 
+  document.title = 'Meiersbook | Settings';
+
   return (
     <>
       <Heading primary>Settings</Heading>
