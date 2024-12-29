@@ -1,8 +1,91 @@
-# React + Vite
+### **README for `meiersbook-client`**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🌟 **MeiersBook Client**
 
-Currently, two official plugins are available:
+The **frontend** of MeiersBook, a social media platform for sharing posts, interacting with others, and managing profiles. Built with cutting-edge technologies to deliver a smooth and responsive user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+
+## 🛠️ **Features**
+
+- 🔑 **User Authentication**: Secure login and signup functionality.
+- 📝 **Post Management**: Create, edit, delete, and view posts.
+- 🌟 **Responsive Design**: Optimized for all devices.
+- 📸 **Profile Management**: Upload and preview profile pictures.
+- ⚡ **Fast Interaction**: Seamless API integration using React Query.
+
+---
+
+## 🧪 **Tech Stack**
+
+| **Technology**   | **Description**         |
+| ---------------- | ----------------------- |
+| **React**        | Frontend Framework      |
+| **React Router** | Client-Side Routing     |
+| **React Query**  | Data Fetching & Caching |
+| **CSS Modules**  | Modular Styling         |
+| **GitHub Pages** | Deployment Platform     |
+
+---
+
+## 🚀 **Getting Started**
+
+### **1️⃣ Clone the Repository**
+
+```bash
+git clone https://github.com/meierrene/meiersbook-client.git
+cd meiersbook-client
+```
+
+### **2️⃣ Install Dependencies**
+
+```bash
+npm install
+```
+
+### **3️⃣ Set Environment Variables**
+
+Create a `.env` file and add:
+
+```env
+REACT_APP_API_URL=https://api.meiersbook.renemeier.info
+```
+
+### **4️⃣ Run the Development Server**
+
+```bash
+npm start
+```
+
+---
+
+## 📁 **Project Structure**
+
+```plaintext
+src/
+├── components/     # Reusable UI components
+├── pages/          # Page-specific components
+├── api/            # API integration logic
+├── styles/         # CSS modules
+└── App.js          # Application entry point
+```
+
+---
+
+## 🧥 **Contributing**
+
+We welcome contributions!
+
+- Fork the repository
+- Create a feature branch: `git checkout -b feature/feature-name`
+- Submit a pull request
+
+---
+
+## 📓 **License**
+
+This project is licensed under the MIT License.
+
+---
+
+### **README for `meiersbook-api`**
