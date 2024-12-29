@@ -1,5 +1,3 @@
-### **README for `meiersbook-client`**
-
 # 🌟 **MeiersBook Client**
 
 The **frontend** of MeiersBook, a social media platform for sharing posts, interacting with others, and managing profiles. Built with cutting-edge technologies to deliver a smooth and responsive user experience.
