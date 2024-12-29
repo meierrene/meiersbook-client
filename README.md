@@ -82,4 +82,25 @@ We welcome contributions!
 
 ---
 
+**Homepage**
+
+![homepage](https://github.com/user-attachments/assets/4e0a0e3d-2c58-4c6a-8edb-1246c34361a4)
+
+**Add post**
+
+![add](https://github.com/user-attachments/assets/6a9c2f53-a74b-4301-bca4-29636dc19b50)
+
+**My posts**
+
+![myposts](https://github.com/user-attachments/assets/4b1eb795-cedd-4f80-8351-0d29690067b5)
+
+**Setting**
+
+![settings](https://github.com/user-attachments/assets/290ba0aa-19e9-468e-9fc5-5386ed1c8c81)
+
+**Update post**
+
+![update](https://github.com/user-attachments/assets/97b0ae35-8dfb-4b5c-af3a-445cd2103f90)
+
+
 ### **README for `meiersbook-api`**
