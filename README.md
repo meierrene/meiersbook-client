@@ -104,3 +104,5 @@ We welcome contributions!
 
 
 ### **README for `meiersbook-api`**
+
+For the API documentation and setup, please refer to the [MeiersBook API Repository](https://github.com/meierrene/meiersbook-api).
