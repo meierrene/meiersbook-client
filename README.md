@@ -54,7 +54,7 @@ VITE_API_URL=https://strict-jemimah-meierrene-88607bf0.koyeb.app/api/v1
 ### **4️⃣ Run the Development Server**
 
 ```bash
-npm start
+npm run dev
 ```
 
 ---
