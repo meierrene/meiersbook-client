@@ -48,7 +48,7 @@ npm install
 Create a `.env` file and add:
 
 ```env
-REACT_APP_API_URL=https://api.meiersbook.renemeier.info
+VITE_API_URL=https://strict-jemimah-meierrene-88607bf0.koyeb.app/api/v1
 ```
 
 ### **4️⃣ Run the Development Server**
@@ -79,12 +79,6 @@ We welcome contributions!
 - Fork the repository
 - Create a feature branch: `git checkout -b feature/feature-name`
 - Submit a pull request
-
----
-
-## 📓 **License**
-
-This project is licensed under the MIT License.
 
 ---
 
