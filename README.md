@@ -102,6 +102,7 @@ We welcome contributions!
 
 ![update](https://github.com/user-attachments/assets/97b0ae35-8dfb-4b5c-af3a-445cd2103f90)
 
+---
 
 ### **README for `meiersbook-api`**
 
