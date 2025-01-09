@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useGoogle } from './useGoogle';
+import Spinner from '../../ui/Spinner';
 
 function GoogleCallback() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function GoogleCallback() {
     handleGoogleCallback();
   }, [navigate, oAuthLogin]);
 
-  return isLoading && <div>Processing Google login...</div>;
+  return isLoading && <Spinner />;
 }
 
 export default GoogleCallback;

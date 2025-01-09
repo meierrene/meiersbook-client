@@ -2,7 +2,6 @@ import { EXPIRATION_TIME } from '../utils/helpers';
 import { BASE_URL_GOOGLE } from '../utils/helpers';
 
 export const oAuth = async token => {
-  console.log(token);
   const res = await fetch(`${BASE_URL_GOOGLE}callback`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -14,7 +13,7 @@ export const oAuth = async token => {
     localStorage.setItem(
       'auth-data',
       JSON.stringify({
-        userId: data.token,
+        userId: data.data.id,
         token: data.token,
         expiration: tokenExpirationDate.toISOString(),
       })
