@@ -3,6 +3,7 @@ const SUPABASE_STORAGE_URL =
 
 export const BASE_URL_POSTS = `${import.meta.env.VITE_API_URL}/posts/`;
 export const BASE_URL_USERS = `${import.meta.env.VITE_API_URL}/users/`;
+export const BASE_URL_GOOGLE = `${import.meta.env.VITE_API_URL}/auth/google/`;
 export const ASSET_URL_POSTS = `${SUPABASE_STORAGE_URL}post-images${
   import.meta.env.VITE_ENV !== 'production' ? '-dev' : ''
 }`;

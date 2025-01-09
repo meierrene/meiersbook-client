@@ -11,6 +11,7 @@ import { lazy, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './features/authentication/ProtectedRoute';
+import GoogleCallback from './features/authentication/GoogleCallback.jsx';
 import ErrorPage from './pages/ErrorPage';
 import PostPage from './pages/PostPage';
 import SettingsPage from './pages/SettingsPage';
@@ -39,6 +40,10 @@ const App = () => {
                   <Route index element={<PostGalleryPage />} />
                   <Route path="posts" element={<PostGalleryPage />} />
                   <Route path="login" element={<LoginPage />} />
+                  <Route
+                    path="auth/google/callback"
+                    element={<GoogleCallback />}
+                  />
                   <Route element={<ProtectedRoute />}>
                     <Route path="myposts" element={<MyGalleryPage />} />
                     <Route path="newpost" element={<CreateEditPostPage />} />

@@ -6,6 +6,7 @@ import Heading from '../../ui/Heading';
 import ButtonsNav from '../../ui/ButtonsNav';
 import Button from '../../ui/Button';
 import Image from '../../ui/Image';
+import GoogleLogin from './GoogleLogin';
 import { imageChecker, TEMPLATE_PROFILE_IMAGE } from '../../utils/helpers';
 import { useLogin } from './useLogin';
 import { useImage } from '../../utils/useImage';
@@ -150,6 +151,7 @@ function LoginForm() {
           </Button>
         </ButtonsNav>
       </Form>
+      <GoogleLogin />
       <ButtonsNav>
         <Button secondary full onClick={() => setIsLoginForm(l => !l)}>
           {!isLoginForm

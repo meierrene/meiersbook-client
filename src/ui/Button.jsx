@@ -27,7 +27,7 @@ const Button = ({
       ${isDark && styles.isDark}
       ${navLink && styles.navLink}
       ${rounded && styles.rounded}
-${input && styles.input}
+      ${input && styles.input}
       `}
       onClick={onClick}
       disabled={disabled}
