@@ -1,28 +1,35 @@
 # 🌟 **MeiersBook Client**
 
-The **frontend** of MeiersBook, a social media platform for sharing posts, interacting with others, and managing profiles. Built with cutting-edge technologies to deliver a smooth and responsive user experience.
+The **frontend** of MeiersBook, a dynamic social media platform where users can share posts, interact with others, and manage their profiles seamlessly. Designed with cutting-edge technologies, MeiersBook delivers a smooth, responsive, and engaging user experience.
 
 ---
 
-## 🛠️ **Features**
+## 🛠️ **Key Features**
 
-- 🔑 **User Authentication**: Secure login and signup functionality.
-- 📝 **Post Management**: Create, edit, delete, and view posts.
-- 🌟 **Responsive Design**: Optimized for all devices.
-- 📸 **Profile Management**: Upload and preview profile pictures.
-- ⚡ **Fast Interaction**: Seamless API integration using React Query.
+- 🔑 **Secure User Authentication**: Login, signup, and Google OAuth integration.
+- 📝 **Comprehensive Post Management**: Create, edit, delete, like, comment, and view posts with live updates.
+- 🌟 **Responsive Design**: Optimized for all devices with CSS modules and media queries.
+- ⚙️ **Settings and Profile Management**:
+  - Update personal details and profile pictures.
+  - Manage account settings.
+  - Theme toggler for light and dark modes.
+- 👩‍💻 **Admin Panel**:
+  - Manage users and posts with powerful admin tools.
+  - Delete all posts in critical cases.
+- ⚡ **Fast Interaction**: Optimized API integration using React Query with caching and mutation functions.
 
 ---
 
 ## 🧪 **Tech Stack**
 
-| **Technology**   | **Description**         |
-| ---------------- | ----------------------- |
-| **React**        | Frontend Framework      |
-| **React Router** | Client-Side Routing     |
-| **React Query**  | Data Fetching & Caching |
-| **CSS Modules**  | Modular Styling         |
-| **GitHub Pages** | Deployment Platform     |
+| **Technology**   | **Description**              |
+| ---------------- | ---------------------------- |
+| **React**        | Component-based UI framework |
+| **React Router** | Client-side routing          |
+| **React Query**  | Data fetching & caching      |
+| **Vite**         | High-performance build tool  |
+| **CSS Modules**  | Scoped modular styling       |
+| **GitHub Pages** | Deployment platform          |
 
 ---
 
@@ -45,8 +52,9 @@ npm install
 
 Create a `.env` file and add:
 
-```env
+```bash
 VITE_API_URL=https://strict-jemimah-meierrene-88607bf0.koyeb.app/api/v1
+VITE_GOOGLE_CLIENT_ID=your-google-client-id
 ```
 
 ### **4️⃣ Run the Development Server**
@@ -61,24 +69,21 @@ npm run dev
 
 ```plaintext
 src/
-├── components/     # Reusable UI components
-├── pages/          # Page-specific components
-├── api/            # API integration logic
-├── styles/         # CSS modules
-└── App.js          # Application entry point
+├── contexts/       # Global state management (Auth & Theme)
+├── features/       # Modular feature-based components
+│   ├── posts/      # Post CRUD operations
+│   ├── users/      # User management and settings
+│   ├── admin/      # Admin tools
+├── pages/          # Route-specific pages
+├── ui/             # Reusable UI components
+├── utils/          # Helpers and constants
+├── App.jsx         # Application entry point
+└── main.jsx        # Root renderer
 ```
 
 ---
 
-## 🧥 **Contributing**
-
-We welcome contributions!
-
-- Fork the repository
-- Create a feature branch: `git checkout -b feature/feature-name`
-- Submit a pull request
-
----
+## 📸 **Screenshots**
 
 **Homepage**
 
@@ -101,6 +106,23 @@ We welcome contributions!
 ![update](https://github.com/user-attachments/assets/97b0ae35-8dfb-4b5c-af3a-445cd2103f90)
 
 ---
+
+## 🧥 **Contributing**
+
+We welcome contributions!
+
+- Fork the repository.
+- Create a feature branch:
+
+```bash
+git checkout -b feature/feature-name
+```
+
+- Submit a pull request for review.
+
+---
+
+## 🔗 **Related Repositories**
 
 ### **README for `meiersbook-api`**
 
