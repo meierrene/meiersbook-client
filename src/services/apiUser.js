@@ -21,7 +21,6 @@ export const updateUser = async (userData, token) => {
 };
 
 export const deleteUser = async token => {
-  console.log('delete');
   try {
     await fetch(`${BASE_URL_USERS}deleteMe`, {
       method: 'DELETE',
