@@ -80,7 +80,11 @@ const Post = () => {
               <Image
                 profile
                 size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
-                src={`${ASSET_URL_USERS}/${l.image}` || TEMPLATE_PROFILE_IMAGE}
+                src={
+                  (l?.image.startsWith('http')
+                    ? l.image
+                    : `${ASSET_URL_USERS}/${l.image}`) || TEMPLATE_PROFILE_IMAGE
+                }
               />
               <Heading>{stringLimiter(l.name, 30)}</Heading>
             </div>
@@ -107,9 +111,10 @@ const Post = () => {
                 profile
                 size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
                 src={
-                  c.user?.image
-                    ? `${ASSET_URL_USERS}/${c.user.image}`
-                    : TEMPLATE_PROFILE_IMAGE
+                  (c?.user?.image.startsWith('http')
+                    ? c.user.image
+                    : `${ASSET_URL_USERS}/${c.user.image}`) ||
+                  TEMPLATE_PROFILE_IMAGE
                 }
               />
               <div className={styles.commentBox}>

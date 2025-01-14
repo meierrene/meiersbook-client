@@ -27,11 +27,33 @@ export const stringLimiter = (string, limit) =>
 export const getCountedWord = (array, word) =>
   array.length === 1 ? `${array.length} ${word}` : `${array.length} ${word}s`;
 
+// export const checkURL = async url => {
+//   try {
+//     const response = await fetch(url, { method: 'HEAD' });
+//     return response.ok ? true : false;
+//   } catch {
+//     return false;
+//   }
+// };
+
+const urlCache = new Map();
+
 export const checkURL = async url => {
+  // Check if the result is already cached
+  if (urlCache.has(url)) {
+    return urlCache.get(url);
+  }
+
   try {
     const response = await fetch(url, { method: 'HEAD' });
-    return response.ok ? true : false;
-  } catch {
+    const isValid = response.ok;
+
+    // Cache the result
+    urlCache.set(url, isValid);
+
+    return isValid;
+  } catch (error) {
+    console.error('URL check failed:', error.message);
     return false;
   }
 };

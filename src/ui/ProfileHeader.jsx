@@ -28,7 +28,13 @@ function ProfileHeader({ post }) {
   const [validUrl, setValidUrl] = useState('');
 
   useEffect(() => {
-    const url = `${ASSET_URL_USERS}/${post.creator.image}`;
+    if (!post?.creator?.image) {
+      setValidUrl(TEMPLATE_PROFILE_IMAGE);
+      return;
+    }
+    const url = post.creator.image.startsWith('http')
+      ? post.creator.image
+      : `${ASSET_URL_USERS}/${post.creator.image}`;
     const validateUrl = async () => {
       const isValid = await checkURL(url);
       setValidUrl(isValid ? url : TEMPLATE_PROFILE_IMAGE);

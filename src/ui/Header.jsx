@@ -36,7 +36,9 @@ const Header = ({ children }) => {
       setValidUrl(TEMPLATE_PROFILE_IMAGE); // Set default image if undefined
       return;
     }
-    const url = `${ASSET_URL_USERS}/${user?.image}`;
+    const url = user.image.startsWith('http')
+      ? user.image
+      : `${ASSET_URL_USERS}/${user.image}`;
     const validateUrl = async () => {
       const isValid = await checkURL(url);
       setValidUrl(isValid ? url : TEMPLATE_PROFILE_IMAGE);

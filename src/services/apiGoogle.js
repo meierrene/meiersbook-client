@@ -1,5 +1,4 @@
-import { EXPIRATION_TIME } from '../utils/helpers';
-import { BASE_URL_GOOGLE } from '../utils/helpers';
+import { BASE_URL_GOOGLE, EXPIRATION_TIME } from '../utils/helpers';
 
 export const oAuth = async token => {
   const res = await fetch(`${BASE_URL_GOOGLE}callback`, {
