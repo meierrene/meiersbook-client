@@ -26,6 +26,7 @@ export const deleteUser = async token => {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     });
+    localStorage.removeItem('auth-data');
   } catch (error) {
     console.error('Error deleting user', error.message);
     throw error;

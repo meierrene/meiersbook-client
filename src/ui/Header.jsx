@@ -5,17 +5,13 @@ import { useUser } from '../features/users/useUser';
 import styles from './Header.module.css';
 import Button from './Button';
 import Image from './Image';
-import {
-  ASSET_URL_USERS,
-  TEMPLATE_PROFILE_IMAGE,
-  checkURL,
-  stringLimiter,
-} from '../utils/helpers';
+import { stringLimiter } from '../utils/helpers';
 import SideDrawer from './SideDrawer';
 import Backdrop from './Backdrop';
 import HeaderMenu from './HeaderMenu';
 import { useThemes } from '../contexts/ThemeContext';
 import MenuPanel from './MenuPanel';
+import { useCheckPicture } from '../utils/useCheckPicture';
 
 const Header = ({ children }) => {
   const { isDark } = useThemes();
@@ -23,28 +19,13 @@ const Header = ({ children }) => {
   const { user } = useUser();
   const [isOpened, setIsOpened] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 992);
-  const [validUrl, setValidUrl] = useState('');
+  const validUrl = useCheckPicture(user?.image, true);
 
   useEffect(() => {
     const handleResize = () => setIsLargeScreen(window.innerWidth > 992);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  useEffect(() => {
-    if (!user?.image) {
-      setValidUrl(TEMPLATE_PROFILE_IMAGE); // Set default image if undefined
-      return;
-    }
-    const url = user.image.startsWith('http')
-      ? user.image
-      : `${ASSET_URL_USERS}/${user.image}`;
-    const validateUrl = async () => {
-      const isValid = await checkURL(url);
-      setValidUrl(isValid ? url : TEMPLATE_PROFILE_IMAGE);
-    };
-    validateUrl();
-  }, [user?.image]);
 
   const toggleSideDrawer = () => !isLargeScreen && setIsOpened(open => !open);
   const closeSideDrawer = () => setIsOpened(false);

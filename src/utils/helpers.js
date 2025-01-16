@@ -14,6 +14,7 @@ export const TEMPLATE_PROFILE_IMAGE = '/default-user.jpg';
 export const ERROR_IMAGE = '/404-error.png';
 export const NO_IMAGE = '/no-image.png';
 export const EXPIRATION_TIME = 1000 * 60 * 60; //1h
+export const STRINGLIMITER = 45;
 
 export const imageChecker = image =>
   image instanceof File &&
@@ -21,41 +22,34 @@ export const imageChecker = image =>
   image.name.trim() !== '' &&
   image.type.startsWith('image/');
 
-export const stringLimiter = (string, limit) =>
+export const stringLimiter = (string, limit = STRINGLIMITER) =>
   string.length > limit ? string.slice(0, limit - 2) + '...' : string;
 
 export const getCountedWord = (array, word) =>
   array.length === 1 ? `${array.length} ${word}` : `${array.length} ${word}s`;
 
-// export const checkURL = async url => {
-//   try {
-//     const response = await fetch(url, { method: 'HEAD' });
-//     return response.ok ? true : false;
-//   } catch {
-//     return false;
-//   }
-// };
-
 const urlCache = new Map();
-
 export const checkURL = async url => {
-  // Check if the result is already cached
-  if (urlCache.has(url)) {
-    return urlCache.get(url);
-  }
-
+  if (url.includes('googleusercontent.com')) return true;
+  if (urlCache.has(url)) return urlCache.get(url);
   try {
     const response = await fetch(url, { method: 'HEAD' });
     const isValid = response.ok;
-
-    // Cache the result
     urlCache.set(url, isValid);
-
     return isValid;
   } catch (error) {
     console.error('URL check failed:', error.message);
     return false;
   }
+};
+
+export const profileImage = async image => {
+  if (!image) return TEMPLATE_PROFILE_IMAGE;
+  const url = image.startsWith('http') ? image : `${ASSET_URL_USERS}/${image}`;
+  const isValid = await checkURL(url);
+  const finalVal = (await isValid) ? url : TEMPLATE_PROFILE_IMAGE;
+  console.log(finalVal);
+  return finalVal;
 };
 
 export const getRetifiedError = async res => {

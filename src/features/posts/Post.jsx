@@ -24,6 +24,7 @@ import { usePost } from './usePost';
 import { useCreateComment } from './useCreateComment';
 import { useDeleteComment } from './useDeleteComment';
 import { useEditComment } from './useEditComment';
+import { useCheckPicture } from '../../utils/useCheckPicture';
 
 const Post = () => {
   const { createComment, isCreating } = useCreateComment();
@@ -67,6 +68,7 @@ const Post = () => {
     month: 'numeric',
     year: 'numeric',
   });
+
   return (
     <>
       <div className={styles.postContainer} post-id={post.id}>
@@ -111,10 +113,11 @@ const Post = () => {
                 profile
                 size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
                 src={
-                  (c?.user?.image.startsWith('http')
-                    ? c.user.image
-                    : `${ASSET_URL_USERS}/${c.user.image}`) ||
-                  TEMPLATE_PROFILE_IMAGE
+                  c?.user?.image
+                    ? c.user.image.startsWith('http')
+                      ? c.user.image
+                      : `${ASSET_URL_USERS}/${c.user.image}`
+                    : TEMPLATE_PROFILE_IMAGE
                 }
               />
               <div className={styles.commentBox}>

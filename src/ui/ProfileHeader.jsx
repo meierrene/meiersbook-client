@@ -1,19 +1,15 @@
-import { FaHeart, FaRegComment, FaRegHeart } from 'react-icons/fa';
-import {
-  stringLimiter,
-  ASSET_URL_USERS,
-  checkURL,
-  TEMPLATE_PROFILE_IMAGE,
-} from '../utils/helpers';
-import Heading from './Heading';
-import Image from './Image';
-import styles from './ProfileHeader.module.css';
-import Icon from './Icon';
-import Modal from './Modal';
 import { useEffect, useState } from 'react';
+import { FaHeart, FaRegComment, FaRegHeart } from 'react-icons/fa';
+import { useHref } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useToggleLikePost } from '../features/posts/useToggleLikePost';
-import { useHref } from 'react-router-dom';
+import { stringLimiter } from '../utils/helpers';
+import { useCheckPicture } from '../utils/useCheckPicture';
+import Heading from './Heading';
+import Icon from './Icon';
+import Image from './Image';
+import Modal from './Modal';
+import styles from './ProfileHeader.module.css';
 import Spinner from './Spinner';
 
 function ProfileHeader({ post }) {
@@ -25,23 +21,10 @@ function ProfileHeader({ post }) {
   const href = useHref();
   const myposts = href === '/myposts';
   const postGallery = href === '/';
-  const [validUrl, setValidUrl] = useState('');
 
-  useEffect(() => {
-    if (!post?.creator?.image) {
-      setValidUrl(TEMPLATE_PROFILE_IMAGE);
-      return;
-    }
-    const url = post.creator.image.startsWith('http')
-      ? post.creator.image
-      : `${ASSET_URL_USERS}/${post.creator.image}`;
-    const validateUrl = async () => {
-      const isValid = await checkURL(url);
-      setValidUrl(isValid ? url : TEMPLATE_PROFILE_IMAGE);
-    };
-    validateUrl();
-    setLike(isLiked);
-  }, [post.creator.image, isLiked]);
+  const validUrl = useCheckPicture(post?.creator?.image, true);
+
+  useEffect(() => setLike(isLiked), [isLiked]);
 
   const handleToggleLike = e => {
     e.preventDefault();
