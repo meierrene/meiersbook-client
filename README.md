@@ -1,4 +1,5 @@
-# 🌟 **MeiersBook Client**
+![logo-meiersbook-color](https://github.com/user-attachments/assets/ad6f863e-fc52-4f9e-b5b6-357319e66762)
+# **MeiersBook Client**
 
 The **frontend** of MeiersBook, a dynamic social media platform where users can share posts, interact with others, and manage their profiles seamlessly. Designed with cutting-edge technologies, MeiersBook delivers a smooth, responsive, and engaging user experience.
 
@@ -46,6 +47,7 @@ cd meiersbook-client
 
 ```bash
 npm install
+
 ```
 
 ### **3️⃣ Set Environment Variables**
