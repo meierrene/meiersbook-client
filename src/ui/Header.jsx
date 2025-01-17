@@ -35,16 +35,16 @@ const Header = ({ children }) => {
       <header className={`${styles.header} ${isDark ? styles.themeDark : ''}`}>
         <nav className={styles.navbar}>
           <Link className={styles.logo} to="/">
-            <span>
-              <img
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              <Image
                 src={`/icon-color${isDark ? '-dark' : ''}.svg`}
                 alt="MeiersBook logo"
-                height="40"
+                size={{ hl: '32', hs: '32' }}
               />
-              <img
+              <Image
                 src={`/text-color${isDark ? '-dark' : ''}.svg`}
                 alt="MeiersBook logo"
-                height="40"
+                size={{ hl: '32', hs: '32' }}
               />
             </span>
           </Link>
