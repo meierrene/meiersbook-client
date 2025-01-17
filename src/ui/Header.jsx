@@ -35,7 +35,18 @@ const Header = ({ children }) => {
       <header className={`${styles.header} ${isDark ? styles.themeDark : ''}`}>
         <nav className={styles.navbar}>
           <Link className={styles.logo} to="/">
-            <span>📖 MeiersBook</span>
+            <span>
+              <img
+                src={`/icon-color${isDark ? '-dark' : ''}.svg`}
+                alt="MeiersBook logo"
+                height="40"
+              />
+              <img
+                src={`/text-color${isDark ? '-dark' : ''}.svg`}
+                alt="MeiersBook logo"
+                height="40"
+              />
+            </span>
           </Link>
           <div className={styles.navbarItems}>
             {isLoggedIn && (
