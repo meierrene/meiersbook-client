@@ -1,30 +1,29 @@
-import { useState } from 'react';
-import { FaEdit, FaTrashAlt, FaPlus } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import Accordion from '../../ui/Accordion';
-import Button from '../../ui/Button';
-import ButtonsNav from '../../ui/ButtonsNav';
-import Heading from '../../ui/Heading';
-import ConfirmModal from '../../ui/ConfirmModal';
-import Icon from '../../ui/Icon';
-import Image from '../../ui/Image';
-import Input from '../../ui/Input';
-import ProfileHeader from '../../ui/ProfileHeader';
-import Spinner from '../../ui/Spinner';
+import { useState } from "react";
+import { FaEdit, FaPlus, FaTrashAlt } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+import Accordion from "../../ui/Accordion";
+import Button from "../../ui/Button";
+import ButtonsNav from "../../ui/ButtonsNav";
+import ConfirmModal from "../../ui/ConfirmModal";
+import Heading from "../../ui/Heading";
+import Icon from "../../ui/Icon";
+import Image from "../../ui/Image";
+import Input from "../../ui/Input";
+import ProfileHeader from "../../ui/ProfileHeader";
+import Spinner from "../../ui/Spinner";
 import {
   ASSET_URL_POSTS,
   ASSET_URL_USERS,
   TEMPLATE_PROFILE_IMAGE,
   getCountedWord,
   stringLimiter,
-} from '../../utils/helpers';
-import styles from './Post.module.css';
-import { usePost } from './usePost';
-import { useCreateComment } from './useCreateComment';
-import { useDeleteComment } from './useDeleteComment';
-import { useEditComment } from './useEditComment';
-import { useCheckPicture } from '../../utils/useCheckPicture';
+} from "../../utils/helpers";
+import styles from "./Post.module.css";
+import { useCreateComment } from "./useCreateComment";
+import { useDeleteComment } from "./useDeleteComment";
+import { useEditComment } from "./useEditComment";
+import { usePost } from "./usePost";
 
 const Post = () => {
   const { createComment, isCreating } = useCreateComment();
@@ -33,26 +32,26 @@ const Post = () => {
   const { isLoading, post, error } = usePost();
   const { userId, isLoggedIn } = useAuth();
   const navigate = useNavigate();
-  const [newComment, setNewComment] = useState('');
-  const [editComment, setEditComment] = useState('');
+  const [newComment, setNewComment] = useState("");
+  const [editComment, setEditComment] = useState("");
   const [commentToDelete, setCommentToDelete] = useState(null);
   const [isEditingMode, setIsEditingMode] = useState(null);
 
   const loading = isLoading || isCreating || isDeleting || isEditing;
 
-  if (error?.message.includes('ID')) navigate('/*');
+  if (error?.message.includes("ID")) navigate("/*");
 
   const handleSendNewComment = () => {
     createComment({ text: newComment });
-    setNewComment('');
+    setNewComment("");
   };
 
-  const handleEditComment = id => {
+  const handleEditComment = (id) => {
     editCommentFn({ commentId: id, commentData: { text: editComment } });
     setIsEditingMode(null);
   };
 
-  const handleDeleteComment = id => {
+  const handleDeleteComment = (id) => {
     deleteComment(id);
     setCommentToDelete(null);
   };
@@ -61,12 +60,12 @@ const Post = () => {
 
   document.title = `Meiersbook | ${post.title}`;
 
-  const date = new Date(post.createdAt).toLocaleString('en-UK', {
-    hour: 'numeric',
-    minute: 'numeric',
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
+  const date = new Date(post.createdAt).toLocaleString("en-UK", {
+    hour: "numeric",
+    minute: "numeric",
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
   });
 
   return (
@@ -76,14 +75,14 @@ const Post = () => {
         <Image post src={`${ASSET_URL_POSTS}/${post.image}`} alt={post.title} />
         <Heading secondary>{post.title}</Heading>
         <Heading dateStamp>Created at: {date}</Heading>
-        <Accordion title={getCountedWord(post.likes, 'Like')}>
-          {post.likes.map(l => (
+        <Accordion title={getCountedWord(post.likes, "Like")}>
+          {post.likes.map((l) => (
             <div key={l._id} className={styles.likeBoxContainer}>
               <Image
                 profile
-                size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
+                size={{ wl: "30", hl: "30", ws: "26", hs: "26" }}
                 src={
-                  (l?.image.startsWith('http')
+                  (l?.image.startsWith("http")
                     ? l.image
                     : `${ASSET_URL_USERS}/${l.image}`) || TEMPLATE_PROFILE_IMAGE
                 }
@@ -92,14 +91,14 @@ const Post = () => {
             </div>
           ))}
         </Accordion>
-        <Accordion title={getCountedWord(post.comments, 'Comment')}>
+        <Accordion title={getCountedWord(post.comments, "Comment")}>
           <ButtonsNav>
             <Input
               id="newcomment"
               className={styles.commentInput}
               placeholder="New comment here..."
               value={newComment}
-              onChange={e => setNewComment(e.target.value)}
+              onChange={(e) => setNewComment(e.target.value)}
               hasIcon={newComment ? true : false}
             >
               <Icon onClick={handleSendNewComment} disabled>
@@ -107,14 +106,14 @@ const Post = () => {
               </Icon>
             </Input>
           </ButtonsNav>
-          {post.comments.map(c => (
+          {post.comments.map((c) => (
             <div key={c._id} className={styles.commentBoxContainer}>
               <Image
                 profile
-                size={{ wl: '30', hl: '30', ws: '26', hs: '26' }}
+                size={{ wl: "30", hl: "30", ws: "26", hs: "26" }}
                 src={
                   c?.user?.image
-                    ? c.user.image.startsWith('http')
+                    ? c.user.image.startsWith("http")
                       ? c.user.image
                       : `${ASSET_URL_USERS}/${c.user.image}`
                     : TEMPLATE_PROFILE_IMAGE
@@ -123,7 +122,7 @@ const Post = () => {
               <div className={styles.commentBox}>
                 <Heading span>
                   {stringLimiter(
-                    c.user?.name ? c.user.name : 'Deleted user',
+                    c.user?.name ? c.user.name : "Deleted user",
                     30
                   )}
                 </Heading>
@@ -133,7 +132,7 @@ const Post = () => {
                     className={styles.commentInput}
                     value={editComment}
                     placeholder="Edit your comment here..."
-                    onChange={e => setEditComment(e.target.value)}
+                    onChange={(e) => setEditComment(e.target.value)}
                     hasIcon={editComment ? true : false}
                   >
                     <Icon onClick={() => handleEditComment(c._id)}>
@@ -151,7 +150,7 @@ const Post = () => {
                     onClick={() => {
                       if (isEditingMode === c._id) {
                         setIsEditingMode(null);
-                        setEditComment('');
+                        setEditComment("");
                       } else {
                         setIsEditingMode(c._id);
                         setEditComment(c.text);
